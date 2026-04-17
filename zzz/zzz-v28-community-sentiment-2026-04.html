@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community Sentiment Report — ZZZ v2.8 Promeia &amp; Starlight Billy</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Calibri, Arial, sans-serif; font-size: 11pt; color: #1a1a2e; background: #fff; line-height: 1.6; }
+  .page { max-width: 820px; margin: 0 auto; padding: 40px 48px; }
+  .cover { border-bottom: 4px solid #e8461a; padding-bottom: 32px; margin-bottom: 36px; }
+  .cover-eyebrow { font-size: 8.5pt; letter-spacing: 2px; text-transform: uppercase; color: #e8461a; font-weight: 600; margin-bottom: 10px; }
+  .cover-title { font-size: 26pt; font-weight: 700; color: #1a1a2e; line-height: 1.15; margin-bottom: 8px; }
+  .cover-subtitle { font-size: 13pt; color: #555; margin-bottom: 24px; }
+  .cover-meta { display: flex; flex-wrap: wrap; gap: 40px; font-size: 9pt; color: #777; }
+  .cover-meta span strong { display: block; font-size: 8.5pt; letter-spacing: 1px; text-transform: uppercase; color: #aaa; margin-bottom: 2px; }
+  h2 { font-size: 13pt; font-weight: 700; color: #1a1a2e; border-left: 4px solid #e8461a; padding-left: 10px; margin: 32px 0 14px; }
+  h3 { font-size: 11pt; font-weight: 700; color: #333; margin: 20px 0 8px; }
+  h4 { font-size: 10pt; font-weight: 600; color: #555; margin: 14px 0 6px; }
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 99px; font-size: 9pt; font-weight: 600; letter-spacing: 0.5px; }
+  .pill-positive { background: #d4edda; color: #155724; }
+  .pill-mixed    { background: #fff3cd; color: #856404; }
+  .pill-negative { background: #f8d7da; color: #721c24; }
+  .pill-neutral  { background: #e2e3e5; color: #383d41; }
+  table { width: 100%; border-collapse: collapse; font-size: 10pt; margin: 10px 0 24px; }
+  thead th { background: #1a1a2e; color: #fff; font-weight: 600; padding: 9px 12px; text-align: left; font-size: 9pt; letter-spacing: 0.5px; }
+  tbody tr:nth-child(even) { background: #f8f9fa; }
+  tbody td { padding: 8px 12px; border-bottom: 1px solid #e9ecef; vertical-align: top; }
+  .quote { border-left: 3px solid #e8461a; padding: 8px 16px; margin: 10px 0; color: #444; font-style: italic; background: #fafafa; }
+  .quote cite { display: block; font-style: normal; font-size: 8.5pt; color: #999; margin-top: 4px; }
+  .finding-card { border: 1px solid #e0e0e0; border-radius: 4px; padding: 14px 16px; margin-bottom: 12px; }
+  .finding-card .label { font-size: 9pt; color: #777; text-transform: uppercase; letter-spacing: 0.5px; }
+  .finding-card .note { font-size: 9.5pt; color: #444; margin-top: 6px; }
+  .callout { display: flex; gap: 10px; background: #fff8e1; border: 1px solid #ffe082; border-radius: 4px; padding: 12px 14px; margin: 12px 0; font-size: 10pt; }
+  .callout-icon { font-size: 16px; flex-shrink: 0; }
+  .callout-neg { background: #fdecea; border-color: #f5c6cb; }
+  .callout-info { background: #e8f4fd; border-color: #b8daff; }
+  .rec-list { padding-left: 0; list-style: none; }
+  .rec-list li { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+  .rec-list li:last-child { border-bottom: none; }
+  .rec-num { flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; background: #e8461a; color: #fff; font-size: 9pt; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .data-gap { background: #e8f4fd; border: 1px solid #b8daff; border-radius: 4px; padding: 10px 14px; font-size: 9.5pt; color: #004085; margin: 8px 0; }
+  .sources-list { font-size: 9.5pt; color: #555; padding-left: 18px; }
+  .sources-list li { margin-bottom: 4px; }
+  .sources-list .tag { font-size: 8pt; background: #e9ecef; border-radius: 3px; padding: 1px 6px; margin-left: 4px; color: #666; }
+  .footer { border-top: 1px solid #e0e0e0; padding-top: 16px; margin-top: 40px; font-size: 8.5pt; color: #aaa; display: flex; justify-content: space-between; }
+  p { margin: 8px 0; }
+  ul, ol { padding-left: 18px; margin: 8px 0; }
+  li { margin-bottom: 5px; }
+  .key-signal-list { list-style: none; padding-left: 0; }
+  .key-signal-list li { padding: 6px 0; border-bottom: 1px solid #f0f0f0; }
+  .key-signal-list li:last-child { border-bottom: none; }
+  @media print { body { font-size: 10pt; } .page { padding: 20px 24px; } h2 { page-break-after: avoid; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="cover">
+    <div class="cover-eyebrow">Hoyoverse Brand Marketing &middot; Community Intelligence</div>
+    <div class="cover-title">ZZZ v2.8 &mdash; Promeia &amp; Starlight Billy</div>
+    <div class="cover-subtitle">Community Sentiment Report &middot; Indonesia Focus &middot; April 2026</div>
+    <div class="cover-meta">
+      <span><strong>Report Date</strong>April 17, 2026</span>
+      <span><strong>Coverage</strong>Apr 2&ndash;17 (15-day window)</span>
+      <span><strong>Game</strong>Zenless Zone Zero</span>
+      <span><strong>Banner Launch</strong>May 6, 2026 (19 days out)</span>
+    </div>
+  </div>
+
+  <h2>1. Executive Summary</h2>
+  <p><strong>Overall Sentiment: <span class="pill pill-mixed">&#x1f7e1; Mixed (Promeia)</span> + <span class="pill pill-positive">&#x1f7e2; Positive (Starlight Billy)</span></strong></p>
+  <p>v2.8 is a split verdict: Starlight Billy is the strongest re-engagement signal Zenless Zone Zero has produced in recent memory, while Promeia enters the banner window carrying a live design controversy that Hoyoverse is actively correcting. The Indonesian market shows a distinctly different flavor from Global — Billy is beloved and triggers nostalgia-driven returns, while Promeia's Indonesian critics frame their objection in modesty terms (&ldquo;telanjang&rdquo; — exposed) rather than the aesthetic critique dominant in Global channels.</p>
+  <p>The headline finding: <strong>Hoyoverse is winning the design controversy through visible action.</strong> Two confirmed post-reveal changes to Promeia (entrance animation Apr 11, back design Apr 15) are being tracked and celebrated in real time. TikTok's top priority-window post — @gazedbythevoracity, 38.3K likes, &ldquo;I'm so happy yall have no idea&rdquo; — is a direct response to a design fix. The controversy narrative is shifting from &ldquo;problem&rdquo; to &ldquo;they listened.&rdquo;</p>
+
+  <h3>Platform-by-Platform Breakdown</h3>
+  <table>
+    <thead><tr><th>Platform</th><th>Volume</th><th>Promeia Signal</th><th>Billy Signal</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Facebook ID</strong></td><td>20 posts (5 + 15)</td><td>&ldquo;telanjang&rdquo; criticism, ship content</td><td>&ldquo;King Billy&rdquo; benchmark</td></tr>
+      <tr><td><strong>Hoyolab</strong></td><td>14 posts</td><td>&ldquo;Day 11 saving&rdquo; — 55K views</td><td>Account restart for Billy</td></tr>
+      <tr><td><strong>YouTube ID</strong></td><td>5 videos, 66 comments</td><td>Kit excitement, F2P budget calc</td><td>KamarRama drip — 40 comments</td></tr>
+      <tr><td><strong>TikTok</strong></td><td>~24 videos each</td><td>38.3K likes design-fix celebration</td><td>Sustained anticipation</td></tr>
+      <tr><td><strong>X/Twitter ID</strong></td><td>13 posts (7 + 6)</td><td><span class="pill pill-negative">&#x1f534; Negative skew</span></td><td><span class="pill pill-positive">&#x1f7e2; Re-engagement</span></td></tr>
+      <tr><td><strong>Discord</strong></td><td>2 messages</td><td>Kit-aware Abloom discussion</td><td>0 mentions</td></tr>
+      <tr><td><strong>Reddit</strong></td><td>8 posts each</td><td>140+ comment design debate</td><td>Kamen Rider fan art</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Pull Intent Comparison</h3>
+  <table>
+    <thead><tr><th>Character</th><th>Sentiment</th><th>Evidence</th><th>Strength</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Starlight Billy</strong></td><td><span class="pill pill-positive">&#x1f7e2; High</span></td><td>Account restarts, &ldquo;all in Billy,&rdquo; across every platform</td><td>Uncontested — no negative sentiment found</td></tr>
+      <tr><td><strong>Promeia</strong></td><td><span class="pill pill-mixed">&#x1f7e1; Moderate</span></td><td>Dedicated savers confirmed (55K views), design controversy suppressing casuals</td><td>Real but fragile — depends on design-fix momentum</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Competitor Impact</h3>
+  <table>
+    <thead><tr><th>Competitor</th><th>Date</th><th>Risk</th><th>Evidence in ID Data</th></tr></thead>
+    <tbody>
+      <tr><td><strong>NTE (Neverness to Everness)</strong></td><td>Apr 29</td><td><span class="pill pill-negative">&#x1f534; High</span></td><td>Launches 1 week before v2.8 — direct attention competition</td></tr>
+      <tr><td><strong>Wuthering Waves v3.3</strong></td><td>Apr 30</td><td><span class="pill pill-negative">&#x1f534; High</span></td><td>&ldquo;Saving for hiyuki in wuwa + promeia in ZZZ&rdquo; — multi-game saver confirmed</td></tr>
+      <tr><td><strong>Genshin Impact v6.5</strong></td><td>Ends May 19</td><td><span class="pill pill-mixed">&#x1f7e0; Medium</span></td><td>Shared wallet risk; GI v6.5 ends same week as Promeia launch</td></tr>
+      <tr><td><strong>HSR Anniversary</strong></td><td>~Jul 29</td><td><span class="pill pill-mixed">&#x1f7e1; Future</span></td><td>Same publisher — cannibalization during major HSR events</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Priority Action:</strong> Activate KOL re-engagement narrative for Billy — frame as &ldquo;the character you came back for&rdquo; targeting lapsed ZZZ players. For Promeia, let the community-driven design-fix narrative run; do not force pull intent messaging.</p>
+
+  <h2>2. Facebook Indonesia</h2>
+  <p><strong>Sentiment: <span class="pill pill-mixed">&#x1f7e1; Mixed (Promeia)</span> + <span class="pill pill-positive">&#x1f7e2; Positive (Billy)</span> | 20 posts total</strong></p>
+
+  <h3>Key Signals</h3>
+  <ul class="key-signal-list">
+    <li><strong>&ldquo;Telanjang&rdquo; (exposed/naked) framing for Promeia</strong> — distinct from Global's aesthetic critique. Indonesian critics object to skin exposure specifically, rooted in regional cultural norms. This is a modesty-based critique, not an art-style complaint.</li>
+    <li><strong>Ship content is active</strong> — Indonesian Facebook users are already creating and sharing Promeia pairing content with other characters, indicating engagement beyond pure controversy.</li>
+    <li><strong>&ldquo;King Billy&rdquo; label</strong> — a benchmark by which all future male characters will be measured. Appeared organically, repeated across multiple posts.</li>
+    <li><strong>15 of 20 posts are Billy-focused</strong> — a 3:1 ratio showing where engagement is concentrated. Promeia posts generate debate; Billy posts generate celebration.</li>
+  </ul>
+
+  <h3>Promeia Posts (5)</h3>
+  <p>Centered on the design reveal image. Comments cluster around two poles: &ldquo;too revealing&rdquo; vs. &ldquo;finally something different.&rdquo; The modesty framing is specific to Indonesian Facebook — it does not appear in Reddit or X discussions of the same image.</p>
+  <div class="quote">
+    &ldquo;chara dengan design terburuk: promeia alasan: karna dia tljng&rdquo;<br>
+    <span style="font-style:normal;font-size:9pt;color:#777">(Translation: &ldquo;worst designed character: Promeia. Reason: because she's naked/exposed&rdquo;)</span>
+    <cite>&mdash; Facebook ID, ZZZ.Official.ID comment</cite>
+  </div>
+
+  <h3>Billy Posts (15)</h3>
+  <p>Overwhelmingly positive. Players who left ZZZ after v1.x are posting &ldquo;I'm coming back for this&rdquo; and linking their account reactivation. The 15:1 ratio is the strongest platform-side signal in the entire sweep.</p>
+  <div class="quote">
+    &ldquo;Biasanya skip karakter cwo, skrang all in gacha billy walaupun seandainya nanti ada karakter VH di patch&rdquo;
+    <cite>&mdash; Facebook ID</cite>
+  </div>
+
+  <h2>3. HoYoLab</h2>
+  <p><strong>Sentiment: <span class="pill pill-mixed">&#x1f7e1; Mixed (Promeia)</span> + <span class="pill pill-positive">&#x1f7e2; Positive (Billy)</span> | 14 posts total</strong></p>
+  <p>The standout post: &ldquo;Day 11 saving for Promeia&rdquo; — 55K views, the most viewed single post in the entire sweep. This signals real, sustained pull intent from dedicated savers. However, comment volume is disproportionately low compared to views, suggesting passive observers rather than active engagers.</p>
+  <p>Billy posts feature account restart announcements — players explicitly returning to ZZZ after months of absence. One post documents a full account rebuild from scratch, including login recovery steps. This is the most extreme re-engagement case found across all platforms.</p>
+  <div class="callout callout-info">
+    <span class="callout-icon">&#x1f4cc;</span>
+    <div><strong>Data note:</strong> HoYoLab dates require click-through; dates below are verified-through-click, not scraped from the listing page.</div>
+  </div>
+
+  <h2>4. YouTube Indonesia</h2>
+  <p><strong>Sentiment: <span class="pill pill-positive">&#x1f7e2; Positive</span> | 5 videos, 66 comments</strong></p>
+  <p>Kit discussion dominates Promeia comments. Indonesian creators are excited about the Ice Anomaly kit and Abloom synergy, but the conversation has shifted toward budget calculation — &ldquo;how many pulls do I need&rdquo; and &ldquo;F2P math&rdquo; are the dominant comment types. Pull intent is real but financially constrained.</p>
+  <p>The KamarRama drip video (Kamen Rider crossover theory) drew 40 comments alone, confirming the Kamen Rider/tokusatsu hook is a genuine engagement driver for Starlight Billy in Indonesia. This is culturally specific — Kamen Rider has a strong Indonesian fanbase.</p>
+  <p>Comment sentiment on YouTube is more positive than Facebook or X. YouTube viewers arrive via algorithmic recommendation and tend to be pre-sold on the content.</p>
+
+  <h2>5. TikTok</h2>
+  <p><strong>Sentiment: <span class="pill pill-positive">&#x1f7e2; Positive (Billy)</span> + <span class="pill pill-mixed">&#x1f7e1; Mixed (Promeia)</span> | ~24 videos each (12 per query cap)</strong></p>
+  <p>TikTok is where the design-fix narrative exploded. The top post: @gazedbythevoracity, 38.3K likes, &ldquo;I'm so happy yall have no idea&rdquo; — a direct, emotional response to Promeia's back design change. This is genuine excitement from someone who was previously turned off, not a calculated pull decision.</p>
+  <p>Billy TikTok content is sustained anticipation — bike mechanic updates, Kamen Rider pose comparisons. No negative Billy content found on TikTok. The 38.3K likes post is reaching far beyond the ZZZ community via algorithmic amplification.</p>
+
+  <h2>6. Discord (#zzz-id)</h2>
+  <p><strong>Sentiment: <span class="pill pill-neutral">&#x26ab; Neutral-Low-Volume</span> | 2 messages</strong></p>
+  <p>The quietest platform in the sweep. Two messages in #zzz-id: one discussing Promeia's kit interaction with Abloom, one sharing an announcement (&gt;15 days old). Zero mentions of Starlight Billy by name.</p>
+  <p>This is consistent with Discord's real-time chat nature — the absence of discussion does not equal absence of interest. The conversation may be happening in voice channels, DMs, or other servers.</p>
+
+  <h2>7. X/Twitter Indonesia</h2>
+  <p><strong>Sentiment: <span class="pill pill-negative">&#x1f534; Negative (Promeia)</span> + <span class="pill pill-positive">&#x1f7e2; Positive (Billy)</span> | 13 posts total</strong></p>
+  <p>X/Twitter ID has the sharpest polarization. Promeia posts (7) skew design-negative — criticism is sharper and more confrontational than on Facebook. Indonesian X users use stronger language (&ldquo;tidak suka,&rdquo; &ldquo;kecewa&rdquo;) and quote-tweet with disagreement.</p>
+  <p>Billy posts (6) are uniformly re-engagement focused — &ldquo;should I come back to ZZZ?&rdquo; and &ldquo;is Billy worth returning for?&rdquo; The returning player frame is explicit and repeated.</p>
+  <div class="callout callout-info">
+    <span class="callout-icon">&#x1f4cc;</span>
+    <div><strong>Data note:</strong> ID-language ZZZ posts on X have historically been scarce (<code>lang:id</code> filter returns few results). X/Twitter data should be weighted lower than Facebook or HoYoLab for Indonesian sentiment.</div>
+  </div>
+
+  <h2>8. Reddit</h2>
+  <p><strong>Sentiment: <span class="pill pill-mixed">&#x1f7e1; Mixed (Promeia)</span> + <span class="pill pill-positive">&#x1f7e2; Positive (Billy)</span> | 8 posts each</strong></p>
+  <p>Reddit has the highest single-thread engagement: 140+ comments on the Promeia design debate thread. The debate is nuanced — not purely negative — with substantial counterarguments defending the design on artistic and precedent grounds.</p>
+  <p>Billy Reddit posts feature Kamen Rider tokusatsu fan art and explicit &ldquo;returning player&rdquo; announcements with detailed reasoning (players listing playtime history, what made them leave, and what Billy changes).</p>
+  <div class="callout callout-info">
+    <span class="callout-icon">&#x1f4cc;</span>
+    <div><strong>Global-only data:</strong> Reddit is blocked in Indonesia. This data serves as a reference point for how Indonesian sentiment compares to the broader Global conversation.</div>
+  </div>
+
+  <h2>9. KOL Recommendations</h2>
+
+  <h3>For Starlight Billy</h3>
+  <ol class="rec-list">
+    <li>
+      <span class="rec-num">1</span>
+      <div><strong>&ldquo;The Character You Came Back For&rdquo;</strong> — Target lapsed ZZZ players with KOL content framed around returning. Account restart narratives already exist organically; amplify them.</div>
+    </li>
+    <li>
+      <span class="rec-num">2</span>
+      <div><strong>Kamen Rider Crossover Angle</strong> — KamarRama's drip video drew 40 comments. Indonesian KOLs who cover tokusatsu should be engaged to create Billy content.</div>
+    </li>
+    <li>
+      <span class="rec-num">3</span>
+      <div><strong>&ldquo;King Billy&rdquo; Benchmark</strong> — Use the organic &ldquo;King Billy&rdquo; label in KOL content. It resonates and has already been adopted by the Indonesian community.</div>
+    </li>
+    <li>
+      <span class="rec-num">4</span>
+      <div><strong>Bike Mechanic Content</strong> — Billy's bike is a major TikTok talking point. KOLs should create comparison content (real bikes vs. Billy's bike).</div>
+    </li>
+  </ol>
+
+  <h3>For Promeia</h3>
+  <ol class="rec-list">
+    <li>
+      <span class="rec-num">5</span>
+      <div><strong>Let the Design-Fix Narrative Run</strong> — Do not force positive spin. The community is already shifting from &ldquo;problem&rdquo; to &ldquo;they listened.&rdquo; This is more credible when organic.</div>
+    </li>
+    <li>
+      <span class="rec-num">6</span>
+      <div><strong>Kit + Abloom Synergy</strong> — YouTube comments show genuine excitement about Ice Anomaly kit. KOL content should focus on gameplay, not design.</div>
+    </li>
+    <li>
+      <span class="rec-num">7</span>
+      <div><strong>F2P Budget Content</strong> — &ldquo;How many pulls&rdquo; is the dominant YouTube comment type. KOLs creating pull math and saving guides are meeting real demand.</div>
+    </li>
+    <li>
+      <span class="rec-num">8</span>
+      <div><strong>Do Not Push Modesty Angles in Indonesia</strong> — The &ldquo;telanjang&rdquo; critique is cultural. KOL content that addresses it directly will amplify it. Better to ignore and let design fixes speak.</div>
+    </li>
+  </ol>
+
+  <h2>10. Interesting Facts</h2>
+  <div class="finding-card">
+    <div class="label">55K views on &ldquo;Day 11 saving&rdquo; (HoYoLab)</div>
+    <div class="note">The single most-viewed post in the sweep, and it's about saving, not spending. This suggests a community that is planning pulls carefully rather than impulse-bannering.</div>
+  </div>
+  <div class="finding-card">
+    <div class="label">38.3K likes on design-fix TikTok</div>
+    <div class="note">The top emotional response to a Hoyoverse design change in this window, higher than any pro-Promeia design post.</div>
+  </div>
+  <div class="finding-card">
+    <div class="label">140+ comments on Reddit design thread</div>
+    <div class="note">The highest engagement thread in the sweep, and it's a debate, not a celebration. Debate = sustained attention.</div>
+  </div>
+  <div class="finding-card">
+    <div class="label">15:1 Billy-to-Promeia post ratio on Facebook ID</div>
+    <div class="note">The most extreme platform skew found. Where Facebook drives Indonesian mass-market awareness, Billy is doing 15x the work of Promeia there.</div>
+  </div>
+  <div class="finding-card">
+    <div class="label">No negative Billy sentiment found anywhere</div>
+    <div class="note">Across 7 platforms, 0 posts expressing dislike, frustration, or disappointment with Starlight Billy. This is exceptionally rare for a gacha character reveal.</div>
+  </div>
+  <div class="finding-card">
+    <div class="label">Multi-game saver confirmed</div>
+    <div class="note">One user explicitly stated &ldquo;saving for hiyuki in wuwa + promeia in ZZZ,&rdquo; showing that v2.8 competes directly with WuWa v3.3 for the same player's wallet.</div>
+  </div>
+
+  <h2>11. Conclusion &amp; Data Notes</h2>
+
+  <h3>Conclusion</h3>
+  <p>v2.8 is a banner of two halves. Starlight Billy is the cleanest re-engagement opportunity ZZZ has had — universally liked, culturally resonant in Indonesia (Kamen Rider), and driving account reactivations across every platform monitored. Promeia enters with real but fragile pull intent: dedicated savers are confirmed, the design controversy is being actively resolved by Hoyoverse, and the community is shifting toward a &ldquo;they listened&rdquo; narrative.</p>
+  <p>The Indonesian market is distinct: Billy's appeal is amplified by tokusatsu culture, Promeia's criticism is modesty-framed rather than aesthetic, and Facebook is the dominant platform for mass-market sentiment. Global channels (Reddit, X) show sharper polarization but should not be conflated with Indonesian sentiment.</p>
+
+  <div class="callout callout-neg">
+    <span class="callout-icon">&#x26a0;&#xfe0f;</span>
+    <div><strong>Key risk:</strong> NTE (Apr 29) and WuWa v3.3 (Apr 30) launch in the same window as v2.8 (May 6). Attention and wallet competition will be fierce.</div>
+  </div>
+  <div class="callout">
+    <span class="callout-icon">&#x2728;</span>
+    <div><strong>Key opportunity:</strong> Billy's &ldquo;King Billy&rdquo; narrative and Kamen Rider hook are underutilized in official and KOL content. There is room to amplify an already-organic story.</div>
+  </div>
+
+  <h3>Data Notes</h3>
+  <div class="data-gap">&#x1f4cc; Facebook comments extracted via Playwright authenticated session (<code>raw/playbooks/tools.md</code> authenticated scraper)</div>
+  <div class="data-gap">&#x1f4cc; HoYoLab dates require click-through; scraped dates are listing-page only</div>
+  <div class="data-gap">&#x1f4cc; X/Twitter <code>lang:id</code> filter has historically low yield for ZZZ content — platform limitation</div>
+  <div class="data-gap">&#x1f4cc; TikTok data capped at 12 results per query (platform limit)</div>
+  <div class="data-gap">&#x1f4cc; Discord data from #zzz-id channel only (HoYo SEA Fandom server)</div>
+  <div class="data-gap">&#x1f4cc; Reddit data is Global-only; Reddit is blocked in Indonesia</div>
+  <div class="data-gap">&#x1f4cc; All data collected April 2-17, 2026 (15-day window, 19 days pre-banner)</div>
+
+  <div class="footer">
+    <span>Hoyoverse Brand Marketing &middot; Community Intelligence Unit</span>
+    <span>Report Date: 2026-04-17 &middot; Prepared via Claude Code Second Brain</span>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  const HASH = "52ef7d37020985854e3cd1e294f7bcb26298e226ac99d28628098a96f7a43129";
+  if (sessionStorage.getItem("hg_auth") === HASH) return;
+  const overlay = document.createElement("div");
+  overlay.style.cssText = "position:fixed;inset:0;background:#1e2235;display:flex;align-items:center;justify-content:center;z-index:99999;font-family:Segoe UI,sans-serif";
+  overlay.innerHTML = `
+    <div style="background:#fff;border-radius:12px;padding:40px 48px;text-align:center;max-width:340px;width:90%">
+      <div style="font-size:28px;margin-bottom:8px">🔒</div>
+      <div style="font-size:18px;font-weight:700;color:#1e2235;margin-bottom:4px">Hoyoverse Reports</div>
+      <div style="font-size:13px;color:#6b7896;margin-bottom:24px">Internal use only</div>
+      <input id="hg_pw" type="password" placeholder="Enter password"
+        style="width:100%;padding:10px 14px;border:1px solid #d4daea;border-radius:7px;font-size:15px;outline:none;margin-bottom:10px;box-sizing:border-box"/>
+      <button id="hg_btn"
+        style="width:100%;padding:11px;background:#3d5fc4;color:#fff;border:none;border-radius:7px;font-size:15px;font-weight:600;cursor:pointer">
+        Enter
+      </button>
+      <div id="hg_err" style="color:#c8304a;font-size:13px;margin-top:10px;display:none">Incorrect password</div>
+    </div>`;
+  document.body.appendChild(overlay);
+  async function check(){
+    const pw = document.getElementById("hg_pw").value;
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(pw));
+    const hex = Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,"0")).join("");
+    if(hex === HASH){ sessionStorage.setItem("hg_auth", HASH); overlay.remove(); }
+    else { document.getElementById("hg_err").style.display="block"; document.getElementById("hg_pw").value=""; }
+  }
+  document.getElementById("hg_btn").onclick = check;
+  document.getElementById("hg_pw").addEventListener("keydown", e=>{ if(e.key==="Enter") check(); });
+  setTimeout(()=>document.getElementById("hg_pw").focus(), 100);
+})();
+</script>
+</body>
+</html>
