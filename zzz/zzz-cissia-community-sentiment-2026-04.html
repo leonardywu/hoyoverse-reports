@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community Sentiment Report — ZZZ Cissia</title>
+<style>
+  /* ── Base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+    font-size: 11pt;
+    color: #1a1a2e;
+    background: #fff;
+    line-height: 1.6;
+  }
+
+  /* ── Page layout ── */
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 48px;
+  }
+
+  /* ── Cover ── */
+  .cover {
+    border-bottom: 4px solid #e8461a;
+    padding-bottom: 32px;
+    margin-bottom: 36px;
+  }
+  .cover-eyebrow {
+    font-size: 8.5pt;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #e8461a;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .cover-title {
+    font-size: 26pt;
+    font-weight: 700;
+    color: #1a1a2e;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .cover-subtitle {
+    font-size: 13pt;
+    color: #555;
+    margin-bottom: 24px;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 40px;
+    font-size: 9pt;
+    color: #777;
+  }
+  .cover-meta span strong {
+    display: block;
+    font-size: 8.5pt;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 2px;
+  }
+
+  /* ── Section headings ── */
+  h2 {
+    font-size: 13pt;
+    font-weight: 700;
+    color: #1a1a2e;
+    border-left: 4px solid #e8461a;
+    padding-left: 10px;
+    margin: 32px 0 14px;
+  }
+  h3 {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #333;
+    margin: 20px 0 8px;
+  }
+
+  /* ── Executive summary box ── */
+  .exec-summary {
+    background: #fdf3ef;
+    border: 1px solid #f2c4b0;
+    border-left: 4px solid #e8461a;
+    border-radius: 4px;
+    padding: 18px 22px;
+    margin: 0 0 32px;
+  }
+  .exec-summary h2 {
+    border: none;
+    padding: 0;
+    margin: 0 0 10px;
+    font-size: 11pt;
+    color: #e8461a;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .exec-summary ul {
+    padding-left: 18px;
+  }
+  .exec-summary li {
+    margin-bottom: 5px;
+  }
+
+  /* ── Sentiment pill ── */
+  .pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 99px;
+    font-size: 9pt;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .pill-positive { background: #d4edda; color: #155724; }
+  .pill-mixed    { background: #fff3cd; color: #856404; }
+  .pill-negative { background: #f8d7da; color: #721c24; }
+  .pill-neutral  { background: #e2e3e5; color: #383d41; }
+
+  /* ── Sentiment overview bar ── */
+  .sentiment-bar-wrap {
+    margin: 16px 0 24px;
+  }
+  .sentiment-bar {
+    display: flex;
+    height: 20px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .bar-pos { background: #28a745; }
+  .bar-mix { background: #ffc107; }
+  .bar-neg { background: #dc3545; }
+  .bar-neu { background: #adb5bd; }
+  .bar-legend {
+    display: flex;
+    gap: 18px;
+    font-size: 9pt;
+    color: #555;
+  }
+  .bar-legend span { display: flex; align-items: center; gap: 5px; }
+  .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    display: inline-block; flex-shrink: 0;
+  }
+
+  /* ── Tables ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+    margin: 10px 0 24px;
+  }
+  thead th {
+    background: #1a1a2e;
+    color: #fff;
+    font-weight: 600;
+    padding: 9px 12px;
+    text-align: left;
+    font-size: 9pt;
+    letter-spacing: 0.5px;
+  }
+  tbody tr:nth-child(even) { background: #f8f9fa; }
+  tbody td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #e9ecef;
+    vertical-align: top;
+  }
+
+  /* ── Key quote block ── */
+  .quote {
+    border-left: 3px solid #e8461a;
+    padding: 8px 16px;
+    margin: 10px 0;
+    color: #444;
+    font-style: italic;
+    background: #fafafa;
+  }
+  .quote cite {
+    display: block;
+    font-style: normal;
+    font-size: 8.5pt;
+    color: #999;
+    margin-top: 4px;
+  }
+
+  /* ── Finding cards ── */
+  .findings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 14px 0 24px;
+  }
+  .finding-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 14px 16px;
+  }
+  .finding-card .number {
+    font-size: 22pt;
+    font-weight: 700;
+    color: #e8461a;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .finding-card .label {
+    font-size: 9pt;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .finding-card .note {
+    font-size: 9.5pt;
+    color: #444;
+    margin-top: 6px;
+  }
+
+  /* ── Flag / callout ── */
+  .callout {
+    display: flex;
+    gap: 10px;
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-radius: 4px;
+    padding: 12px 14px;
+    margin: 12px 0;
+    font-size: 10pt;
+  }
+  .callout-icon { font-size: 16px; flex-shrink: 0; }
+  .callout-neg {
+    background: #fdecea;
+    border-color: #f5c6cb;
+  }
+
+  /* ── Recommendation list ── */
+  .rec-list { padding-left: 0; list-style: none; }
+  .rec-list li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .rec-list li:last-child { border-bottom: none; }
+  .rec-num {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: #e8461a;
+    color: #fff;
+    font-size: 9pt;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ── Data gap note ── */
+  .data-gap {
+    background: #e8f4fd;
+    border: 1px solid #b8daff;
+    border-radius: 4px;
+    padding: 10px 14px;
+    font-size: 9.5pt;
+    color: #004085;
+    margin: 8px 0;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 16px;
+    margin-top: 40px;
+    font-size: 8.5pt;
+    color: #aaa;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ── Sources ── */
+  .sources-list {
+    font-size: 9.5pt;
+    color: #555;
+    padding-left: 18px;
+  }
+  .sources-list li { margin-bottom: 4px; }
+  .sources-list .tag {
+    font-size: 8pt;
+    background: #e9ecef;
+    border-radius: 3px;
+    padding: 1px 6px;
+    margin-left: 4px;
+    color: #666;
+  }
+
+  /* ── Print ── */
+  @media print {
+    body { font-size: 10pt; }
+    .page { padding: 20px 24px; }
+    h2 { page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── COVER ── -->
+  <div class="cover">
+    <div class="cover-eyebrow">Hoyoverse Brand Marketing · Community Intelligence</div>
+    <div class="cover-title">Community Sentiment Report</div>
+    <div class="cover-subtitle">Zenless Zone Zero — Cissia Character Launch</div>
+    <div class="cover-meta">
+      <span><strong>Report Date</strong>April 16, 2026</span>
+      <span><strong>Coverage Period</strong>Pre-launch buzz + Launch window</span>
+      <span><strong>Game</strong>Zenless Zone Zero (ZZZ)</span>
+      <span><strong>Scope</strong>Global + ID community</span>
+    </div>
+  </div>
+
+  <!-- ── EXECUTIVE SUMMARY ── -->
+  <div class="exec-summary">
+    <h2>Executive Summary</h2>
+    <ul>
+      <li><strong>Overall sentiment: <span class="pill pill-positive">🟢 Positive</span></strong> — Cissia's reveal generated strong organic engagement across Reddit, Twitter/X, and YouTube within the first 48 hours.</li>
+      <li>Community response was driven by <strong>design appreciation</strong> and <strong>kit uniqueness</strong>; notable secondary discussion around her lore connections to Hollow Zero.</li>
+      <li><strong>Indonesian community</strong> (Facebook, X ID) shows high enthusiasm and early cosplay intent — a strong signal for regional marketing activation.</li>
+      <li>Minor negative undercurrent around <strong>banner timing</strong> and perceived rerun displacement, consistent with baseline ZZZ gacha discourse.</li>
+      <li><strong>CN data gap</strong>: Weibo/Bilibili sentiment not captured in this report — recommend sourcing separately before campaign finalization.</li>
+    </ul>
+  </div>
+
+  <!-- ── PERFORMANCE NUMBERS ── -->
+  <h2>Key Performance Signals</h2>
+  <div class="findings-grid">
+    <div class="finding-card">
+      <div class="number">~6.8M</div>
+      <div class="label">YouTube reveal trailer views (48h)</div>
+      <div class="note">Strong opener vs. ZZZ average of ~4–5M for character trailers. Like/dislike ratio highly positive.</div>
+    </div>
+    <div class="finding-card">
+      <div class="number">#Cissia</div>
+      <div class="label">Trended globally on X for ~4h</div>
+      <div class="note">Peaked at launch window. Fan art and kit breakdown threads drove the majority of impressions.</div>
+    </div>
+    <div class="finding-card">
+      <div class="number">68%</div>
+      <div class="label">Pull intent (community poll, n≈8k)</div>
+      <div class="note">Above median for ZZZ banners. "Must-pull" sentiment driven by support utility + design.</div>
+    </div>
+    <div class="finding-card">
+      <div class="number">+18%</div>
+      <div class="label">r/ZZZ_Official activity vs. prior banner week</div>
+      <div class="note">Week-1 engagement spike. Story quest completion posts creating secondary wave.</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout-icon">ℹ️</span>
+    <div>Numbers above are estimated from community-cited data in clipped sources. For exact figures, cross-reference with internal analytics dashboard.</div>
+  </div>
+
+  <!-- ── OVERALL SENTIMENT ── -->
+  <h2>Overall Sentiment Distribution</h2>
+  <div class="sentiment-bar-wrap">
+    <div class="sentiment-bar">
+      <div class="bar-pos" style="width:58%"></div>
+      <div class="bar-mix" style="width:24%"></div>
+      <div class="bar-neg" style="width:11%"></div>
+      <div class="bar-neu" style="width:7%"></div>
+    </div>
+    <div class="bar-legend">
+      <span><span class="dot" style="background:#28a745"></span>Positive 58%</span>
+      <span><span class="dot" style="background:#ffc107"></span>Mixed 24%</span>
+      <span><span class="dot" style="background:#dc3545"></span>Negative 11%</span>
+      <span><span class="dot" style="background:#adb5bd"></span>Neutral 7%</span>
+    </div>
+  </div>
+  <p style="font-size:9.5pt;color:#666">Estimated distribution based on post/comment tone sampling across Reddit, X, and YouTube. Not statistically weighted.</p>
+
+  <!-- ── PLATFORM BREAKDOWN ── -->
+  <h2>Platform Breakdown</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Platform</th>
+        <th>Sentiment</th>
+        <th>Volume</th>
+        <th>Primary Topics</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Reddit</strong><br><span style="font-size:9pt;color:#888">r/ZZZ_Official</span></td>
+        <td><span class="pill pill-positive">🟢 Positive</span></td>
+        <td>High</td>
+        <td>Kit analysis, pull intent, story reactions</td>
+        <td>Top post: 15.2k upvotes "Cissia's kit might be the best designed in ZZZ so far"</td>
+      </tr>
+      <tr>
+        <td><strong>Twitter / X</strong><br><span style="font-size:9pt;color:#888">Global + EN</span></td>
+        <td><span class="pill pill-positive">🟢 Positive</span></td>
+        <td>Very High</td>
+        <td>Fan art, trending, reveal reaction</td>
+        <td>#Cissia trended 4h globally. HOYO-MiX character theme received strong organic shares.</td>
+      </tr>
+      <tr>
+        <td><strong>Twitter / X ID</strong><br><span style="font-size:9pt;color:#888">Indonesian</span></td>
+        <td><span class="pill pill-positive">🟢 Positive</span></td>
+        <td>Medium</td>
+        <td>Cosplay intent, lore discussion, regional creator coverage</td>
+        <td>Several ID creators streamed reveal reaction live. Early cosplay planning threads.</td>
+      </tr>
+      <tr>
+        <td><strong>Facebook Group ID</strong><br><span style="font-size:9pt;color:#888">ZZZ Indonesia</span></td>
+        <td><span class="pill pill-mixed">🟡 Mixed</span></td>
+        <td>Medium</td>
+        <td>Pull strategy, F2P resource planning, design opinion</td>
+        <td>Design very positively received; pull advice threads reveal resource anxiety among F2P players.</td>
+      </tr>
+      <tr>
+        <td><strong>YouTube</strong></td>
+        <td><span class="pill pill-positive">🟢 Positive</span></td>
+        <td>High</td>
+        <td>Kit breakdown, gameplay preview, trailer reaction</td>
+        <td>Top creator kit analysis video: ~1.2M views in 72h. Like ratio very high.</td>
+      </tr>
+      <tr>
+        <td><strong>Hoyolab</strong></td>
+        <td><span class="pill pill-positive">🟢 Positive</span></td>
+        <td>Medium</td>
+        <td>Lore posts, fan art, official event hype</td>
+        <td>Skews more positive than Reddit as expected. Fan art contest entries already appearing.</td>
+      </tr>
+      <tr>
+        <td><strong>Weibo / Bilibili</strong></td>
+        <td><span class="pill pill-neutral">⚫ No Data</span></td>
+        <td>—</td>
+        <td>—</td>
+        <td style="color:#c0392b;font-weight:600">⚠ CN data not captured. Source separately before campaign decisions.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ── POSITIVE DRIVERS ── -->
+  <h2>What's Driving Positive Sentiment</h2>
+
+  <h3>1. Character Design & Visual Identity</h3>
+  <p>Cissia's design is widely praised as standing out within ZZZ's roster — cited as "fresh" versus prior characters. Fan art velocity in the first 24h was among the highest for any ZZZ character launch.</p>
+  <div class="quote">
+    "Finally a ZZZ character where the design, lore, and kit all feel like they come from the same creative direction."
+    <cite>— r/ZZZ_Official, 12.1k upvotes</cite>
+  </div>
+
+  <h3>2. Kit Reception</h3>
+  <p>Cissia's gameplay mechanics are receiving strong positive coverage from content creators. The support utility is described as "accessible to all team compositions" — reducing the friction around pulling. Multiple theory-craft posts listing her synergies already trending on day one.</p>
+
+  <h3>3. Lore & Story Integration</h3>
+  <p>Community picking up on Hollow Zero lore connections. Several deep-dive threads on the lore implications have accumulated significant engagement, extending the content cycle beyond the banner window.</p>
+  <div class="quote">
+    "The way Cissia's backstory ties into the [Hollow Zero arc] — this has been foreshadowed for three patches and they stuck the landing."
+    <cite>— r/ZZZ_Official, 9.3k upvotes</cite>
+  </div>
+
+  <h3>4. HOYO-MiX Character Theme</h3>
+  <p>The character-specific music is generating organic shares independently of gameplay discussion — YouTube OST video at ~900k views in 48h with no paid promotion detected.</p>
+
+  <!-- ── NEGATIVE SIGNALS ── -->
+  <h2>Negative Signals & Risk Areas</h2>
+
+  <div class="callout callout-neg">
+    <span class="callout-icon">⚠️</span>
+    <div><strong>Watch: Banner Timing Complaints</strong> — A recurring thread pattern ("why is [X] not getting a rerun instead?") is present but not elevated above ZZZ baseline. Not a Cissia-specific issue.</div>
+  </div>
+  <div class="callout callout-neg">
+    <span class="callout-icon">⚠️</span>
+    <div><strong>Watch: F2P Resource Anxiety (ID community)</strong> — Facebook Group ID shows F2P players anxious about polychrome availability for the banner. Relevant for regional content creator briefs — creators should address this proactively.</div>
+  </div>
+  <div class="callout callout-neg">
+    <span class="callout-icon">⚠️</span>
+    <div><strong>Watch: Power Creep Discussion</strong> — Early meta analysts flagging Cissia as potentially "required" for endgame content. If this framing solidifies, P2W perception risk increases. Currently low volume but worth monitoring at patch midpoint.</div>
+  </div>
+
+  <!-- ── REGIONAL SPOTLIGHT ── -->
+  <h2>Regional Spotlight: Indonesia (ID)</h2>
+  <p>The Indonesian ZZZ community shows disproportionate engagement relative to its size, making it a high-value activation market for this banner:</p>
+  <table>
+    <thead>
+      <tr><th>Signal</th><th>Observation</th><th>Implication</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Cosplay intent</td>
+        <td>Multiple early cosplay planning posts on X ID and FB group</td>
+        <td>UGC amplification opportunity; consider ID cosplay collab brief</td>
+      </tr>
+      <tr>
+        <td>Creator coverage</td>
+        <td>Several ID creators did live reaction streams day-1</td>
+        <td>Strong existing KOL ecosystem; worth activating with assets/early access</td>
+      </tr>
+      <tr>
+        <td>F2P anxiety</td>
+        <td>Resource planning threads dominant in FB Group</td>
+        <td>Creator messaging should include polychrome roadmap guidance to reduce pull hesitation</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="data-gap">
+    📌 <strong>Data gap:</strong> This snapshot relies on public post observation. Exact reach/impression data for ID creators requires internal influencer tracking or GRIN/CreatorIQ data pull.
+  </div>
+
+  <!-- ── RECOMMENDATIONS ── -->
+  <h2>Recommendations</h2>
+  <ol class="rec-list">
+    <li>
+      <span class="rec-num">1</span>
+      <div><strong>Amplify HOYO-MiX organic momentum</strong> — The character theme is already going viral without a push. A well-timed playlist/OST feature on official channels will extend the cycle. Low cost, high signal.</div>
+    </li>
+    <li>
+      <span class="rec-num">2</span>
+      <div><strong>Brief ID creators on F2P polychrome guidance</strong> — Resource anxiety is the dominant negative signal in the ID community. A creator talking point kit addressing pull cost clarity will convert hesitant F2P players and neutralize the friction.</div>
+    </li>
+    <li>
+      <span class="rec-num">3</span>
+      <div><strong>Source CN/Weibo sentiment before finalizing any campaign decisions</strong> — CN data is absent from this report. CN community can diverge significantly from Global; do not treat this report as representing the full player base.</div>
+    </li>
+    <li>
+      <span class="rec-num">4</span>
+      <div><strong>Monitor "power creep / required character" framing at patch midpoint</strong> — If meta analyst framing of Cissia as "mandatory" gains traction, get ahead of it with community management messaging around team flexibility.</div>
+    </li>
+    <li>
+      <span class="rec-num">5</span>
+      <div><strong>File a lore-engagement content piece</strong> — The Hollow Zero lore connection is driving independent organic engagement. A short official lore deep-dive (Hoyolab post, short video) would channel this momentum without requiring original discovery.</div>
+    </li>
+  </ol>
+
+  <!-- ── SOURCES ── -->
+  <h2>Sources</h2>
+  <ul class="sources-list">
+    <li>r/ZZZ_Official — top posts, 72h post-reveal window <span class="tag">Reddit</span></li>
+    <li>Twitter/X — #Cissia trending window, Global + lang:id <span class="tag">Twitter/X</span></li>
+    <li>Facebook Group: ZZZ Indonesia — keyword search "Cissia", recent posts filter <span class="tag">Facebook</span></li>
+    <li>YouTube — character trailer + top 3 kit analysis videos <span class="tag">YouTube</span></li>
+    <li>Hoyolab — community posts, fan art section <span class="tag">Hoyolab</span></li>
+    <li style="color:#c0392b">Weibo / Bilibili — <em>NOT CAPTURED in this report</em> <span class="tag">CN — Missing</span></li>
+  </ul>
+
+  <div class="data-gap" style="margin-top:16px">
+    📋 <strong>Research method note:</strong> This report was compiled via direct community observation (social listening without native API access). All volume figures are community-reported estimates, not platform analytics data. Treat as directional, not exact.
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="footer">
+    <span>Hoyoverse Brand Marketing · Community Intelligence Unit</span>
+    <span>Report Date: 2026-04-16 · Prepared via Claude Code Second Brain</span>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  const HASH = "52ef7d37020985854e3cd1e294f7bcb26298e226ac99d28628098a96f7a43129";
+  if (sessionStorage.getItem("hg_auth") === HASH) return;
+  const overlay = document.createElement("div");
+  overlay.style.cssText = "position:fixed;inset:0;background:#1e2235;display:flex;align-items:center;justify-content:center;z-index:99999;font-family:Segoe UI,sans-serif";
+  overlay.innerHTML = `
+    <div style="background:#fff;border-radius:12px;padding:40px 48px;text-align:center;max-width:340px;width:90%">
+      <div style="font-size:28px;margin-bottom:8px">🔒</div>
+      <div style="font-size:18px;font-weight:700;color:#1e2235;margin-bottom:4px">Hoyoverse Reports</div>
+      <div style="font-size:13px;color:#6b7896;margin-bottom:24px">Internal use only</div>
+      <input id="hg_pw" type="password" placeholder="Enter password"
+        style="width:100%;padding:10px 14px;border:1px solid #d4daea;border-radius:7px;font-size:15px;outline:none;margin-bottom:10px;box-sizing:border-box"/>
+      <button id="hg_btn"
+        style="width:100%;padding:11px;background:#3d5fc4;color:#fff;border:none;border-radius:7px;font-size:15px;font-weight:600;cursor:pointer">
+        Enter
+      </button>
+      <div id="hg_err" style="color:#c8304a;font-size:13px;margin-top:10px;display:none">Incorrect password</div>
+    </div>`;
+  document.body.appendChild(overlay);
+  async function check(){
+    const pw = document.getElementById("hg_pw").value;
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(pw));
+    const hex = Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,"0")).join("");
+    if(hex === HASH){ sessionStorage.setItem("hg_auth", HASH); overlay.remove(); }
+    else { document.getElementById("hg_err").style.display="block"; document.getElementById("hg_pw").value=""; }
+  }
+  document.getElementById("hg_btn").onclick = check;
+  document.getElementById("hg_pw").addEventListener("keydown", e=>{ if(e.key==="Enter") check(); });
+  setTimeout(()=>document.getElementById("hg_pw").focus(), 100);
+})();
+</script>
+</body>
+</html>
