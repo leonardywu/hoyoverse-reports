@@ -1181,5 +1181,37 @@ updateKeyBtn();
 if (!getKey()) showModal();
 else hideModal();
 </script>
+
+<script>
+(function(){
+  const HASH = "52ef7d37020985854e3cd1e294f7bcb26298e226ac99d28628098a96f7a43129";
+  if (sessionStorage.getItem("hg_auth") === HASH) return;
+  const overlay = document.createElement("div");
+  overlay.style.cssText = "position:fixed;inset:0;background:#06090f;display:flex;align-items:center;justify-content:center;z-index:99999;font-family:Georgia,serif";
+  overlay.innerHTML = `
+    <div style="background:#0b1018;border:1px solid rgba(200,168,76,0.35);padding:40px 48px;text-align:center;max-width:340px;width:90%">
+      <div style="font-family:Cormorant Garamond,Georgia,serif;font-size:22px;font-weight:700;color:#e8e4d9;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px">Intel Hub</div>
+      <div style="font-family:Georgia,serif;font-size:13px;color:#6a6860;font-style:italic;margin-bottom:24px">Internal use only</div>
+      <input id="hg_pw" type="password" placeholder="Password"
+        style="width:100%;padding:10px 14px;background:#101722;border:1px solid rgba(200,168,76,0.2);color:#ede9de;font-size:14px;outline:none;margin-bottom:10px;box-sizing:border-box;font-family:Georgia,serif"/>
+      <button id="hg_btn"
+        style="width:100%;padding:11px;background:#c8a84c;color:#06090f;border:none;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:Georgia,serif">
+        Enter
+      </button>
+      <div id="hg_err" style="color:#c83f4a;font-size:12px;margin-top:10px;display:none;font-family:Georgia,serif">Incorrect password</div>
+    </div>`;
+  document.body.appendChild(overlay);
+  async function check(){
+    const pw = document.getElementById("hg_pw").value;
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(pw));
+    const hex = Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,"0")).join("");
+    if(hex === HASH){ sessionStorage.setItem("hg_auth", HASH); overlay.remove(); }
+    else { document.getElementById("hg_err").style.display="block"; document.getElementById("hg_pw").value=""; }
+  }
+  document.getElementById("hg_btn").onclick = check;
+  document.getElementById("hg_pw").addEventListener("keydown", e=>{ if(e.key==="Enter") check(); });
+  setTimeout(()=>document.getElementById("hg_pw").focus(), 100);
+})();
+</script>
 </body>
 </html>
