@@ -3,122 +3,138 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZZZ v2.8 Promeia — Community Sentiment · April 2026</title>
+<title>ZZZ v2.8 Promeia — Community Sentiment Report · April 2026</title>
 <style>
   :root {
-    --bg:#f4f6fb; --surface:#fff; --surface2:#eef1f8; --border:#d4daea;
-    --text:#1e2235; --text-muted:#6b7896; --accent:#3d5fc4; --accent-dim:#dde5f8;
-    --red:#c8304a; --red-bg:#fdf0f2; --yellow:#956e00; --yellow-bg:#fef8e6;
-    --green:#1a7a42; --green-bg:#edf9f2; --tag-bg:#edf0f8; --tag-text:#4a5880;
-    --quote-border:#3d5fc4; --table-head:#eef1f8; --table-stripe:#f8f9fc;
+    --bg: #f4f6fb; --surface: #ffffff; --surface2: #eef1f8; --border: #d4daea;
+    --text: #1e2235; --text-muted: #6b7896; --accent: #3d5fc4; --accent-dim: #dde5f8;
+    --red: #c8304a; --red-bg: #fdf0f2;
+    --yellow: #956e00; --yellow-bg: #fef8e6;
+    --green: #1a7a42; --green-bg: #edf9f2;
+    --tag-bg: #edf0f8; --tag-text: #4a5880;
+    --quote-border: #3d5fc4; --table-head: #eef1f8; --table-stripe: #f8f9fc;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,sans-serif;font-size:15px;line-height:1.7}
-  .page-wrap{max-width:960px;margin:0 auto;padding:48px 24px 80px}
-  .report-header{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:36px}
-  .report-eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
-  .report-title{font-size:30px;font-weight:700;line-height:1.2;margin-bottom:6px}
-  .report-subtitle{font-size:16px;color:var(--text-muted);margin-bottom:20px}
-  .meta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px 24px;margin-top:16px}
-  .meta-row{font-size:13px;color:var(--text-muted)} .meta-row strong{color:var(--text);font-weight:600}
-  .verdict-badge{display:inline-flex;align-items:center;gap:8px;background:var(--yellow-bg);border:1px solid var(--yellow);color:var(--yellow);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 14px;border-radius:6px;margin-bottom:20px}
-  .toc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-bottom:40px}
-  .toc-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px}
-  .toc ol{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px}
-  .toc li a{color:var(--accent);text-decoration:none;font-size:13px} .toc li a:hover{text-decoration:underline}
-  .section{margin-bottom:48px}
-  .section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
-  .section-num{width:28px;height:28px;background:var(--accent-dim);color:var(--accent);font-size:12px;font-weight:700;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .section-title{font-size:18px;font-weight:700}
-  .sub-title{font-size:14px;font-weight:700;margin:20px 0 8px}
-  p{margin-bottom:12px}
-  .exec-box{background:var(--surface);border-left:3px solid var(--yellow);border-radius:0 8px 8px 0;padding:20px 24px;margin-bottom:16px}
-  .exec-box p:last-child{margin-bottom:0}
-  .callout{border-radius:8px;padding:14px 18px;margin:14px 0;font-size:14px}
-  .callout.red{background:var(--red-bg);border-left:3px solid var(--red)}
-  .callout.yellow{background:var(--yellow-bg);border-left:3px solid var(--yellow)}
-  .callout.green{background:var(--green-bg);border-left:3px solid var(--green)}
-  .callout-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
-  .callout.red .callout-label{color:var(--red)} .callout.yellow .callout-label{color:var(--yellow)} .callout.green .callout-label{color:var(--green)}
-  .callout p{margin-bottom:0;font-size:14px}
-  .table-wrap{overflow-x:auto;margin:16px 0;border-radius:8px;border:1px solid var(--border)}
-  table{width:100%;border-collapse:collapse;font-size:13.5px}
-  thead tr{background:var(--table-head)}
-  th{padding:10px 14px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap;border-bottom:1px solid var(--border)}
-  td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top}
-  tr:last-child td{border-bottom:none} tbody tr:nth-child(even){background:var(--table-stripe)} tbody tr:hover{background:var(--surface2)}
-  .platform-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px;margin-bottom:12px}
-  .platform-name{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:10px;display:flex;align-items:center;gap:8px}
-  .platform-stat{display:inline-block;background:var(--tag-bg);color:var(--tag-text);font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px}
-  blockquote{border-left:3px solid var(--quote-border);margin:10px 0;padding:8px 16px;background:var(--surface);border-radius:0 6px 6px 0;font-style:italic;color:var(--text-muted);font-size:13.5px}
-  blockquote cite{display:block;margin-top:4px;font-size:12px;font-style:normal;color:var(--text-muted)}
-  code{background:var(--surface2);color:var(--accent);padding:1px 6px;border-radius:4px;font-family:Consolas,monospace;font-size:12.5px}
-  ul.bullets{list-style:none;padding:0;margin:8px 0 12px}
-  ul.bullets li{padding:4px 0 4px 18px;position:relative;font-size:14px}
-  ul.bullets li::before{content:"–";position:absolute;left:0;color:var(--text-muted)}
-  .signal-row{display:flex;gap:10px;align-items:baseline;margin-bottom:6px;font-size:14px}
-  .signal-label{font-weight:700;min-width:130px;flex-shrink:0}
-  .kol-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
-  @media(max-width:680px){.kol-grid{grid-template-columns:1fr}}
-  .kol-card{background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--accent);border-radius:8px;padding:16px 18px}
-  .kol-card-title{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:6px}
-  .kol-card-hook{font-size:13.5px;font-style:italic;background:var(--surface2);border-radius:5px;padding:8px 12px;margin-bottom:8px;line-height:1.5}
-  .kol-card p{font-size:13px;color:var(--text-muted);margin-bottom:0}
-  .kol-donts{background:var(--red-bg);border:1px solid #f0c0c8;border-radius:8px;padding:14px 18px;margin-top:16px}
-  .kol-donts-title{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:8px}
-  .kol-donts ul{list-style:none;padding:0}
-  .kol-donts ul li{font-size:13.5px;padding:3px 0 3px 18px;position:relative}
-  .kol-donts ul li::before{content:"✕";position:absolute;left:0;color:var(--red);font-size:11px;top:5px}
-  .risk-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px}
-  .risk-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-  .risk-badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;white-space:nowrap}
-  .risk-badge.red{background:var(--red-bg);color:var(--red);border:1px solid var(--red)}
-  .risk-badge.yellow{background:var(--yellow-bg);color:var(--yellow);border:1px solid var(--yellow)}
-  .risk-badge.green{background:var(--green-bg);color:var(--green);border:1px solid var(--green)}
-  .risk-title{font-size:15px;font-weight:700}
-  .risk-card p{font-size:14px;margin-bottom:8px} .risk-card p:last-child{margin-bottom:0}
-  .action-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:8px;font-size:14px;display:flex;gap:12px}
-  .action-num{width:22px;height:22px;background:var(--accent-dim);color:var(--accent);font-size:11px;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-  .action-item p{margin-bottom:0;font-size:14px}
-  .fact-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:16px 18px;margin-bottom:12px}
-  .fact-card p{margin-bottom:6px;font-size:14px}
-  .fact-why{background:var(--accent-dim);border-radius:5px;padding:8px 12px;font-size:13px;color:var(--accent);font-style:italic;margin-top:6px}
-  .flow-phases{display:grid;gap:12px;margin:16px 0}
-  .flow-phase{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px;display:grid;grid-template-columns:130px 1fr;gap:0 20px}
-  @media(max-width:600px){.flow-phase{grid-template-columns:1fr}}
-  .flow-phase-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);padding-top:2px}
-  .flow-phase-label span{display:block;font-size:18px;font-weight:700;letter-spacing:0;text-transform:none;margin-bottom:2px}
-  .flow-phase-content p{font-size:13.5px;margin-bottom:6px} .flow-phase-content p:last-child{margin-bottom:0}
-  .flow-platform-row{display:flex;align-items:baseline;gap:8px;font-size:13px;margin-bottom:4px}
-  .flow-plat-name{font-weight:700;min-width:100px;flex-shrink:0}
-  .flow-plat-detail{color:var(--text-muted)}
-  .flow-stat-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-  .flow-stat{background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:3px 12px;font-size:12px;color:var(--text-muted)}
-  .flow-stat strong{color:var(--text)}
-  .token-row{display:flex;align-items:center;gap:8px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border)}
-  .token-label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);flex-shrink:0}
-  .token-pill{background:#f0f4ff;border:1px solid #c8d4f0;border-radius:20px;padding:3px 12px;font-size:12px;color:var(--accent);font-weight:600}
-  .token-note{font-size:12px;color:var(--text-muted)}
-  .report-footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--border);font-size:13px;color:var(--text-muted);text-align:center}
-  @media(max-width:600px){.toc ol{grid-template-columns:1fr}.meta-grid{grid-template-columns:1fr}.report-title{font-size:22px}}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px; line-height: 1.7; }
+  .page-wrap { max-width: 960px; margin: 0 auto; padding: 48px 24px 80px; }
+  .report-header { border-bottom: 1px solid var(--border); padding-bottom: 28px; margin-bottom: 36px; }
+  .report-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .report-title { font-size: 30px; font-weight: 700; line-height: 1.2; margin-bottom: 6px; }
+  .report-subtitle { font-size: 16px; color: var(--text-muted); margin-bottom: 20px; }
+  .meta-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 8px 24px; margin-top: 16px; }
+  .meta-row { font-size: 13px; color: var(--text-muted); }
+  .meta-row strong { color: var(--text); font-weight: 600; }
+  .verdict-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--yellow-bg); border: 1px solid var(--yellow); color: var(--yellow); font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 6px 14px; border-radius: 6px; margin-bottom: 20px; }
+  .toc { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin-bottom: 40px; }
+  .toc-title { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+  .toc ol { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; }
+  .toc li a { color: var(--accent); text-decoration: none; font-size: 13px; }
+  .toc li a:hover { text-decoration: underline; }
+  .section { margin-bottom: 48px; }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .section-num { width: 28px; height: 28px; background: var(--accent-dim); color: var(--accent); font-size: 12px; font-weight: 700; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .section-title { font-size: 18px; font-weight: 700; color: var(--text); }
+  .sub-title { font-size: 14px; font-weight: 700; color: var(--text); margin: 20px 0 8px; }
+  p { margin-bottom: 12px; color: var(--text); }
+  .exec-box { background: var(--surface); border-left: 3px solid var(--yellow); border-radius: 0 8px 8px 0; padding: 20px 24px; margin-bottom: 16px; }
+  .exec-box p:last-child { margin-bottom: 0; }
+  .callout { border-radius: 8px; padding: 14px 18px; margin: 14px 0; font-size: 14px; }
+  .callout.red { background: var(--red-bg); border-left: 3px solid var(--red); }
+  .callout.yellow { background: var(--yellow-bg); border-left: 3px solid var(--yellow); }
+  .callout.green { background: var(--green-bg); border-left: 3px solid var(--green); }
+  .callout-label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+  .callout.red .callout-label { color: var(--red); }
+  .callout.yellow .callout-label { color: var(--yellow); }
+  .callout.green .callout-label { color: var(--green); }
+  .callout p { margin-bottom: 0; font-size: 14px; }
+  .table-wrap { overflow-x: auto; margin: 16px 0; border-radius: 8px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  thead tr { background: var(--table-head); }
+  th { padding: 10px 14px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; border-bottom: 1px solid var(--border); }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) { background: var(--table-stripe); }
+  tbody tr:hover { background: var(--surface2); }
+  td strong, td b { color: var(--text); }
+  .platform-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; margin-bottom: 12px; }
+  .platform-name { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .platform-stat { display: inline-block; background: var(--tag-bg); color: var(--tag-text); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; }
+  .platform-card ul { list-style: none; padding: 0; }
+  .platform-card ul li { font-size: 13.5px; padding: 3px 0 3px 14px; position: relative; }
+  .platform-card ul li::before { content: "·"; position: absolute; left: 0; color: var(--text-muted); }
+  blockquote { border-left: 3px solid var(--quote-border); margin: 10px 0; padding: 8px 16px; background: var(--surface); border-radius: 0 6px 6px 0; font-style: italic; color: var(--text-muted); font-size: 13.5px; }
+  blockquote cite { display: block; margin-top: 4px; font-size: 12px; font-style: normal; color: var(--text-muted); }
+  code { background: var(--surface2); color: var(--accent); padding: 1px 6px; border-radius: 4px; font-family: Consolas, monospace; font-size: 12.5px; }
+  ul.bullets { list-style: none; padding: 0; margin: 8px 0 12px; }
+  ul.bullets li { padding: 4px 0 4px 18px; position: relative; font-size: 14px; }
+  ul.bullets li::before { content: "-"; position: absolute; left: 0; color: var(--text-muted); }
+  .signal-row { display: flex; gap: 10px; align-items: baseline; margin-bottom: 6px; font-size: 14px; }
+  .signal-label { font-weight: 700; min-width: 130px; flex-shrink: 0; }
+  .kol-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  @media (max-width: 680px) { .kol-grid { grid-template-columns: 1fr; } }
+  .kol-card { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: 8px; padding: 16px 18px; }
+  .kol-card-title { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+  .kol-card-hook { font-size: 13.5px; font-style: italic; background: var(--surface2); border-radius: 5px; padding: 8px 12px; margin-bottom: 8px; line-height: 1.5; }
+  .kol-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 0; }
+  .kol-donts { background: var(--red-bg); border: 1px solid #f0c0c8; border-radius: 8px; padding: 14px 18px; margin-top: 16px; }
+  .kol-donts-title { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+  .kol-donts ul { list-style: none; padding: 0; }
+  .kol-donts ul li { font-size: 13.5px; padding: 3px 0 3px 18px; position: relative; }
+  .kol-donts ul li::before { content: "x"; position: absolute; left: 0; color: var(--red); font-size: 11px; top: 5px; font-weight: 700; }
+  .risk-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 16px; }
+  .risk-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .risk-badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 4px; white-space: nowrap; }
+  .risk-badge.red { background: var(--red-bg); color: var(--red); border: 1px solid var(--red); }
+  .risk-badge.yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow); }
+  .risk-badge.green { background: var(--green-bg); color: var(--green); border: 1px solid var(--green); }
+  .risk-title { font-size: 15px; font-weight: 700; }
+  .risk-card p { font-size: 14px; margin-bottom: 8px; }
+  .risk-card p:last-child { margin-bottom: 0; }
+  .action-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; margin-bottom: 8px; font-size: 14px; display: flex; gap: 12px; }
+  .action-num { width: 22px; height: 22px; background: var(--accent-dim); color: var(--accent); font-size: 11px; font-weight: 700; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .action-item p { margin-bottom: 0; font-size: 14px; }
+  .fact-card { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 18px; margin-bottom: 12px; }
+  .fact-card p { margin-bottom: 6px; font-size: 14px; }
+  .fact-why { background: var(--accent-dim); border-radius: 5px; padding: 8px 12px; font-size: 13px; color: var(--accent); font-style: italic; margin-top: 6px; }
+  .flow-phases { display: grid; gap: 12px; margin: 16px 0; }
+  .flow-phase { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; display: grid; grid-template-columns: 130px 1fr; gap: 0 20px; }
+  @media (max-width: 600px) { .flow-phase { grid-template-columns: 1fr; } }
+  .flow-phase-label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); padding-top: 2px; }
+  .flow-phase-label span { display: block; font-size: 18px; font-weight: 700; letter-spacing: 0; text-transform: none; margin-bottom: 2px; }
+  .flow-phase-content p { font-size: 13.5px; margin-bottom: 6px; }
+  .flow-phase-content p:last-child { margin-bottom: 0; }
+  .flow-platform-row { display: flex; align-items: baseline; gap: 8px; font-size: 13px; margin-bottom: 4px; }
+  .flow-plat-name { font-weight: 700; min-width: 100px; flex-shrink: 0; }
+  .flow-plat-detail { color: var(--text-muted); }
+  .flow-stat-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+  .flow-stat { background: var(--surface2); border: 1px solid var(--border); border-radius: 20px; padding: 3px 12px; font-size: 12px; color: var(--text-muted); }
+  .flow-stat strong { color: var(--text); }
+  .token-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); }
+  .token-label { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); flex-shrink: 0; }
+  .token-pill { background: #f0f4ff; border: 1px solid #c8d4f0; border-radius: 20px; padding: 3px 12px; font-size: 12px; color: var(--accent); font-weight: 600; }
+  .token-note { font-size: 12px; color: var(--text-muted); }
+  .report-footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-muted); text-align: center; }
+  @media (max-width: 600px) { .toc ol { grid-template-columns: 1fr; } .meta-grid { grid-template-columns: 1fr; } .report-title { font-size: 22px; } }
 </style>
 </head>
 <body>
 <div class="page-wrap">
+
 <header class="report-header">
   <div class="report-eyebrow">Community Sentiment · ZZZ v2.8 · Indonesia (Primary) + Global (Supporting)</div>
   <div class="report-title">Promeia — Pre-Banner Community Sentiment</div>
   <div class="report-subtitle">Hoyoverse / ZZZ Marketing Intelligence · April 2026</div>
-  <div class="verdict-badge">🟡 Overall Sentiment: Mixed</div>
+  <div class="verdict-badge">&#x1F7E1; Overall Sentiment: Mixed</div>
   <div class="meta-grid">
     <div class="meta-row"><strong>Prepared:</strong> 2026-04-18</div>
     <div class="meta-row"><strong>Character:</strong> Promeia — Ice Anomaly, HSOB</div>
-    <div class="meta-row"><strong>Banner start:</strong> May 6, 2026 <em>(18 days out)</em></div>
+    <div class="meta-row"><strong>Banner start:</strong> May 6, 2026 <em>(18 days)</em></div>
     <div class="meta-row"><strong>Data window:</strong> Mar 28 – Apr 18, 2026</div>
     <div class="meta-row"><strong>Platforms:</strong> Facebook ID · HoYoLab · YouTube ID · TikTok · X/Twitter · Discord</div>
-    <div class="meta-row"><strong>Sources cited:</strong> 14 (9 new Phase 3 comment extraction)</div>
+    <div class="meta-row"><strong>Sources cited:</strong> 14 (9 new Phase 3)</div>
   </div>
 </header>
+
 <nav class="toc">
   <div class="toc-title">Contents</div>
   <ol>
@@ -142,236 +158,414 @@
   <div class="table-wrap"><table><thead><tr><th>Field</th><th>Detail</th></tr></thead><tbody>
     <tr><td><strong>Version</strong></td><td>v2.8 — Starlight Billy &amp; Promeia</td></tr>
     <tr><td><strong>Banner period</strong></td><td>May 6 – June 16, 2026 (6 weeks)</td></tr>
-    <tr><td><strong>Character</strong></td><td>Promeia — Ice Anomaly, Hollow Special Operations Bureau. Fusion entity (two souls, one body) introduced in v2.7. Design features elaborate string-work detailing that triggered at least two post-reveal adjustments: entrance animation (Apr 11) and back outfit redesign (Apr 15). Shares banner with Starlight Billy, the game's mascot character returning as an S-rank.</td></tr>
+    <tr><td><strong>Character</strong></td><td>Promeia — Ice Anomaly, Hollow Special Operations Bureau. Fusion entity (two souls, one body) introduced in the v2.7 arc. Design features elaborate string-work detailing that triggered significant community reaction, leading to at least two design adjustments post-reveal: entrance animation change (Apr 11) and back outfit redesign (Apr 15). Shares banner with Starlight Billy, the game's mascot character returning as an S-rank.</td></tr>
+    <tr><td><strong>Region focus</strong></td><td>Indonesia (primary) · Global (supporting)</td></tr>
   </tbody></table></div>
+
   <div class="sub-title">Sentiment Verdict</div>
   <div class="exec-box">
-    <p>The Indonesian community has not yet mobilized around Promeia at 18 days pre-banner. Facebook ID — the primary ID hub (70K members) — returned <strong>zero dedicated Promeia posts</strong>. Comments on adjacent ZZZ posts show pragmatic skip intent: multiple ID users citing Ramiel and v3.x meta characters as pull targets. This is triage, not backlash.</p>
-    <p>Globally, the design controversy has <strong>deepened rather than resolved</strong>. The Apr 12 back outfit change was received more negatively on TikTok than the original reveal. Top-liked comments: <em>"ruined*"</em> (1,655 likes), <em>"thats so boring wth"</em> (1,750 likes). The anchor framing <em>"ice Evelyn"</em> scored 1,461 likes on the initial reveal and has settled as the default community shorthand.</p>
-    <p>For campaign planning: voice acting and the fusion lore concept are praised independently of design — these are the angles to amplify. The first two weeks face maximum pull-budget competition: NTE launches Apr 29, WuWa v3.3 Apr 30, GI v6.5 ends May 19.</p>
+    <p>The Indonesian community has not yet mobilized around Promeia at 18 days pre-banner. Facebook ID — the primary ID hub (70K members) — returned <strong>zero dedicated Promeia posts</strong>. Comments on adjacent ZZZ posts show pragmatic skip intent: multiple ID users citing Ramiel and future v3.x meta characters as pull targets. This is triage, not backlash — the ID audience is rationing a finite budget across a crowded 2026 calendar.</p>
+    <p>Globally, the design controversy has <strong>deepened rather than resolved</strong>. The Apr 12 back outfit change was received more negatively on TikTok than the original reveal. Top-liked comments on the change video: <em>"ruined*"</em> (1,655 likes), <em>"thats so boring wth"</em> (1,750 likes), <em>"Now it's boring. Her old one was pretty unique"</em> (487 likes). The community's anchor framing — <em>"ice Evelyn"</em> — scored 1,461 likes as the top comment on the initial reveal and has now settled as the default shorthand.</p>
+    <p>For campaign planning: Promeia's pull intent will recover if gameplay and story content convert the design-disappointed segment. The official Agent Record post (HoYoLab, 136K views, 2.9K likes) confirms strong appetite for official character content. Voice acting and lore (the fusion concept) have been praised independently of design — these are the angles to amplify. The first two weeks of the banner face maximum pull-budget competition: NTE launches Apr 29, WuWa v3.3 Apr 30, GI v6.5 ends May 19.</p>
   </div>
+
   <div class="sub-title">Key Signals</div>
-  <div class="signal-row"><span class="signal-label">🔴 Facebook ID</span><span>Zero dedicated Promeia posts. Skip intent in comments: saving for Ramiel, v3.x meta.</span></div>
-  <div class="signal-row"><span class="signal-label">🟡 HoYoLab ID</span><span>Disk routing questions active. "Day 11 saving" series at 55K views = committed saving segment.</span></div>
-  <div class="signal-row"><span class="signal-label">🟢 YouTube ID</span><span>PityGamersRoom published Promeia Full Kit Guide — only ID KOL covering her pre-banner.</span></div>
-  <div class="signal-row"><span class="signal-label">🔴 TikTok Global</span><span>Design change (Apr 12) comment section skews negative — majority top-liked comments mourn original design.</span></div>
-  <div class="signal-row"><span class="signal-label">🟡 X/Twitter Global</span><span>Censorship narrative building; cosplay activation confirmed pre-banner.</span></div>
-  <div class="signal-row"><span class="signal-label">📢 KOL Opportunity</span><span>"Ice Evelyn" framing + fusion lore — two angles that require no game knowledge and resonate organically.</span></div>
-  <div class="signal-row"><span class="signal-label">⚠️ Watch</span><span>Ramiel-saving suppression is the primary pull-intent depressor — not design controversy.</span></div>
-  <div class="callout yellow" style="margin-top:16px"><div class="callout-label">Pull Intent</div><p>🟡 <strong>Moderate</strong> — Indonesia (saving for Ramiel) &nbsp;|&nbsp; 🟡 <strong>Moderate</strong> — Global (design split; lore/kit segment committed)</p></div>
-  <div class="sub-title">Priority Action</div>
-  <div class="callout green"><div class="callout-label">Action</div><p>Activate Promeia-focused KOL content on <strong>Apr 29</strong> (day of NTE launch) — counter pull-budget drift with a story hook before players commit elsewhere. Window: Apr 29 (awareness) → May 20 (FOMO close).</p></div>
+  <div class="signal-row"><span class="signal-label">&#x1F534; Facebook ID</span><span>Zero dedicated Promeia posts found. Skip intent in comments: saving for Ramiel, v3.x meta.</span></div>
+  <div class="signal-row"><span class="signal-label">&#x1F7E1; HoYoLab ID</span><span>Disk routing questions active. "Day 11 saving" series at 55K views = committed saving segment.</span></div>
+  <div class="signal-row"><span class="signal-label">&#x1F7E2; YouTube ID</span><span>PityGamersRoom published Promeia Full Kit Guide — only ID KOL actively covering her pre-banner.</span></div>
+  <div class="signal-row"><span class="signal-label">&#x1F534; TikTok Global</span><span>Design change (Apr 12) comment section skews negative — majority top-liked comments mourn original.</span></div>
+  <div class="signal-row"><span class="signal-label">&#x1F7E1; X/Twitter Global</span><span>Censorship narrative building; cosplay activation confirmed pre-banner; pull-refusal tweets are fringe.</span></div>
+  <div class="signal-row"><span class="signal-label">&#x1F4E2; KOL Opportunity</span><span>"Ice Evelyn" framing + fusion lore — two angles that require no game knowledge and resonate organically.</span></div>
+  <div class="signal-row"><span class="signal-label">&#x26A0;&#xFE0F; Watch</span><span>Ramiel-saving suppression is the primary pull-intent depressor — not design controversy.</span></div>
+
+  <div class="callout yellow" style="margin-top:16px">
+    <div class="callout-label">Pull Intent</div>
+    <p>&#x1F7E1; <strong>Moderate</strong> — Indonesia (pragmatic skip, saving for Ramiel) &nbsp;|&nbsp; &#x1F7E1; <strong>Moderate</strong> — Global (design split; lore/kit segment committed)</p>
+  </div>
+
+  <div class="sub-title">Campaign Window &amp; Competitive Pressure</div>
+  <div class="table-wrap"><table><thead><tr><th>Competitor</th><th>Launch</th><th>Overlap Risk</th></tr></thead><tbody>
+    <tr><td><strong>NTE: Neverness to Everness</strong></td><td>Apr 29 — <em>7 days pre-v2.8</em></td><td>Maximum audience overlap; urban supernatural; 30M pre-regs. Highest pull-budget risk.</td></tr>
+    <tr><td><strong>Wuthering Waves v3.3</strong></td><td>Apr 30</td><td>Anniversary banner overlaps v2.8 first week. Multi-game F2P players split attention.</td></tr>
+    <tr><td><strong>Genshin Impact v6.5</strong></td><td>Ends May 19</td><td>Shared wallet pressure first two weeks of v2.8.</td></tr>
+    <tr><td><strong>Arknights: Endfield</strong></td><td>Major update May 18</td><td>Tier 2 — multi-game players may split attention late in banner window.</td></tr>
+  </tbody></table></div>
+
+  <div class="sub-title">Priority Action + KOL Talking Points</div>
+  <div class="callout green">
+    <div class="callout-label">Priority Action</div>
+    <p>Activate Promeia-focused KOL content on <strong>Apr 29</strong> (day of NTE launch) — counter pull-budget drift with a story hook before players commit elsewhere. Window: Apr 29 (awareness) &#x2192; May 20 (FOMO close).</p>
+  </div>
+  <ul class="bullets">
+    <li><strong>Lore hook:</strong> Two souls fused into one character — Promeia carries both personalities. No game knowledge needed.</li>
+    <li><strong>Controversy hook:</strong> The developers changed the design twice due to fan pressure. That level of engagement almost never happens.</li>
+    <li><strong>Novelty hook:</strong> Ice Anomaly has never been in the roster — a first-of-its-kind archetype.</li>
+    <li><strong>Re-engagement hook:</strong> Same update as Billy — pair the reunion moment with Promeia's debut.</li>
+    <li><strong>Urgency:</strong> Limited window — both characters leave June 16.</li>
+  </ul>
 </section>
 <section class="section" id="s2">
   <div class="section-header"><div class="section-num">2</div><div class="section-title">What People Are Saying — Indonesia (Primary)</div></div>
+
   <div class="platform-card">
     <div class="platform-name">Facebook — ZZZ Official Indonesia Group <span class="platform-stat">70K members</span></div>
-    <div class="callout red" style="margin-bottom:12px"><div class="callout-label">🔴 Zero Promeia Posts</div><p>Search returned zero dedicated Promeia posts. The 4 results were adjacent ZZZ content. ID community has not yet mobilized around Promeia at 18d pre-banner.</p></div>
-    <p style="font-size:14px;margin-bottom:8px">Comments on adjacent Cissia gacha flex post reveal current saving posture:</p>
+    <div class="callout red" style="margin-bottom:12px">
+      <div class="callout-label">&#x1F534; Zero Promeia Posts</div>
+      <p>Search for "Promeia" returned zero dedicated character posts at 18 days pre-banner. The 4 results were adjacent ZZZ content (IGRS rating news, Cissia gacha flex, WuWa character comparison, Romeul lore discussion). The ID Facebook community has not yet mobilized around Promeia.</p>
+    </div>
+    <p style="font-size:14px;margin-bottom:8px">Comments on the Cissia gacha flex thread (adjacent v2.7 content) reveal current ID saving posture:</p>
     <blockquote>"Nabung buat ramiel" (Saving for Ramiel)<cite>— Reja Tohsaka</cite></blockquote>
     <blockquote>"Skipp dulu Wak" (Skipping for now)<cite>— Dian</cite></blockquote>
+    <blockquote>"Skip mending nunggu milf 3.0" (Skip, better wait for [character] in 3.0)<cite>— Miaw Bi</cite></blockquote>
     <blockquote>"Skip mahal tim nya" (Skip, her team is expensive)<cite>— Kaguya Kyuu</cite></blockquote>
     <blockquote>"Harus nahan diri untuk 3.x pastinya meta baru" (Have to hold back for 3.x, definitely new meta)<cite>— Bangi Iba</cite></blockquote>
-    <p style="font-size:13px;color:var(--text-muted);margin-top:8px">5 of 10 visible comments = skip-oriented. No Promeia-specific enthusiasm visible in ID Facebook.</p>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:8px">5 of 10 visible comments = skip-oriented. No Promeia-specific enthusiasm visible in ID Facebook at this stage.</p>
   </div>
+
   <div class="platform-card">
-    <div class="platform-name">HoYoLab — Indonesia <span class="platform-stat">lang=id-id</span> <span class="platform-stat">8 articles</span></div>
-    <blockquote>"day 11 saving for my future main promeia!"<cite>— tristan.grn · 55K views · 1.6K likes · Apr 4 ✓ PRIORITY</cite></blockquote>
-    <blockquote>"day 2 saving for my future main promeia!!" <em>(supporting, &gt;15d)</em><cite>— tristan.grn · 93K views · 1.2K likes · Mar 26</cite></blockquote>
-    <p style="font-size:13px;color:var(--text-muted);margin-top:8px">Small but committed saving segment. Daily saving series format resonates (93K + 55K views). Disk routing and kit questions confirm theory-crafting activity for Ice Anomaly — a new archetype.</p>
+    <div class="platform-name">HoYoLab — Indonesia Filter <span class="platform-stat">lang=id-id</span> <span class="platform-stat">8 articles</span></div>
+    <p style="font-size:13.5px;margin-bottom:8px"><strong>Priority (Apr 3+):</strong></p>
+    <blockquote>"day 11 saving for my future main promeia!"<cite>— tristan.grn · 55K views · 1.6K likes · Apr 4 &#x2713; PRIORITY</cite></blockquote>
+    <p style="font-size:13.5px;margin:8px 0"><strong>Supporting (&gt;15d):</strong></p>
+    <blockquote>"day 2 saving for my future main promeia!!"<cite>— tristan.grn · 93K views · 1.2K likes · Mar 26 <em>(supporting)</em></cite></blockquote>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:8px">Small but committed saving-for-Promeia segment. The daily saving series format resonates (93K + 55K views). Disk routing and kit questions confirm ID players theory-crafting Ice Anomaly — a new archetype in the roster.</p>
   </div>
+
   <div class="platform-card">
     <div class="platform-name">YouTube — Indonesia <span class="platform-stat">4 videos reviewed</span></div>
     <div class="table-wrap" style="margin:0"><table><thead><tr><th>Creator</th><th>Video</th><th>Signal</th></tr></thead><tbody>
-      <tr><td><strong>PityGamersRoom</strong></td><td>Promeia Full Kit Guide</td><td>🟢 Only ID KOL covering Promeia pre-banner</td></tr>
-      <tr><td><strong>NotYuyuZZZ</strong></td><td>Miyabi + Promeia Showcase</td><td>🟢 "Easy to play even sig-less" — accessibility signal</td></tr>
-      <tr><td><strong>Pulse Gaming</strong></td><td>Billy S Rework</td><td>⚫ Promeia incidental mention; audience focused on Billy</td></tr>
+      <tr><td><strong>PityGamersRoom</strong></td><td>Promeia Full Kit Guide</td><td>&#x1F7E2; Only ID KOL covering Promeia pre-banner</td></tr>
+      <tr><td><strong>NotYuyuZZZ</strong></td><td>Miyabi + Promeia Showcase</td><td>&#x1F7E2; "Easy to play even sig-less" (38 likes) — accessibility signal</td></tr>
+      <tr><td><strong>Pulse Gaming</strong></td><td>Billy S Rework Analysis</td><td>&#x26AB; Promeia incidental mention — audience focused on Billy</td></tr>
     </tbody></table></div>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:8px">PityGamersRoom is the only ID KOL actively covering Promeia. Billy has 3x more dedicated ID KOL videos. Audience comment: <em>"Those were some smooth assists. Seeing both Miyabi and Promeia on field putting the smack down"</em> — gameplay appeal confirmed.</p>
+  </div>
+
+  <div class="platform-card">
+    <div class="platform-name">TikTok — Indonesia <span class="platform-stat">Partial — no ID-language posts found</span></div>
+    <p style="font-size:13px;color:var(--text-muted)">No ID-language TikTok posts confirmed. Global TikTok included as the most relevant source for design sentiment. See Section 3 for full TikTok data.</p>
   </div>
 </section>
 <section class="section" id="s3">
   <div class="section-header"><div class="section-num">3</div><div class="section-title">What People Are Saying — Global (Supporting)</div></div>
+
   <div class="platform-card">
-    <div class="platform-name">TikTok Global <span class="platform-stat">16 posts</span> <span class="platform-stat">~90 comments</span></div>
-    <p style="font-size:13.5px;margin-bottom:8px"><strong>Initial reveal — Mar 21 <em>(supporting, &gt;15d)</em>:</strong></p>
-    <blockquote>"ice Evelyn"<cite>— AZEL · 1,461 likes — settled community shorthand</cite></blockquote>
-    <blockquote>"I must be too old of an adult cause I see everyone complain about her look but I fuck with it."<cite>— Sauce · 2,621 likes — highest single comment; silent-majority signal</cite></blockquote>
-    <p style="font-size:13.5px;margin:12px 0 8px"><strong>Design change video — Apr 12 ✓ PRIORITY:</strong></p>
+    <div class="platform-name">TikTok Global <span class="platform-stat">16 unique posts</span> <span class="platform-stat">5 videos with comments</span></div>
+    <p style="font-size:13.5px;margin-bottom:8px"><strong>Initial reveal comments — Mar 21 <em>(supporting, &gt;15d)</em>:</strong></p>
+    <blockquote>"ice Evelyn"<cite>— AZEL · 1,461 likes — top comment on initial reveal. Now the settled community shorthand.</cite></blockquote>
+    <blockquote>"I must be too old of an adult cause I see everyone complain about her look but I fuck with it. It looks cool on her + Matches her vibe."<cite>— Sauce · 2,621 likes — highest single comment on reveal. Large silent-majority segment liked the original.</cite></blockquote>
+    <p style="font-size:13.5px;margin:12px 0 8px"><strong>Design change video — Apr 12 &#x2713; PRIORITY:</strong></p>
     <blockquote>"thats so boring wth"<cite>— xMiguel29 · 1,750 likes</cite></blockquote>
     <blockquote>"ruined*"<cite>— Hyuuko · 1,655 likes</cite></blockquote>
     <blockquote>"the old one was better what are u on about?"<cite>— fakeornot4 · 536 likes</cite></blockquote>
     <blockquote>"Now it's boring. Her old one was pretty unique"<cite>— Tanq3R · 487 likes</cite></blockquote>
+    <blockquote>"We LOST"<cite>— J (Yixuan's husband) · 338 likes</cite></blockquote>
     <blockquote>"much better tbf, she seems more mysterious^^"<cite>— xx · 1,081 likes — positive minority</cite></blockquote>
-    <div class="callout red" style="margin-top:12px"><div class="callout-label">Net Read</div><p>4–5 high-liked negative comments vs 1 positive on the change video. The mourning-the-original camp is louder.</p></div>
+    <div class="callout red" style="margin-top:12px">
+      <div class="callout-label">Net Read</div>
+      <p>4–5 high-liked negative comments vs 1 high-liked positive on the design change video. The community that cared about the original design is louder than the community that prefers the change.</p>
+    </div>
   </div>
+
   <div class="platform-card">
-    <div class="platform-name">X/Twitter Global <span class="platform-stat">35 posts</span> <span class="platform-stat">Apr 3–18</span></div>
-    <blockquote>"they keep censoring and censoring promeia and cissia... I'm not pulling for them"<cite>— @LoverOfNeru · 1.5K views</cite></blockquote>
-    <blockquote>"Wait what... you can already cosplay as Promeia? Cosplay companies are so reactive and fast"<cite>— @ObsidianLurker · 1.1K views ✓ PRIORITY</cite></blockquote>
-    <p style="font-size:13px;color:var(--text-muted);margin-top:8px">Top engagement posts are neutral/informational (W-Engine video: 841 likes; design comparison: 727 likes). Pull-refusal tweets &lt;10 likes each — fringe. <code>lang:id</code> = 0 ID posts.</p>
+    <div class="platform-name">X/Twitter Global <span class="platform-stat">35 posts reviewed</span> <span class="platform-stat">Apr 3–18</span></div>
+    <blockquote>"they keep censoring and censoring promeia and cissia I really don't know what the fuck is happening to the zzz devs or what kind of threats they've gotten but I'm not pulling for them"<cite>— @LoverOfNeru · 1.5K views</cite></blockquote>
+    <blockquote>"Day 130 saving for S rank Isolde and Sarah. All f2p, waiting for fixes to Promeia: fully covered back (not swimsuit, more like Evelyn) or cape always on"<cite>— @LUBE_03</cite></blockquote>
+    <blockquote>"Wait what... you can already cosplay as Promeia? Cosplay companies are so reactive and fast"<cite>— @ObsidianLurker · 1.1K views &#x2713; PRIORITY</cite></blockquote>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:8px">Top engagement posts are neutral/informational (W-Engine slow-motion: 841 likes; front/back design comparison: 727 likes). Pull-refusal tweets are low-engagement (&lt;10 likes each) — fringe signal, not mainstream. <code>lang:id</code> = 0 Indonesian-language posts.</p>
   </div>
+
   <div class="platform-card">
-    <div class="platform-name">HoYoLab Global <span class="platform-stat">30 enriched posts</span> <span class="platform-stat">409 comment-thread replies</span></div>
+    <div class="platform-name">HoYoLab Global <span class="platform-stat">30 enriched posts</span> <span class="platform-stat">409 comment-thread replies extracted</span></div>
     <div class="table-wrap" style="margin:0 0 12px"><table><thead><tr><th>Post</th><th>Views</th><th>Likes</th><th>Date</th><th>Signal</th></tr></thead><tbody>
-      <tr><td>Agent Record (official)</td><td>136K</td><td>2.9K</td><td>Mar 28</td><td>🟢 Official content lands well <em>(supporting)</em></td></tr>
-      <tr><td>MOGGED by Billy</td><td>97K</td><td>2.2K</td><td>Mar 28</td><td>🔴 Billy pull competition <em>(supporting)</em></td></tr>
-      <tr><td>Day 2 saving</td><td>93K</td><td>1.2K</td><td>Mar 26</td><td>🟢 Saving intent <em>(supporting)</em></td></tr>
-      <tr><td>Day 11 saving</td><td>55K</td><td>1.6K</td><td>Apr 4</td><td>🟢 ✓ PRIORITY</td></tr>
+      <tr><td>Agent Record (official)</td><td>136K</td><td>2.9K</td><td>Mar 28</td><td>&#x1F7E2; Official content lands well <em>(supporting)</em></td></tr>
+      <tr><td>Promeia Getting MOGGED by Billy</td><td>97K</td><td>2.2K</td><td>Mar 28</td><td>&#x1F534; Billy pull competition <em>(supporting)</em></td></tr>
+      <tr><td>Day 2 saving for Promeia</td><td>93K</td><td>1.2K</td><td>Mar 26</td><td>&#x1F7E2; Saving intent series <em>(supporting)</em></td></tr>
+      <tr><td>Day 11 saving for Promeia</td><td>55K</td><td>1.6K</td><td>Apr 4</td><td>&#x1F7E2; Continued intent &#x2713; PRIORITY</td></tr>
     </tbody></table></div>
-    <blockquote>"I still remember how Someone nicknamed Promeia as 'Stripper Acheron'"<cite>— IronicCookies (MOGGED thread)</cite></blockquote>
+    <blockquote>"I still remember how Someone nicknamed Promeia as 'Stripper Acheron'"<cite>— IronicCookies (from MOGGED thread)</cite></blockquote>
     <blockquote>"Un HUZBANDO ganandole a una Waifu, GANO EL CINE" <em>(A husbando beating a waifu — cinema won)</em><cite>— Nios_Over</cite></blockquote>
   </div>
+
+  <div class="platform-card">
+    <div class="platform-name">Reddit — r/ZenlessZoneZero <span class="platform-stat">Global only — blocked in Indonesia</span></div>
+    <p style="font-size:13px;color:var(--text-muted)">Prior sweep data (Apr 17). 140+ comment design debate thread = highest-engagement post in past-month sweep. Character morality discussion active. Community divided, not unified against — defenders vocal.</p>
+  </div>
 </section>
+
 <section class="section" id="s4">
   <div class="section-header"><div class="section-num">4</div><div class="section-title">Top Community Themes</div></div>
-  <div class="risk-card"><div class="risk-header"><div class="risk-badge red">High Frequency</div><div class="risk-title">Design Change Backlash</div></div><p>Apr 12 back-outfit adjustment net-negative with the audience that cared most about the original. "Ice Evelyn" is now the settled shorthand. Platforms: TikTok, X/Twitter, Reddit, HoYoLab.</p></div>
-  <div class="risk-card"><div class="risk-header"><div class="risk-badge red">High Frequency</div><div class="risk-title">Saving for Ramiel / v3.x</div></div><p>ID community consistently cites Ramiel and future meta characters as pull targets. Pragmatic budget management — not dislike. Platforms: Facebook ID, YouTube ID comments.</p></div>
-  <div class="risk-card"><div class="risk-header"><div class="risk-badge red">High Frequency</div><div class="risk-title">Billy &gt; Promeia Pull Competition</div></div><p>Billy outperforms Promeia on every pull-intent signal: HoYoLab poll, KOL coverage (3:1 ratio), YouTube comment sentiment. Banner-mate is her biggest pull competitor. Structural — predates design controversy.</p></div>
-  <div class="risk-card"><div class="risk-header"><div class="risk-badge yellow">Medium Frequency</div><div class="risk-title">Fusion Lore / Character Concept Appeal</div></div><p>Two-souls premise and voice performance praised independently of design controversy. Committed lore-driven base. Platforms: HoYoLab, TikTok, Discord.</p></div>
-  <div class="risk-card"><div class="risk-header"><div class="risk-badge yellow">Low–Medium Frequency</div><div class="risk-title">Cosplay &amp; Fan Art Activation</div></div><p>Cosplay companies already producing costumes pre-banner (X/Twitter, Apr 16). Fan art and custom OST "Velvet Noire" on HoYoLab. Early organic activation signal.</p></div>
+  <div class="risk-card">
+    <div class="risk-header"><div class="risk-badge red">High Frequency</div><div class="risk-title">Design Change Backlash</div></div>
+    <p>The Apr 12 back-outfit adjustment was net-negative with the audience that cared most about the original design. "Ice Evelyn" is now the settled community shorthand. Visible on TikTok, X/Twitter, Reddit, and HoYoLab. Signal type: design controversy.</p>
+  </div>
+  <div class="risk-card">
+    <div class="risk-header"><div class="risk-badge red">High Frequency</div><div class="risk-title">Saving for Later Characters (Ramiel / v3.x)</div></div>
+    <p>ID community comments consistently cite Ramiel and future 3.x meta characters as reasons to skip. Pragmatic budget management, not dislike. Visible on Facebook ID, YouTube ID comments. Signal type: F2P concern.</p>
+  </div>
+  <div class="risk-card">
+    <div class="risk-header"><div class="risk-badge red">High Frequency</div><div class="risk-title">Billy &gt; Promeia Pull Competition</div></div>
+    <p>Billy outperforms Promeia on every pull-intent signal: HoYoLab poll, KOL coverage (3:1 ratio), YouTube comment sentiment. The character sharing her banner is her biggest pull competitor. Visible on HoYoLab, YouTube, Discord. Signal type: pull competition.</p>
+  </div>
+  <div class="risk-card">
+    <div class="risk-header"><div class="risk-badge yellow">Medium Frequency</div><div class="risk-title">Fusion Lore / Character Concept Appeal</div></div>
+    <p>Two-souls premise and voice performance praised independently of design controversy. "She's the yelan version of zzz" (TikTok). Committed lore-driven base. Visible on HoYoLab, TikTok, Discord. Signal type: lore engagement.</p>
+  </div>
+  <div class="risk-card">
+    <div class="risk-header"><div class="risk-badge yellow">Low–Medium Frequency</div><div class="risk-title">Cosplay &amp; Fan Art Activation</div></div>
+    <p>Cosplay companies already producing Promeia costumes pre-banner (X/Twitter, Apr 16). Fan art and custom OST "Velvet Noire" on HoYoLab. Early organic activation signal. Signal type: fan activation.</p>
+  </div>
 </section>
 <section class="section" id="s5">
   <div class="section-header"><div class="section-num">5</div><div class="section-title">Pull Intent</div></div>
-  <div class="callout yellow"><div class="callout-label">Label</div><p>🟡 <strong>Moderate</strong> — Indonesia &nbsp;|&nbsp; 🟡 <strong>Moderate</strong> — Global (design split)</p></div>
-  <ul class="bullets" style="margin-top:12px">
-    <li>HoYoLab: "day 11 saving for my future main promeia" — 55K views, 1.6K likes (Apr 4 PRIORITY). Running series day 2→11+ = committed segment.</li>
-    <li>Facebook ID comments: 5 of 10 on adjacent post = skip/saving-elsewhere. Pragmatic, not hostile.</li>
-    <li>HoYoLab poll ("Billy vs Promeia"): Billy winning by clear margin — pull budget splitting toward Billy.</li>
-    <li>X/Twitter: Design-refusal tweets &lt;10 likes each — fringe signal.</li>
-    <li>YouTube ID: PityGamersRoom kit guide = audience already committed to pulling.</li>
+  <div class="callout yellow"><div class="callout-label">Label</div><p>&#x1F7E1; <strong>Moderate</strong> — Indonesia (primary) &nbsp;|&nbsp; &#x1F7E1; <strong>Moderate</strong> — Global (design split)</p></div>
+  <div class="sub-title">Evidence</div>
+  <ul class="bullets">
+    <li>HoYoLab: "day 11 saving for my future main promeia" — 55K views, 1.6K likes (Apr 4 PRIORITY). Running saving series from day 2 to day 11+ = committed segment.</li>
+    <li>HoYoLab global: 93K views on day 2 saving post — pull intent was high before controversy deepened.</li>
+    <li>Facebook ID comments: 5 of 10 visible on adjacent ZZZ post = skip/saving-elsewhere intent. Pragmatic, not hostile.</li>
+    <li>X/Twitter: Design-refusal tweets have &lt;10 likes each — fringe, not mainstream.</li>
+    <li>HoYoLab poll ("Billy vs Promeia"): Billy winning by significant margin. Pull budget is splitting toward Billy.</li>
+    <li>YouTube ID: PityGamersRoom Promeia kit guide = serving players already committed to pulling.</li>
   </ul>
-  <div class="callout yellow" style="margin-top:8px"><div class="callout-label">F2P Sentiment</div><p>Mild concern. "Team is expensive" framing in ID ("Skip mahal tim nya") — Ice Anomaly new archetype may not slot into existing rosters. No panic, no refund threats.</p></div>
+  <div class="callout yellow" style="margin-top:12px"><div class="callout-label">F2P Sentiment</div><p>Mild concern. "Team is expensive" framing appears in ID ("Skip mahal tim nya") — Ice Anomaly as new archetype may not slot into existing rosters easily. No panic, no refund threats.</p></div>
 </section>
+
 <section class="section" id="s6">
   <div class="section-header"><div class="section-num">6</div><div class="section-title">KOL Talking Points</div></div>
   <div class="sub-title">Lead With</div>
   <div class="kol-grid">
-    <div class="kol-card"><div class="kol-card-title">Two-Souls Lore Concept</div><div class="kol-card-hook">"Two personalities, one body — she carries both. The story actually pays it off."</div><p>Most praised aspect across all platforms regardless of design stance. Works without game knowledge.</p></div>
-    <div class="kol-card"><div class="kol-card-title">"Ice Evelyn" Framing</div><div class="kol-card-hook">"Evelyn but Ice — the community coined it, and it fits."</div><p>Organic comparison to beloved v2.5 character. Adopting it feels authentic, not forced.</p></div>
-    <div class="kol-card"><div class="kol-card-title">Gameplay Accessibility</div><div class="kol-card-hook">"Strong even without her signature weapon."</div><p>Directly addresses the "team is expensive" concern in ID community.</p></div>
-    <div class="kol-card"><div class="kol-card-title">Design Controversy as Hook</div><div class="kol-card-hook">"They changed her design twice due to fan pressure — which version did you prefer?"</div><p>Lean into discourse as engagement. Controversy drives eyeballs; don't suppress it.</p></div>
+    <div class="kol-card">
+      <div class="kol-card-title">Two-Souls Lore Concept</div>
+      <div class="kol-card-hook">"Two personalities, one body — she carries both. The story actually pays it off."</div>
+      <p>Most praised aspect across all platforms regardless of design stance. Works without game knowledge.</p>
+    </div>
+    <div class="kol-card">
+      <div class="kol-card-title">"Ice Evelyn" Framing</div>
+      <div class="kol-card-hook">"Evelyn but Ice — the community coined it, and it fits."</div>
+      <p>Organic community comparison to a beloved v2.5 character. Adopting it feels authentic, not forced.</p>
+    </div>
+    <div class="kol-card">
+      <div class="kol-card-title">Gameplay Accessibility</div>
+      <div class="kol-card-hook">"Strong even without her signature weapon — not a whale-only character."</div>
+      <p>Directly addresses the "team is expensive" concern surfaced in ID community.</p>
+    </div>
+    <div class="kol-card">
+      <div class="kol-card-title">Design Controversy as Hook</div>
+      <div class="kol-card-hook">"They changed the design twice because fans had so many opinions — which version did you prefer?"</div>
+      <p>Lean into the discourse as engagement. The controversy drives eyeballs; don't suppress it.</p>
+    </div>
   </div>
   <div class="sub-title">Address Proactively</div>
   <ul class="bullets">
-    <li><strong>Design controversy</strong> → Frame as "which side are you on?" — engagement beats suppression.</li>
-    <li><strong>Team cost</strong> → Show accessible team compositions. PityGamersRoom's kit guide already does this for ID.</li>
+    <li><strong>Design controversy</strong> → Frame: "Her look split the community — which side are you on?" Engagement &gt; suppression.</li>
+    <li><strong>Team cost / new archetype</strong> → Show her in accessible teams. PityGamersRoom's kit guide already does this for ID.</li>
   </ul>
-  <div class="kol-donts"><div class="kol-donts-title">Avoid</div><ul>
-    <li>Comparing Promeia favorably to her original design — mourning crowd is large and vocal.</li>
-    <li>Leading with gacha rates — budget sensitivity signalled in ID comments.</li>
-    <li>Comparing Promeia to Cissia — different audience, different controversy.</li>
-  </ul></div>
+  <div class="kol-donts">
+    <div class="kol-donts-title">Avoid</div>
+    <ul>
+      <li>Comparing Promeia favorably to her original design — the mourning crowd is large and vocal.</li>
+      <li>Leading with gacha rates or wishing meta — "team is expensive" framing signals budget sensitivity.</li>
+      <li>Comparing Promeia to Cissia — different audience, different controversy, different outcome.</li>
+    </ul>
+  </div>
 </section>
+
 <section class="section" id="s7">
   <div class="section-header"><div class="section-num">7</div><div class="section-title">KOL Campaign Recommendation</div></div>
+  <div class="sub-title">Promotion Window</div>
   <div class="table-wrap"><table><thead><tr><th>Week</th><th>Dates</th><th>Goal</th></tr></thead><tbody>
-    <tr><td><strong>Week −1</strong></td><td>Apr 29 – May 5</td><td>Awareness — counter NTE/WuWa noise with Promeia story hook</td></tr>
-    <tr><td><strong>Week +1</strong></td><td>May 6 – May 12</td><td>Launch — gameplay + first pulls</td></tr>
-    <tr><td><strong>Week +2</strong></td><td>May 13 – May 20</td><td>FOMO sustain — team comps, story payoff, Billy collab content</td></tr>
+    <tr><td><strong>Week -1</strong></td><td>Apr 29 – May 5</td><td>Awareness / hype — counter NTE and WuWa launch noise with Promeia story hook</td></tr>
+    <tr><td><strong>Week +1</strong></td><td>May 6 – May 12</td><td>Launch / first impression — gameplay + first pulls</td></tr>
+    <tr><td><strong>Week +2</strong></td><td>May 13 – May 20</td><td>Experience / FOMO sustain — team comps, story payoff, Billy collab content</td></tr>
   </tbody></table></div>
-  <div class="action-item"><div class="action-num">1</div><p><strong>Apr 29 — Character intro short.</strong> Lead with two-souls lore. Hook: "A character so controversial they redesigned her twice." Go live same day as NTE.</p></div>
-  <div class="action-item"><div class="action-num">2</div><p><strong>May 6 — Launch-day pull reaction.</strong> ID KOLs: PityGamersRoom, SRAA_yt. Emphasize Ice Anomaly as first-of-its-kind archetype.</p></div>
-  <div class="action-item"><div class="action-num">3</div><p><strong>May 7–10 — Gameplay showcase.</strong> "Strong even sig-less" — directly addresses team-cost concern from ID comments.</p></div>
-  <div class="action-item"><div class="action-num">4</div><p><strong>May 12–15 — Lore deep-dive.</strong> Fusion concept for non-players: "Two personalities sharing one body — this game has wild storytelling."</p></div>
-  <div class="action-item"><div class="action-num">5</div><p><strong>May 18–20 — FOMO close.</strong> Combined Promeia + Billy. "Come back for Billy, discover Promeia." June 16 deadline urgency.</p></div>
+  <div class="sub-title">Recommended Activations</div>
+  <div class="action-item"><div class="action-num">1</div><p><strong>Apr 29 — Character intro short video.</strong> Lead with two-souls lore. Hook: "A character so controversial they redesigned her twice." Go live same day as NTE to compete for attention. No game knowledge required.</p></div>
+  <div class="action-item"><div class="action-num">2</div><p><strong>May 6 — Launch-day pull reaction.</strong> ID KOLs: PityGamersRoom, SRAA_yt. Emphasize Ice Anomaly as a first-of-its-kind archetype.</p></div>
+  <div class="action-item"><div class="action-num">3</div><p><strong>May 7–10 — Gameplay showcase.</strong> Focus on accessibility. "Strong even sig-less" directly addresses the team-cost concern from ID comments.</p></div>
+  <div class="action-item"><div class="action-num">4</div><p><strong>May 12–15 — Lore deep-dive.</strong> Short video on the fusion concept. Works for non-players: "Two personalities sharing one body — this game has wild storytelling."</p></div>
+  <div class="action-item"><div class="action-num">5</div><p><strong>May 18–20 — FOMO close.</strong> Combined Promeia + Billy content. "Come back for Billy, discover Promeia." Use the Billy re-engagement signal to carry Promeia.</p></div>
+  <div class="callout green" style="margin-top:16px"><div class="callout-label">Key Messages (all KOL content)</div><p>Ice Anomaly = first-of-its-kind · Fusion lore = the most praised angle · Limited window: May 6 – June 16 only.</p></div>
 </section>
 <section class="section" id="s8">
   <div class="section-header"><div class="section-num">8</div><div class="section-title">Interesting Facts</div></div>
-  <div class="fact-card"><p><strong>Cosplay companies producing Promeia costumes 3 weeks before banner launch.</strong> Spotted on X/Twitter Apr 16, before any official cosplay partnership.</p><div class="fact-why">Why it matters: Third-party cosplay activation before launch = strong organic virality signal. Coordinate official cosplay shoutouts around May 6 to amplify existing momentum.</div></div>
-  <div class="fact-card"><p><strong>The highest-liked comment on the initial reveal was PRO-Promeia (2,621 likes).</strong> "I must be too old of an adult cause I see everyone complain about her look but I fuck with it." Despite vocal design-dislike discourse, the most liked comment defended the original aesthetic.</p><div class="fact-why">Why it matters: The silent majority may be more design-positive than the noise suggests. Content speaking to this group is an underserved angle with large existing reach.</div></div>
-  <div class="fact-card"><p><strong>"Promeia Getting MOGGED by Billy" (97K views) was posted March 28 — before any design changes.</strong> The Billy pull competition is structural, not driven by design backlash.</p><div class="fact-why">Why it matters: Design fixes alone won't close the Billy gap. Promeia needs a distinct pull narrative (lore, accessibility, new archetype) that complements Billy rather than competing head-to-head.</div></div>
+  <div class="fact-card">
+    <p><strong>Cosplay companies are already producing Promeia costumes — 3 weeks before banner launch.</strong> Spotted on X/Twitter Apr 16, before any in-game release or official cosplay partnership announcement.</p>
+    <div class="fact-why">Why it matters: Third-party cosplay activation before launch = strong organic virality signal. Coordinate official cosplay community shoutouts around banner launch to amplify this existing momentum.</div>
+  </div>
+  <div class="fact-card">
+    <p><strong>The highest-liked comment on the initial reveal was PRO-Promeia (2,621 likes).</strong> Despite vocal design-dislike discourse, the most liked single comment said: "I must be too old of an adult cause I see everyone complain about her look but I fuck with it. It looks cool on her + Matches her vibe."</p>
+    <div class="fact-why">Why it matters: The silent majority may be more design-positive than the noise level suggests. Campaign content that speaks to this group — people who liked the original aesthetic — is an underserved angle with large existing reach.</div>
+  </div>
+  <div class="fact-card">
+    <p><strong>"Promeia Getting MOGGED by Billy" is the most-viewed community post at 97K views — and it was posted March 28, before any design changes.</strong> The Billy pull competition predates the design controversy entirely; it is structural.</p>
+    <div class="fact-why">Why it matters: Design fixes alone will not close the Billy gap. Promeia needs a distinct pull narrative (lore, accessibility, new archetype) that complements Billy rather than competing with him head-to-head.</div>
+  </div>
 </section>
+
 <section class="section" id="s9">
   <div class="section-header"><div class="section-num">9</div><div class="section-title">Risks &amp; Recommendations</div></div>
-  <div class="risk-card"><div class="risk-header"><div class="risk-badge red">Risk</div><div class="risk-title">Ramiel pre-hype suppressing Promeia pull intent in ID</div></div><p>Multiple "saving for Ramiel" comments across Facebook ID and YouTube. Suppression ongoing through banner window. Monitor Facebook ID week of May 6 for pull-through rate.</p></div>
-  <div class="risk-card"><div class="risk-header"><div class="risk-badge green">Action</div><div class="risk-title">Activate KOL content Apr 29 — same day as NTE launch</div></div><p>Pre-empt pull-budget drift to NTE before players commit currency. Use lore/story hook, not gameplay. Highest-leverage date in the banner window.</p></div>
-  <div class="risk-card"><div class="risk-header"><div class="risk-badge green">Action</div><div class="risk-title">Design controversy will not resolve — lean into it</div></div><p>Controversy-as-interest framing ("which version did you prefer?") drives more engagement than suppression. Community is already active; give them a hook.</p></div>
-  <div class="risk-card"><div class="risk-header"><div class="risk-badge green">Action</div><div class="risk-title">Expand ID KOL coverage beyond PityGamersRoom</div></div><p>SRAA_yt (26K) and KamarRama not yet covering Promeia pre-banner. Brief them before May 6.</p></div>
-  <div class="risk-card"><div class="risk-header"><div class="risk-badge yellow">Watch</div><div class="risk-title">Post-launch: will design-disappointed segment pull anyway?</div></div><p>Vocal design critics may still pull despite stated objections. Track pull-celebration posts on Facebook ID and HoYoLab May 6–12 to gauge actual conversion vs. stated skip intent.</p></div>
+  <div class="risk-card">
+    <div class="risk-header"><div class="risk-badge red">Risk</div><div class="risk-title">Ramiel pre-hype suppressing Promeia pull intent in ID</div></div>
+    <p>ID community is saving for Ramiel (v3.1). Multiple "saving for Ramiel" comments across Facebook and YouTube. This suppression is ongoing — not resolved by banner launch.</p>
+    <p><em>Timing: Now – May 6. Monitor Facebook ID week of May 6 for pull-through rate.</em></p>
+  </div>
+  <div class="risk-card">
+    <div class="risk-header"><div class="risk-badge green">Action</div><div class="risk-title">Activate KOL content Apr 29 — same day as NTE launch</div></div>
+    <p>Pre-empt pull-budget drift to NTE before players commit their currency. Use lore/story hook, not gameplay. This is the single highest-leverage activation date in the banner window.</p>
+    <p><em>Timing: Apr 29.</em></p>
+  </div>
+  <div class="risk-card">
+    <div class="risk-header"><div class="risk-badge green">Action</div><div class="risk-title">Design controversy will not resolve — lean into it</div></div>
+    <p>Community engagement on design discourse outperforms silence. Controversy-as-interest framing ("which version did you prefer?") drives more engagement than suppression or defensive positioning.</p>
+    <p><em>Timing: Apr 29 – May 6.</em></p>
+  </div>
+  <div class="risk-card">
+    <div class="risk-header"><div class="risk-badge green">Action</div><div class="risk-title">PityGamersRoom is the only ID KOL covering Promeia — expand</div></div>
+    <p>SRAA_yt (26K) and KamarRama are not yet covering Promeia pre-banner. Brief them before May 6 to increase ID content volume.</p>
+    <p><em>Timing: May 1 – May 6.</em></p>
+  </div>
+  <div class="risk-card">
+    <div class="risk-header"><div class="risk-badge yellow">Watch</div><div class="risk-title">Post-launch: will design-disappointed segment pull anyway?</div></div>
+    <p>Vocal design critics may still pull despite objections. Track pull-celebration posts on Facebook ID and HoYoLab from May 6 to gauge actual conversion rate vs. stated skip intent.</p>
+    <p><em>Timing: May 6 – May 12.</em></p>
+  </div>
 </section>
+
 <section class="section" id="s10">
   <div class="section-header"><div class="section-num">10</div><div class="section-title">Competitor Games to Watch</div></div>
-  <div class="platform-card"><div class="platform-name">NTE: Neverness to Everness <span class="platform-stat">v1.0 — Apr 29</span></div><ul class="bullets">
-    <li><strong>Launch:</strong> Apr 29 — 7 days pre-v2.8. PC + Android + iOS + PS5. 30M+ pre-registrations.</li>
-    <li><strong>Mood:</strong> 🟢 Positive. "Anime GTA" dominant framing. C&amp;D drama (keitaro-gg) is a vulnerability.</li>
-    <li><strong>ZZZ relevance:</strong> Maximum audience overlap — urban supernatural, action gacha, same demographic. Apr 29 = highest-risk day for pull-budget diversion. ZZZ must be louder that day.</li>
-  </ul></div>
-  <div class="platform-card"><div class="platform-name">Wuthering Waves v3.3 <span class="platform-stat">Apr 30</span></div><ul class="bullets">
-    <li>Anniversary banner overlaps v2.8 first week. Multi-game F2P players split attention.</li>
-  </ul></div>
-  <div class="platform-card"><div class="platform-name">Genshin Impact v6.5 <span class="platform-stat">Ends May 19</span></div><ul class="bullets">
-    <li>Shared wallet overlap first two weeks of v2.8. GI players who also play ZZZ manage both banners simultaneously.</li>
-  </ul></div>
+  <div class="platform-card">
+    <div class="platform-name">NTE: Neverness to Everness <span class="platform-stat">v1.0 — Apr 29</span></div>
+    <ul class="bullets">
+      <li><strong>Launch:</strong> Apr 29 — 7 days before v2.8. PC + Android + iOS + PS5.</li>
+      <li><strong>Community mood:</strong> &#x1F7E2; Positive pre-launch. "Anime GTA" dominant organic framing. 30M+ pre-registrations.</li>
+      <li><strong>ZZZ relevance:</strong> Maximum audience overlap. Urban supernatural setting, action gacha, direct ZZZ demographic. Apr 29 is the highest-risk day for ZZZ pull-budget diversion. ZZZ marketing must be louder that day.</li>
+      <li><strong>Vulnerability:</strong> C&amp;D drama (keitaro-gg incident) active; unproven live-service track record.</li>
+    </ul>
+  </div>
+  <div class="platform-card">
+    <div class="platform-name">Wuthering Waves v3.3 <span class="platform-stat">Apr 30</span></div>
+    <ul class="bullets">
+      <li>Anniversary banner overlaps v2.8 first week. Multi-game F2P players will split attention.</li>
+      <li>WuWa anniversaries historically drive re-engagement in their own base — players who play both may deprioritize ZZZ pulls week 1.</li>
+    </ul>
+  </div>
+  <div class="platform-card">
+    <div class="platform-name">Genshin Impact v6.5 <span class="platform-stat">Ends May 19</span></div>
+    <ul class="bullets">
+      <li>Shared wallet overlap for first two weeks of v2.8. GI players who also play ZZZ will manage both banners simultaneously.</li>
+    </ul>
+  </div>
 </section>
 <section class="section" id="s11">
   <div class="section-header"><div class="section-num">11</div><div class="section-title">Research &amp; Reporting Flow</div></div>
-  <p>Produced using a four-phase offline-first protocol across two sessions (Apr 17 post-level sweep + Apr 18 comment extraction + write-back). One platform fully completed before moving to the next.</p>
+  <p>This report was produced using a four-phase offline-first research protocol across two sessions (Apr 17 + Apr 18). Platforms are swept one at a time — all phases complete per platform before moving to the next.</p>
+
   <div class="flow-phases">
+
     <div class="flow-phase">
       <div class="flow-phase-label"><span>01</span>Offline Loading</div>
       <div class="flow-phase-content">
-        <p>SessionStart hook auto-loads <code>wiki/index.md</code>, <code>wiki/overview.md</code>, <code>wiki/log.md</code>. Then manually: <code>wiki/sources/zzz.md</code>, <code>raw/playbooks/zzz.md</code>, <code>raw/playbooks/tools.md</code>, <code>wiki/campaigns/zzz-v28-promeia-billy.md</code>. No browser opened until this phase is complete.</p>
-        <div class="token-row"><span class="token-label">🔌 Tokens</span><span class="token-pill">~35K input</span><span class="token-note">SessionStart hook (~13K) + source index + playbooks + campaign page + prior context carry-over</span></div>
+        <p>Before opening any browser, read all prior research in context via the SessionStart hook (auto-loads <code>wiki/index.md</code>, <code>wiki/overview.md</code>, <code>wiki/log.md</code>). Then manually read: <code>wiki/sources/zzz.md</code>, <code>raw/playbooks/zzz.md</code>, <code>raw/playbooks/tools.md</code>, <code>wiki/campaigns/zzz-v28-promeia-billy.md</code>. Ensures no rediscovery of known patterns and surfaces coverage gaps before going online.</p>
+        <div class="token-row">
+          <span class="token-label">&#x1F50C; Tokens</span>
+          <span class="token-pill">~35K input</span>
+          <span class="token-note">SessionStart hook (index + overview + log ~13K) + source index + playbooks + campaign page + prior conversation context carry-over</span>
+        </div>
       </div>
     </div>
+
     <div class="flow-phase">
       <div class="flow-phase-label"><span>02</span>Gap Analysis</div>
       <div class="flow-phase-content">
-        <p>Synthesize known vs. missing. Apr 17 sweep had completed all 6 platform post-level sweeps. Gap for Apr 18: comment-level extraction. Draft exact plan — which posts, which threads, order — before touching the browser.</p>
-        <div class="token-row"><span class="token-label">🔌 Tokens</span><span class="token-pill">~5K</span><span class="token-note">Pure reasoning — no tool calls. Plan drafting only.</span></div>
+        <p>Synthesize what is already known vs. missing. For Promeia v2.8, the Apr 17 sweep had completed all 6 platform post-level sweeps. Gap for Apr 18: comment-level extraction (Phase 3) not yet done. Draft exact extraction plan — which posts, which comment threads, order of operations — before touching the browser. No exploratory wandering.</p>
+        <div class="token-row">
+          <span class="token-label">&#x1F50C; Tokens</span>
+          <span class="token-pill">~5K</span>
+          <span class="token-note">Pure reasoning — no tool calls. Plan drafting only.</span>
+        </div>
       </div>
     </div>
+
     <div class="flow-phase">
       <div class="flow-phase-label"><span>03</span>Platform Sweeps</div>
       <div class="flow-phase-content">
-        <div class="flow-platform-row"><span class="flow-plat-name">Facebook</span><span class="flow-plat-detail">Python authenticated_scraper.py — group search scroll (30 passes) + comment extraction. DOM walk-up <code>set=gm.POST_ID</code> pattern.</span></div>
-        <div class="flow-platform-row"><span class="flow-plat-name">HoYoLab</span><span class="flow-plat-detail">90 cards → 30 enriched by views → 5 comment threads (409 total comments). Most data-intensive platform.</span></div>
-        <div class="flow-platform-row"><span class="flow-plat-name">TikTok</span><span class="flow-plat-detail">Dual query: <code>promeia%20zzz</code>. 16 unique posts. Comment panel via 1440px viewport. 5 videos × ~18 comments.</span></div>
-        <div class="flow-platform-row"><span class="flow-plat-name">YouTube</span><span class="flow-plat-detail">KOL direct /videos tabs. Slow scroll 15×400px + <code>waitForSelector</code> to trigger comment load.</span></div>
-        <div class="flow-platform-row"><span class="flow-plat-name">X/Twitter</span><span class="flow-plat-detail">Live tab, 25-pass incremental scroll. 35 posts. Reply injection filter: likes &gt;500 = injected, discard.</span></div>
-        <div class="flow-platform-row"><span class="flow-plat-name">Discord</span><span class="flow-plat-detail">HoYo SEA Fandom server. Ctrl+F keyboard API search. 8 messages for "promeia".</span></div>
+        <div class="flow-platform-row"><span class="flow-plat-name">Facebook</span><span class="flow-plat-detail">Python authenticated_scraper.py — group search scroll (30 passes) + comment extraction. DOM walk-up pattern for <code>set=gm.POST_ID</code> URL extraction.</span></div>
+        <div class="flow-platform-row"><span class="flow-plat-name">HoYoLab</span><span class="flow-plat-detail">90 card scroll → 30 enriched by views → 5 comment threads extracted (409 total comments). Most data-intensive platform.</span></div>
+        <div class="flow-platform-row"><span class="flow-plat-name">TikTok</span><span class="flow-plat-detail">Dual query: <code>promeia%20zzz</code> — 16 unique posts. Comment panel via 1440px viewport. 5 videos x ~18 comments extracted.</span></div>
+        <div class="flow-platform-row"><span class="flow-plat-name">YouTube</span><span class="flow-plat-detail">KOL direct /videos tabs (PityGamersRoom, NotYuyuZZZ, Pulse Gaming, PityGamersRoom). Slow scroll 15x400px + waitForSelector to trigger comment load.</span></div>
+        <div class="flow-platform-row"><span class="flow-plat-name">X/Twitter</span><span class="flow-plat-detail">Live tab, 25-pass incremental scroll. 35 posts collected. Reply extraction with injection-filter (likes &gt;500 = injected, discard).</span></div>
+        <div class="flow-platform-row"><span class="flow-plat-name">Discord</span><span class="flow-plat-detail">HoYo SEA Fandom server, Ctrl+F keyboard API search. 8 messages returned for "promeia" query.</span></div>
         <div class="flow-stat-row">
-          <span class="flow-stat"><strong>Total records:</strong> ~600</span>
+          <span class="flow-stat"><strong>Total records:</strong> ~600 posts / comments / tweets / messages</span>
           <span class="flow-stat"><strong>Platforms:</strong> 6</span>
-          <span class="flow-stat"><strong>Raw files saved:</strong> 17 JSON</span>
-          <span class="flow-stat"><strong>Data window:</strong> Mar 28 – Apr 18</span>
+          <span class="flow-stat"><strong>Raw files saved:</strong> 17 JSON files</span>
+          <span class="flow-stat"><strong>Data window:</strong> Mar 28 – Apr 18, 2026</span>
         </div>
-        <div class="token-row"><span class="token-label">🔌 Tokens</span><span class="token-pill">~180K input</span><span class="token-pill">~8K output</span><span class="token-note">Largest phase. HoYoLab ~50K (30 posts + 409 comments) · TikTok ~20K · Facebook ~15K · X/Twitter ~10K · YouTube ~8K · Discord ~3K.</span></div>
+        <div class="token-row">
+          <span class="token-label">&#x1F50C; Tokens</span>
+          <span class="token-pill">~180K input</span>
+          <span class="token-pill">~8K output</span>
+          <span class="token-note">Largest phase. Browser snapshots + script outputs + JSON write confirmations across 6 platforms. HoYoLab alone accounts for ~50K (30 enriched posts + 409 comment extractions). Facebook ~15K, TikTok ~20K, YouTube ~8K, X/Twitter ~10K, Discord ~3K.</span>
+        </div>
       </div>
     </div>
+
     <div class="flow-phase">
       <div class="flow-phase-label"><span>04</span>Write-Back</div>
       <div class="flow-phase-content">
-        <p>Raw findings saved to <code>raw/community/zzz/</code> as JSON after each platform. Summary MD generated from all 17 JSON files (588 lines). Full sentiment report written in chunks (354 lines MD + 571 lines HTML). Campaign page, source index, wiki index, and log updated. JSON files archived to <code>_archive/promeia_2026-04-18/</code>.</p>
-        <p>File writing method: <strong>Write tool → Python script → Bash run</strong> for MD/HTML. Upgraded to <strong>Write skeleton → Edit section-by-section</strong> for future HTML reports — cleaner, one step per section, no intermediary files.</p>
-        <div class="token-row"><span class="token-label">🔌 Tokens</span><span class="token-pill">~5K input</span><span class="token-pill">~25K output</span><span class="token-note">Output-heavy. 17 JSON + summary MD + MD report + HTML report + 5 wiki file updates = ~25K generated tokens across ~20 write operations.</span></div>
+        <p>All raw findings saved to <code>raw/community/zzz/</code> as JSON immediately after each platform sweep. Then: summary MD generated from all 17 JSON files via Python script (588 lines). Full sentiment report written in 6 Python-script chunks (354 lines). Campaign page updated, source index updated (rows 14–22), <code>wiki/index.md</code> and <code>wiki/log.md</code> updated. JSON files moved to <code>_archive/promeia_2026-04-18/</code>. HTML report generated (this file).</p>
+        <p>File writing method: <strong>Write tool &#x2192; Python script file &#x2192; Bash run</strong> (prevents context-overflow crash on large outputs). Each script appends ~40–50 lines per chunk.</p>
+        <div class="token-row">
+          <span class="token-label">&#x1F50C; Tokens</span>
+          <span class="token-pill">~5K input</span>
+          <span class="token-pill">~25K output</span>
+          <span class="token-note">Output-heavy phase. 17 JSON files + summary MD + full MD report + HTML report + 5 wiki file updates = ~25K generated tokens across ~15 write operations.</span>
+        </div>
       </div>
     </div>
+
   </div>
-  <div class="callout yellow"><div class="callout-label">⚠ Token Estimates</div><p>Counts above are estimates based on data volume per phase. Total estimated session cost: <strong>~220–250K input tokens, ~35K output tokens</strong>. Context was partially fresh on Apr 18 (two-day split session).</p></div>
-  <div class="callout green"><div class="callout-label">Recency Rule</div><p>Priority data = within 15 days of Apr 18. Supporting data (&gt;15 days) labeled <em>(supporting)</em> inline throughout this report.</p></div>
+
+  <div class="callout yellow" style="margin-top:8px">
+    <div class="callout-label">&#x26A0; Token Estimates</div>
+    <p>Token counts above are estimates based on data volume at each phase. Actual consumption depends on context window carry-over from prior turns. The session was split across two days (Apr 17 post-level sweep + Apr 18 comment extraction + write-back), so context was partially fresh on Apr 18. Total estimated session cost for this report: <strong>~220–250K input tokens, ~35K output tokens</strong>.</p>
+  </div>
+
+  <div class="callout green" style="margin-top:8px">
+    <div class="callout-label">Recency Rule</div>
+    <p>Priority data = within 15 days of Apr 18. Supporting data (&gt;15 days) labeled <em>(supporting)</em> inline. All TikTok initial reveal data (Mar 21) and HoYoLab "MOGGED" post (Mar 28) are supporting data — directional only, not driving primary conclusions.</p>
+  </div>
 </section>
 <section class="section" id="s12">
   <div class="section-header"><div class="section-num">12</div><div class="section-title">Data Sources</div></div>
-  <div class="table-wrap"><table><thead><tr><th>#</th><th>Source File</th><th>Platform</th><th>Date</th><th>Records</th><th>Notes</th></tr></thead><tbody>
-    <tr><td>14</td><td><code>fb_promeia_srcA.json</code></td><td>Facebook ID</td><td>2026-04-18</td><td>4 posts</td><td>0 Promeia-specific. Skip intent in adjacent comments.</td></tr>
-    <tr><td>15</td><td><code>fb_promeia_comments_post1+2.json</code></td><td>Facebook ID</td><td>2026-04-18</td><td>20 comments</td><td>5/10 on Gacha Flex post = skip/saving-elsewhere.</td></tr>
-    <tr><td>16</td><td><code>hyl_promeia_posts.json</code></td><td>HoYoLab Global</td><td>2026-04-18</td><td>30 enriched</td><td>Agent Record 136K views; MOGGED 97K views.</td></tr>
-    <tr><td>17</td><td><code>hyl_promeia_comments_44379184.json</code></td><td>HoYoLab Global</td><td>2026-04-18</td><td>130 comments</td><td>Billy vs Promeia poll. Billy winning clearly.</td></tr>
-    <tr><td>18</td><td><code>hyl_promeia_comments_44388956.json</code></td><td>HoYoLab Global</td><td>2026-04-18</td><td>83 comments</td><td>MOGGED thread. "Stripper Acheron" nickname surfaced.</td></tr>
-    <tr><td>19</td><td><code>hyl_promeia_comments_44340788.json</code></td><td>HoYoLab Global</td><td>2026-04-18</td><td>63 comments</td><td>Day 2 saving series.</td></tr>
-    <tr><td>20</td><td><code>hyl_promeia_comments_44369902.json</code></td><td>HoYoLab Global</td><td>2026-04-18</td><td>46 comments</td><td>Billy Stronger debate.</td></tr>
-    <tr><td>21</td><td><code>tt_promeia_posts.json + comments.json</code></td><td>TikTok Global</td><td>2026-04-18</td><td>16 posts + ~90 comments</td><td>"ruined*" 1,655 likes; "ice Evelyn" 1,461 likes.</td></tr>
-    <tr><td>22</td><td><code>yt_promeia_posts.json + comments.json</code></td><td>YouTube ID</td><td>2026-04-18</td><td>4 videos + ~23 comments</td><td>PityGamersRoom kit guide; gameplay accessibility signal.</td></tr>
-    <tr><td>23</td><td><code>x_promeia_posts.json + replies.json</code></td><td>X/Twitter Global</td><td>2026-04-18</td><td>35 posts + 5 threads</td><td>Censorship narrative; cosplay activation; injection filter applied.</td></tr>
-    <tr><td>24</td><td><code>discord_promeia.json</code></td><td>Discord SEA</td><td>2026-04-18</td><td>8 messages</td><td>HoYo SEA Fandom server. Kit speculation from SEA players.</td></tr>
-  </tbody></table></div>
-  <div class="callout yellow" style="margin-top:12px"><div class="callout-label">Archive</div><p>All JSON files consolidated into <code>raw/community/zzz/promeia_sweep_2026-04-18.md</code> (588 lines) and archived to <code>raw/community/zzz/_archive/promeia_2026-04-18/</code>.</p></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>#</th><th>Source File</th><th>Platform</th><th>Date</th><th>Records</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>14</td><td><code>fb_promeia_srcA.json</code></td><td>Facebook ID</td><td>2026-04-18</td><td>4 posts (0 Promeia-specific)</td><td>ZZZ Official Indonesia group (70K members). Zero dedicated Promeia posts confirmed.</td></tr>
+      <tr><td>15</td><td><code>fb_promeia_comments_post1+2.json</code></td><td>Facebook ID</td><td>2026-04-18</td><td>20 comments</td><td>Adjacent ZZZ posts. 5/10 on Gacha Flex = skip/saving-elsewhere.</td></tr>
+      <tr><td>16</td><td><code>hyl_promeia_posts.json</code></td><td>HoYoLab Global</td><td>2026-04-18</td><td>90 cards, 30 enriched</td><td>Promeia keyword search. Top: Agent Record 136K views, MOGGED 97K views.</td></tr>
+      <tr><td>17</td><td><code>hyl_promeia_comments_44379184.json</code></td><td>HoYoLab Global</td><td>2026-04-18</td><td>130 comments</td><td>Billy vs Promeia poll. Billy winning by clear margin.</td></tr>
+      <tr><td>18</td><td><code>hyl_promeia_comments_44388956.json</code></td><td>HoYoLab Global</td><td>2026-04-18</td><td>83 comments</td><td>"MOGGED by Billy" thread. "Stripper Acheron" nickname surfaced.</td></tr>
+      <tr><td>19</td><td><code>hyl_promeia_comments_44340788.json</code></td><td>HoYoLab Global</td><td>2026-04-18</td><td>63 comments</td><td>Day 2 saving series. "Activating savings" sentiment.</td></tr>
+      <tr><td>20</td><td><code>hyl_promeia_comments_44369902.json</code></td><td>HoYoLab Global</td><td>2026-04-18</td><td>46 comments</td><td>Billy Stronger debate. "Of course Billy is much stronger" majority.</td></tr>
+      <tr><td>21</td><td><code>tt_promeia_posts.json + tt_promeia_comments.json</code></td><td>TikTok Global</td><td>2026-04-18</td><td>16 posts + ~90 comments</td><td>Design change (Apr 12): "ruined*" 1,655 likes, "thats so boring wth" 1,750 likes. "Ice Evelyn" anchor 1,461 likes.</td></tr>
+      <tr><td>22</td><td><code>yt_promeia_posts.json + yt_promeia_comments.json</code></td><td>YouTube ID</td><td>2026-04-18</td><td>4 videos + ~23 comments</td><td>PityGamersRoom kit guide only ID KOL coverage. "Smooth assists" gameplay praise.</td></tr>
+      <tr><td>23</td><td><code>x_promeia_posts.json + x_promeia_replies.json</code></td><td>X/Twitter Global</td><td>2026-04-18</td><td>35 posts + 5 reply threads</td><td>Censorship narrative (1.5K views). Cosplay activation confirmed. Injection filter applied (likes &gt;500 discarded).</td></tr>
+      <tr><td>24</td><td><code>discord_promeia.json</code></td><td>Discord SEA</td><td>2026-04-18</td><td>8 messages</td><td>HoYo SEA Fandom server. "Did bro prepare for promeia or sth" (Apr 13 PRIORITY). Kit speculation from SEA players.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout yellow" style="margin-top:12px">
+    <div class="callout-label">Archive</div>
+    <p>All source JSON files have been consolidated into <code>raw/community/zzz/promeia_sweep_2026-04-18.md</code> (588 lines) and archived to <code>raw/community/zzz/_archive/promeia_2026-04-18/</code>. Sources 1–13 from the Apr 17 sweep are documented in <code>wiki/sources/zzz.md</code>.</p>
+  </div>
 </section>
+
 <footer class="report-footer">
   <p>ZZZ v2.8 — Promeia Community Sentiment Report &nbsp;|&nbsp; Prepared 2026-04-18 &nbsp;|&nbsp; Hoyoverse Brand Marketing Intelligence</p>
   <p style="margin-top:4px">Related: <strong>wiki/campaigns/zzz-v28-promeia-billy.md</strong> &nbsp;·&nbsp; <strong>wiki/sources/zzz.md</strong> (sources #14–24) &nbsp;·&nbsp; <strong>wiki/reports/zzz/zzz-v28-promeia-community-sentiment-2026-04-18.md</strong></p>
 </footer>
+
 </div>
 </body>
 </html>

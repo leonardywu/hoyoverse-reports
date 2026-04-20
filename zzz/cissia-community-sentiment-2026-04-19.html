@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZZZ v2.7 Cissia — Community Sentiment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c12;
+    --bg2: #0d1320;
+    --bg3: #111827;
+    --border: rgba(200,168,76,0.18);
+    --border-dim: rgba(255,255,255,0.07);
+    --gold: #c8a84c;
+    --gold-dim: rgba(200,168,76,0.55);
+    --gold-faint: rgba(200,168,76,0.08);
+    --text: #e8dfc8;
+    --text-dim: rgba(232,223,200,0.6);
+    --text-faint: rgba(232,223,200,0.35);
+    --green: #4caf82;
+    --green-bg: rgba(76,175,130,0.1);
+    --green-border: rgba(76,175,130,0.3);
+    --amber: #d4943a;
+    --amber-bg: rgba(212,148,58,0.1);
+    --red: #c85050;
+    --mono: 'IBM Plex Mono', monospace;
+    --serif: 'Cormorant Garamond', serif;
+    --body: 'Crimson Pro', serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 10%, rgba(200,168,76,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 80% 80%, rgba(76,175,130,0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Grid lines */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(200,168,76,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,168,76,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 64px 32px 100px;
+  }
+
+  /* ─── Header ─── */
+  .header-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .header-eyebrow::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .header-eyebrow .dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 6px var(--green);
+    flex-shrink: 0;
+    animation: breathe 2.5s ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%,100%{opacity:1;box-shadow:0 0 6px var(--green)}
+    50%{opacity:.4;box-shadow:0 0 2px var(--green)}
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -.01em;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .header-sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: .08em;
+    margin-bottom: 32px;
+  }
+
+  /* ─── Verdict badge ─── */
+  .verdict-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+  .verdict-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    border: 1px solid;
+    position: relative;
+    overflow: hidden;
+  }
+  .verdict-badge::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 1;
+  }
+  .verdict-badge.green {
+    color: var(--green);
+    border-color: var(--green-border);
+    background: var(--green-bg);
+  }
+  .verdict-badge.green::before { background: var(--green-bg); }
+  .verdict-badge .badge-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    flex-shrink: 0;
+  }
+
+  /* ─── Divider ─── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
+    margin: 48px 0;
+    width: 100%;
+  }
+  .divider-light {
+    height: 1px;
+    background: var(--border-dim);
+    margin: 32px 0;
+  }
+
+  /* ─── Section labels ─── */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  p { margin-bottom: 14px; color: var(--text-dim); }
+  p strong { color: var(--text); font-weight: 600; }
+
+  /* ─── Exec summary box ─── */
+  .exec-box {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    padding: 28px 32px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .exec-box p { margin-bottom: 0; font-size: 18px; color: var(--text-dim); line-height: 1.75; }
+  .exec-box p + p { margin-top: 12px; }
+  .exec-highlight {
+    background: var(--gold-faint);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green);
+    padding: 14px 20px;
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--green);
+    letter-spacing: .04em;
+  }
+
+  /* ─── Platform table with bars ─── */
+  .platform-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: 32px;
+  }
+  .platform-row {
+    background: var(--bg2);
+    border: 1px solid var(--border-dim);
+    padding: 14px 18px;
+    display: grid;
+    grid-template-columns: 170px 1fr 90px;
+    align-items: center;
+    gap: 16px;
+    transition: border-color .15s;
+  }
+  .platform-row:hover { border-color: var(--border); }
+  .platform-name {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: .04em;
+  }
+  .platform-sub {
+    font-size: 10px;
+    color: var(--text-faint);
+    margin-top: 2px;
+    font-family: var(--mono);
+  }
+  .bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .bar-track {
+    flex: 1;
+    height: 3px;
+    background: rgba(255,255,255,0.07);
+    position: relative;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    background: var(--green);
+    box-shadow: 0 0 6px rgba(76,175,130,0.4);
+    transform-origin: left;
+    animation: barIn .8s ease-out both;
+  }
+  @keyframes barIn { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+  .bar-pct {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--green);
+    min-width: 36px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .bar-pct.amber { color: var(--amber); }
+  .bar-fill.amber { background: var(--amber); box-shadow: 0 0 6px rgba(212,148,58,0.4); }
+  .platform-signal {
+    font-size: 12px;
+    color: var(--text-faint);
+    line-height: 1.4;
+    text-align: right;
+  }
+
+  /* ─── Theme list ─── */
+  .theme-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 32px;
+  }
+  .theme-item {
+    background: var(--bg2);
+    border: 1px solid var(--border-dim);
+    padding: 16px 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: border-color .15s;
+  }
+  .theme-item:hover { border-color: var(--border); }
+  .theme-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold-dim);
+    flex-shrink: 0;
+    width: 20px;
+    padding-top: 2px;
+  }
+  .theme-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: .01em;
+  }
+  .theme-body {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* ─── Pull intent block ─── */
+  .pull-block {
+    background: var(--bg2);
+    border: 1px solid var(--green-border);
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pull-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--green), transparent);
+  }
+  .pull-verdict {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .pull-verdict-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+  .pull-block p { font-size: 16px; line-height: 1.7; margin-bottom: 0; }
+
+  /* ─── KOL section ─── */
+  .kol-section {
+    background: linear-gradient(135deg, rgba(200,168,76,0.05) 0%, transparent 100%);
+    border: 1px solid var(--border);
+    padding: 28px 32px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kol-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--gold), transparent);
+  }
+  .kol-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .kol-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+  }
+  .kol-badge {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    background: var(--gold-faint);
+  }
+  .kol-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 20px;
+  }
+  .kol-row {
+    display: grid;
+    grid-template-columns: 150px 80px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid var(--border-dim);
+    padding: 12px 16px;
+    transition: border-color .15s;
+  }
+  .kol-row:hover { border-color: var(--border); }
+  .kol-name {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gold);
+  }
+  .kol-platform {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-faint);
+    letter-spacing: .06em;
+  }
+  .kol-content {
+    font-size: 14px;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+  .kol-signal {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--green);
+    text-align: right;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+
+  .talking-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .talking-points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .talking-points li::before {
+    content: '→';
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold-dim);
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  /* ─── Sources table ─── */
+  .sources-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 11px;
+    margin-bottom: 24px;
+  }
+  .sources-table th {
+    text-align: left;
+    color: var(--gold-dim);
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 9px;
+  }
+  .sources-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-dim);
+    color: var(--text-dim);
+    vertical-align: top;
+  }
+  .sources-table tr:hover td { color: var(--text); }
+  .sources-table td:first-child { color: var(--gold-dim); }
+  .sources-table td code {
+    font-size: 10px;
+    color: var(--text-faint);
+  }
+
+  /* ─── Footer ─── */
+  .footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-dim);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .footer-logo {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .footer-meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-faint);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 640px) {
+    .page { padding: 40px 20px 80px; }
+    .platform-row { grid-template-columns: 1fr 60px; }
+    .platform-signal { display: none; }
+    .kol-row { grid-template-columns: 130px 1fr; }
+    .kol-signal { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header-eyebrow">
+    <span class="dot"></span>
+    ZZZ v2.7 · Community Sentiment Research
+  </div>
+  <h1>Cissia — <em>Community Sentiment</em></h1>
+  <div class="header-sub">8-platform sweep · Apr 19, 2026 · Indonesia + Global · 8 sources</div>
+
+  <!-- Verdict badges -->
+  <div class="verdict-row">
+    <div class="verdict-badge green">
+      <span class="badge-dot"></span>
+      Overall: Positive
+    </div>
+    <div class="verdict-badge green">
+      <span class="badge-dot"></span>
+      Pull Intent: Positive
+    </div>
+  </div>
+
+  <!-- Executive Summary -->
+  <div class="section-label">Executive Summary</div>
+  <div class="exec-box">
+    <p>Cissia (v2.7) enters banner with strong organic affection across all platforms. Community loves her personality — humor, the egg-eating quirk, her snake companion — and her design. The primary friction is kit dependency on W-Engine "Seed." <strong>"Seed slave"</strong> is the community's own phrase for Cissia + Seed treated as one inseparable unit. This is a pull competition concern, not a character-rejection concern.</p>
+    <p>ID KOL activation is notably fast: <strong>4 Indonesia KOLs posted within 3 days of launch</strong> (vs. 1 for Promeia at equivalent stage). This is the strongest ID KOL signal since Ramiel.</p>
+    <div class="exec-highlight">⬡ ID KOL velocity: 4× stronger than Promeia at equivalent launch stage — strongest signal since Ramiel</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Platform Breakdown -->
+  <div class="section-label">Platform Breakdown</div>
+
+  <div class="platform-grid">
+    <div class="platform-row">
+      <div>
+        <div class="platform-name">HoYoLab</div>
+        <div class="platform-sub">30 posts · Global + ID</div>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar-track"><div class="bar-fill" style="width:90%;animation-delay:.0s"></div></div>
+        <span class="bar-pct">90%</span>
+      </div>
+      <div class="platform-signal">"Profil Agen" 164K views, 622 cmts</div>
+    </div>
+    <div class="platform-row">
+      <div>
+        <div class="platform-name">Discord</div>
+        <div class="platform-sub">13 messages · SEA (EN/VN/ID)</div>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar-track"><div class="bar-fill" style="width:58%;animation-delay:.05s"></div></div>
+        <span class="bar-pct">58%</span>
+      </div>
+      <div class="platform-signal">Low-volume; 1 ID message only</div>
+    </div>
+    <div class="platform-row">
+      <div>
+        <div class="platform-name">YouTube</div>
+        <div class="platform-sub">21 relevant · Global + ID</div>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar-track"><div class="bar-fill" style="width:57%;animation-delay:.10s"></div></div>
+        <span class="bar-pct">57%</span>
+      </div>
+      <div class="platform-signal">Official demo 1.45M views; 4 ID KOLs &lt;3d</div>
+    </div>
+    <div class="platform-row">
+      <div>
+        <div class="platform-name">Reddit</div>
+        <div class="platform-sub">50 posts · Global</div>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar-track"><div class="bar-fill" style="width:54%;animation-delay:.15s"></div></div>
+        <span class="bar-pct">54%</span>
+      </div>
+      <div class="platform-signal">"Cissia &amp; Jane Hangout" 1937 upvotes</div>
+    </div>
+    <div class="platform-row">
+      <div>
+        <div class="platform-name">X / Twitter</div>
+        <div class="platform-sub">40 tweets · Global (ID absent)</div>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar-track"><div class="bar-fill" style="width:55%;animation-delay:.20s"></div></div>
+        <span class="bar-pct">55%</span>
+      </div>
+      <div class="platform-signal">Yuriko Yumi fanart 6.2K likes</div>
+    </div>
+    <div class="platform-row">
+      <div>
+        <div class="platform-name">TikTok</div>
+        <div class="platform-sub">18 videos · Global + ID</div>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar-track"><div class="bar-fill" style="width:50%;animation-delay:.25s"></div></div>
+        <span class="bar-pct">50%</span>
+      </div>
+      <div class="platform-signal">pokeresley meme 39.8K likes</div>
+    </div>
+    <div class="platform-row">
+      <div>
+        <div class="platform-name">Facebook ID Group</div>
+        <div class="platform-sub">27 posts · Indonesia</div>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar-track"><div class="bar-fill amber" style="width:35%;animation-delay:.30s"></div></div>
+        <span class="bar-pct amber">35%</span>
+      </div>
+      <div class="platform-signal">"Wise sleeping" 617 likes, 126 cmts</div>
+    </div>
+    <div class="platform-row">
+      <div>
+        <div class="platform-name">Facebook ID Page</div>
+        <div class="platform-sub">12 posts · Indonesia (official)</div>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar-track"><div class="bar-fill amber" style="width:27%;animation-delay:.35s"></div></div>
+        <span class="bar-pct amber">27%</span>
+      </div>
+      <div class="platform-signal">Brand content — neutral skew expected</div>
+    </div>
+  </div>
+
+  <div class="divider-light"></div>
+
+  <!-- Top Themes -->
+  <div class="section-label">Top Themes</div>
+  <ul class="theme-list">
+    <li class="theme-item">
+      <span class="theme-num">01</span>
+      <div>
+        <div class="theme-title">Seed Dependency — "Seed Slave"</div>
+        <div class="theme-body">Cissia is explicitly described as "useless without Seed" per community consensus. Seed is her W-Engine amplifier on the same banner. This frames every pull decision as a double cost — primary pull-decision blocker. Not a character-rejection signal.</div>
+      </div>
+    </li>
+    <li class="theme-item">
+      <span class="theme-num">02</span>
+      <div>
+        <div class="theme-title">Personality Affection</div>
+        <div class="theme-body">"She's so funny," egg-eating meme, parasocial/romance framing ("she's interested in you"), "one of my favorite characters." Design and personality both praised across every platform. Strong repeat engagement signal.</div>
+      </div>
+    </li>
+    <li class="theme-item">
+      <span class="theme-num">03</span>
+      <div>
+        <div class="theme-title">Physics &amp; Animation Commentary</div>
+        <div class="theme-body">Pre-banner physics meme (pokeresley, 39.8K likes on TikTok). Tone is amused, not hostile — community is sharing the clip approvingly. No suppression of pull intent detected.</div>
+      </div>
+    </li>
+    <li class="theme-item">
+      <span class="theme-num">04</span>
+      <div>
+        <div class="theme-title">Cross-IP Fanart</div>
+        <div class="theme-body">GI crossover art (Baizhu/Qiqi/Yaoyao), Cissia &amp; Jane pairings trending on Reddit (1937 upvotes). Community is naturalizing her into the broader Hoyoverse fanbase — strong brand equity signal.</div>
+      </div>
+    </li>
+    <li class="theme-item">
+      <span class="theme-num">05</span>
+      <div>
+        <div class="theme-title">Design Skeptic → Convert Arc <span style="font-family:var(--mono);font-size:10px;color:var(--text-faint);font-style:normal;margin-left:6px;">(>15d)</span></div>
+        <div class="theme-body">February players who called her design "safe" converted after story/gameplay exposure. KamarRama's "Gue Salah Sangka" (I misjudged her) is the organic KOL manifestation of this arc. Strong re-engagement angle for lapsed players.</div>
+      </div>
+    </li>
+  </ul>
+
+  <div class="divider-light"></div>
+
+  <!-- Pull Intent -->
+  <div class="section-label">Pull Intent Assessment</div>
+  <div class="pull-block">
+    <div class="pull-verdict">
+      <span class="badge-dot" style="width:8px;height:8px;background:var(--green);box-shadow:0 0 8px var(--green);border-radius:50%;flex-shrink:0"></span>
+      <span class="pull-verdict-label">Positive — Gated by Seed dependency, not character aversion</span>
+    </div>
+    <p>Community pull intent is genuine but qualified. The "pull Cissia or pull Seed Engine?" framing surfaced on Discord (Apr 16) shows players are fully aware of the double cost. Players who like Cissia are pulling regardless. Players who skip cite Seed as the reason — not the character herself. This is a pricing/value-perception problem, not a character-appeal problem.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ID KOL Section -->
+  <div class="kol-section">
+    <div class="kol-header">
+      <span class="kol-title">Indonesia KOL Activation</span>
+      <span class="kol-badge">4 KOLs · ≤3 days · Strongest since Ramiel</span>
+    </div>
+
+    <div class="kol-grid">
+      <div class="kol-row">
+        <div class="kol-name">Suli</div>
+        <div class="kol-platform">YouTube</div>
+        <div class="kol-content">"BAHAYA" (danger / warning) — 7.7K views</div>
+        <div class="kol-signal">Pull urgency<br>framing</div>
+      </div>
+      <div class="kol-row">
+        <div class="kol-name">KamarRama</div>
+        <div class="kol-platform">YouTube</div>
+        <div class="kol-content">"Gue Salah Sangka" (I misjudged her) — 4.2K views</div>
+        <div class="kol-signal">Convert arc —<br>skeptic to fan</div>
+      </div>
+      <div class="kol-row">
+        <div class="kol-name">OreoNoMercy</div>
+        <div class="kol-platform">YouTube</div>
+        <div class="kol-content">"GACHA CISSIA DEH SEKARANG!" — 3K views, 300 likes</div>
+        <div class="kol-signal">Direct pull<br>activation</div>
+      </div>
+      <div class="kol-row">
+        <div class="kol-name">PityGamersRoom</div>
+        <div class="kol-platform">YouTube</div>
+        <div class="kol-content">Kit guide content — informational</div>
+        <div class="kol-signal">Pull<br>enablement</div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:20px">KOL Talking Points</div>
+    <ul class="talking-points">
+      <li>She arrests you but you'll thank her for it — personality hook ("arrest us" is a positive trope in ID community)</li>
+      <li>"I sink my teeth in and don't let go" — character voice from Agent Record that sells itself with zero context</li>
+      <li>Egg-eating quirk — meme-friendly, breaks the ice for non-ZZZ audiences; naturally shareable</li>
+      <li>Snake companion that follows you around — tangible gameplay warmth, not abstract</li>
+      <li>Design skeptic → convert arc — "I thought she was boring until I saw her in action" (KamarRama angle; replicable)</li>
+    </ul>
+  </div>
+
+  <div class="divider-light"></div>
+
+  <!-- Sources -->
+  <div class="section-label">Sources Cited</div>
+  <table class="sources-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>File</th>
+        <th>Platform</th>
+        <th>Region</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>31</td>
+        <td><code>raw/community/zzz/cissia_fb_group_FINAL.json</code></td>
+        <td>Facebook Group</td>
+        <td>Indonesia</td>
+      </tr>
+      <tr>
+        <td>32</td>
+        <td><code>raw/community/zzz/cissia_fb_page_FINAL.json</code></td>
+        <td>Facebook Page</td>
+        <td>Indonesia</td>
+      </tr>
+      <tr>
+        <td>33</td>
+        <td><code>raw/community/zzz/cissia_hyl_id.json</code></td>
+        <td>HoYoLab</td>
+        <td>Global + ID</td>
+      </tr>
+      <tr>
+        <td>34</td>
+        <td><code>raw/community/zzz/cissia_yt_FINAL.json</code></td>
+        <td>YouTube</td>
+        <td>Global + ID</td>
+      </tr>
+      <tr>
+        <td>35</td>
+        <td><code>raw/community/zzz/cissia_tt_FINAL.json</code></td>
+        <td>TikTok</td>
+        <td>Global + ID</td>
+      </tr>
+      <tr>
+        <td>36</td>
+        <td><code>raw/community/zzz/cissia_tw_FINAL.json</code></td>
+        <td>X / Twitter</td>
+        <td>Global</td>
+      </tr>
+      <tr>
+        <td>37</td>
+        <td><code>raw/community/zzz/cissia_reddit_FINAL.json</code></td>
+        <td>Reddit</td>
+        <td>Global</td>
+      </tr>
+      <tr>
+        <td>38</td>
+        <td><code>raw/community/zzz/cissia_discord_FINAL.json</code></td>
+        <td>Discord</td>
+        <td>SEA (EN/VN/ID)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-logo">Hoyoverse Brand Marketing</div>
+    <div class="footer-meta">
+      ZZZ v2.7 · Cissia Sentiment Report<br>
+      Generated Apr 19, 2026 · Internal use only
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  const HASH = "52ef7d37020985854e3cd1e294f7bcb26298e226ac99d28628098a96f7a43129";
+  if (sessionStorage.getItem("hg_auth") === HASH) return;
+  const overlay = document.createElement("div");
+  overlay.style.cssText = "position:fixed;inset:0;background:#080c12;display:flex;align-items:center;justify-content:center;z-index:99999;font-family:'IBM Plex Mono',monospace";
+  overlay.innerHTML = `
+    <div style="background:#0d1320;border:1px solid rgba(200,168,76,0.3);padding:40px 48px;text-align:center;max-width:340px;width:90%;position:relative">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#c8a84c,transparent)"></div>
+      <div style="font-size:22px;margin-bottom:8px;letter-spacing:.1em;color:#c8a84c">⬡</div>
+      <div style="font-size:13px;font-weight:600;color:#e8dfc8;margin-bottom:4px;letter-spacing:.08em;text-transform:uppercase">Hoyoverse Reports</div>
+      <div style="font-size:11px;color:rgba(232,223,200,0.4);margin-bottom:28px;letter-spacing:.06em">Internal use only</div>
+      <input id="hg_pw" type="password" placeholder="Enter password"
+        style="width:100%;padding:10px 14px;background:#111827;border:1px solid rgba(200,168,76,0.2);color:#e8dfc8;font-family:'IBM Plex Mono',monospace;font-size:13px;outline:none;margin-bottom:10px;box-sizing:border-box;letter-spacing:.06em"/>
+      <button id="hg_btn"
+        style="width:100%;padding:11px;background:#c8a84c;color:#080c12;border:none;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.1em;text-transform:uppercase">
+        Enter
+      </button>
+      <div id="hg_err" style="color:#c85050;font-size:11px;margin-top:10px;display:none;letter-spacing:.04em">Incorrect password</div>
+    </div>`;
+  document.body.appendChild(overlay);
+  async function check(){
+    const pw = document.getElementById("hg_pw").value;
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(pw));
+    const hex = Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,"0")).join("");
+    if(hex === HASH){ sessionStorage.setItem("hg_auth", HASH); overlay.remove(); }
+    else { document.getElementById("hg_err").style.display="block"; document.getElementById("hg_pw").value=""; }
+  }
+  document.getElementById("hg_btn").onclick = check;
+  document.getElementById("hg_pw").addEventListener("keydown", e=>{ if(e.key==="Enter") check(); });
+  setTimeout(()=>document.getElementById("hg_pw").focus(), 100);
+})();
+</script>
+</body>
+</html>
