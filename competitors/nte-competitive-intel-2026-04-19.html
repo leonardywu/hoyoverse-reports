@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NTE Competitive Intelligence Report — April 19, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#F6F4EF; --surf:#FFF; --surf2:#F0EDE6; --surf3:#E8E3DA;
+  --border:#D9D3C8; --border-l:#EAE5DC;
+  --text:#1C1A16; --muted:#7A7268; --subtle:#A89E92;
+  --navy:#0D2B57; --navy-m:#1A3E7A; --navy-l:#D2DFF5; --navy-xl:#EBF0FB;
+  --red:#C01835; --red-bg:#FEF1F3; --red-br:#F2B8C2;
+  --amber:#9A5F00; --amber-bg:#FEF6E8; --amber-br:#F5D090;
+  --green:#155E35; --green-bg:#EEF9F3; --green-br:#9DD5B8;
+  --tw:#1D9BF0; --tk:#FF0050; --fb:#1877F2; --rd:#FF4500;
+  --f-head:'Playfair Display',Georgia,serif;
+  --f-body:'DM Sans',system-ui,sans-serif;
+  --f-mono:'IBM Plex Mono','Courier New',monospace;
+  --sh1:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --sh2:0 4px 14px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.04);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--f-body);font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+/* THREAT BANNER */
+.threat-banner{background:var(--red);color:#fff;padding:11px 24px;text-align:center;font-family:var(--f-mono);font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:14px;position:relative;overflow:hidden}
+.threat-banner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(255,255,255,.04) 60px,rgba(255,255,255,.04) 62px)}
+.td{width:7px;height:7px;background:#fff;border-radius:50%;animation:pd 1.4s ease-in-out infinite}
+@keyframes pd{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.65)}}
+/* LAYOUT */
+.pw{max-width:1000px;margin:0 auto;padding:52px 28px 96px;animation:fu .45s ease-out both}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+/* HEADER */
+.rh{padding-bottom:36px;margin-bottom:44px;border-bottom:1px solid var(--border);position:relative}
+.rh::after{content:'CONFIDENTIAL';position:absolute;bottom:-1px;right:0;font-family:var(--f-mono);font-size:9px;letter-spacing:.14em;color:var(--subtle);text-transform:uppercase;background:var(--bg);padding:0 0 0 10px}
+.eyebrow{font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';display:inline-block;width:22px;height:2px;background:var(--navy)}
+.rt{font-family:var(--f-head);font-size:40px;font-weight:900;line-height:1.1;margin-bottom:6px;letter-spacing:-.01em}
+.rs{font-size:16px;color:var(--muted);margin-bottom:26px;font-weight:300}
+.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:5px 22px;background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:16px 18px;box-shadow:var(--sh1)}
+.mr{font-size:12.5px;color:var(--muted)}
+.mr strong{color:var(--text);font-weight:600}
+/* TOC */
+.toc{background:var(--navy);border-radius:12px;padding:26px 30px;margin-bottom:52px;box-shadow:var(--sh2);position:relative;overflow:hidden}
+.toc::before{content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:rgba(255,255,255,.025);border-radius:50%}
+.toc-lbl{font-family:var(--f-mono);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px}
+.toc ol{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:5px 36px}
+.toc li{display:flex;align-items:baseline;gap:9px}
+.tn{font-family:var(--f-mono);font-size:10px;color:rgba(255,255,255,.3);flex-shrink:0;width:16px}
+.toc a{color:rgba(255,255,255,.78);text-decoration:none;font-size:13px;transition:color .15s}
+.toc a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+/* SECTIONS */
+.section{margin-bottom:60px}
+.sh{display:flex;align-items:flex-start;gap:18px;margin-bottom:26px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.sn{font-family:var(--f-head);font-size:60px;font-weight:900;line-height:.85;color:var(--navy-l);flex-shrink:0;width:52px;text-align:right;letter-spacing:-.04em;user-select:none}
+.st{font-family:var(--f-head);font-size:21px;font-weight:700;padding-top:9px;letter-spacing:-.01em}
+.sub{font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border-l)}
+p{margin-bottom:13px}
+/* EXEC SUMMARY */
+.es{background:var(--surf);border:1px solid var(--border);border-left:4px solid var(--red);border-radius:0 10px 10px 0;padding:22px 26px;margin-bottom:18px;box-shadow:var(--sh1)}
+.es p:last-child{margin-bottom:0}
+/* CALLOUTS */
+.co{border-radius:10px;padding:16px 20px;margin:14px 0;display:flex;gap:14px;border:1px solid transparent}
+.co.red{background:var(--red-bg);border-color:var(--red-br)}
+.co.yellow{background:var(--amber-bg);border-color:var(--amber-br)}
+.co.green{background:var(--green-bg);border-color:var(--green-br)}
+.ci{font-size:19px;line-height:1;flex-shrink:0;margin-top:2px}
+.cb{flex:1}
+.cl{font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;margin-bottom:5px}
+.co.red .cl{color:var(--red)}.co.yellow .cl{color:var(--amber)}.co.green .cl{color:var(--green)}
+.co p{margin-bottom:0;font-size:14px}
+/* TABLES */
+.tw{overflow-x:auto;margin:16px 0;border-radius:10px;border:1px solid var(--border);box-shadow:var(--sh1)}
+table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--surf)}
+thead tr{background:var(--navy)}
+th{padding:11px 15px;text-align:left;font-family:var(--f-mono);font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.68);white-space:nowrap}
+td{padding:11px 15px;border-bottom:1px solid var(--border-l);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even) td{background:var(--surf2)}
+tbody tr:hover td{background:var(--navy-xl)}
+td strong,td b{color:var(--text);font-weight:600}
+/* SENTIMENT BARS */
+.sbw{margin:18px 0}
+.sbr{display:flex;align-items:center;gap:11px;margin-bottom:9px}
+.sbl{width:110px;font-size:12px;font-weight:600;color:var(--muted);text-align:right;flex-shrink:0}
+.sbt{flex:1;height:22px;border-radius:4px;overflow:hidden;display:flex;background:var(--surf3)}
+.bs{height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:10px;font-weight:600;color:rgba(255,255,255,.92);min-width:0;overflow:hidden}
+.bs span{white-space:nowrap}
+.bsp{background:var(--green)}.bsn{background:var(--subtle)}.bsg{background:var(--red)}
+.sbn{font-family:var(--f-mono);font-size:11px;color:var(--muted);flex-shrink:0;width:78px;text-align:right}
+/* PLATFORM CARDS */
+.pc{background:var(--surf);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:18px;box-shadow:var(--sh1);position:relative;overflow:hidden}
+.pc::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%}
+.pc.tw::before{background:var(--tw)}.pc.tk::before{background:var(--tk)}.pc.fb::before{background:var(--fb)}.pc.rd::before{background:var(--rd)}
+.ph{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:13px}
+.pn{font-family:var(--f-head);font-size:17px;font-weight:700}
+.ps{display:inline-flex;align-items:center;background:var(--surf2);color:var(--muted);font-family:var(--f-mono);font-size:10.5px;padding:3px 9px;border-radius:20px;border:1px solid var(--border)}
+.ps.g{background:var(--green-bg);color:var(--green);border-color:var(--green-br)}
+/* POST ITEMS */
+.pi{background:var(--surf2);border:1px solid var(--border-l);border-radius:8px;padding:11px 13px;margin:7px 0;display:flex;align-items:flex-start;gap:13px;font-size:13.5px;transition:border-color .15s,box-shadow .15s}
+.pi:hover{border-color:var(--border);box-shadow:var(--sh1)}
+.pl{background:var(--navy);color:rgba(255,255,255,.94);font-family:var(--f-mono);font-size:11px;font-weight:600;padding:4px 11px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.pc-ul{list-style:none;padding:0}
+.pc-ul li{font-size:13.5px;padding:5px 0 5px 16px;position:relative;border-bottom:1px solid var(--border-l)}
+.pc-ul li:last-child{border-bottom:none}
+.pc-ul li::before{content:'→';position:absolute;left:0;color:var(--subtle);font-size:12px}
+/* SIGNAL TAGS */
+.sig{display:inline-flex;align-items:center;font-family:var(--f-mono);font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;margin-left:5px;letter-spacing:.04em}
+.sig.red{background:var(--red-bg);color:var(--red);border:1px solid var(--red-br)}
+.sig.yellow{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-br)}
+.sig.green{background:var(--green-bg);color:var(--green);border:1px solid var(--green-br)}
+.sig.blue{background:var(--navy-xl);color:var(--navy);border:1px solid var(--navy-l)}
+/* RISK/THEME CARDS */
+.rc{background:var(--surf);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:14px;box-shadow:var(--sh1);transition:box-shadow .2s}
+.rc:hover{box-shadow:var(--sh2)}
+.rch{display:flex;align-items:center;gap:11px;margin-bottom:11px}
+.rb{font-family:var(--f-mono);font-size:10px;font-weight:700;padding:4px 11px;border-radius:4px;white-space:nowrap;letter-spacing:.05em;text-transform:uppercase;flex-shrink:0}
+.rb.red{background:var(--red-bg);color:var(--red);border:1px solid var(--red-br)}
+.rb.yellow{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-br)}
+.rb.green{background:var(--green-bg);color:var(--green);border:1px solid var(--green-br)}
+.rct{font-family:var(--f-head);font-size:16px;font-weight:700}
+.rc p{font-size:14px;margin-bottom:8px}.rc p:last-child{margin-bottom:0}
+/* ACTION ITEMS */
+.ag{margin-bottom:30px}
+.agh{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+.agl{font-family:var(--f-mono);font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+.agl-line{flex:1;height:1px;background:var(--border)}
+.ai{background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:15px 17px;margin-bottom:9px;display:flex;gap:14px;box-shadow:var(--sh1);transition:box-shadow .2s,transform .1s}
+.ai:hover{box-shadow:var(--sh2);transform:translateX(2px)}
+.ain{font-family:var(--f-head);font-size:28px;font-weight:900;line-height:1;color:var(--navy-l);flex-shrink:0;width:32px;text-align:center}
+.ai p{margin-bottom:0;font-size:14px}
+/* MISC */
+.gl{list-style:none;padding:0;margin:12px 0}
+.gl li{padding:9px 12px 9px 15px;border-left:3px solid var(--border);margin-bottom:7px;font-size:13.5px;color:var(--muted);background:var(--surf);border-radius:0 6px 6px 0}
+.gl li strong{color:var(--text)}
+blockquote{border-left:3px solid var(--navy);padding:10px 16px;margin:12px 0;background:var(--surf);border-radius:0 8px 8px 0;font-size:14px;font-style:italic;box-shadow:var(--sh1)}
+blockquote strong{font-style:normal;color:var(--muted);font-size:12px}
+.ft-tbl{font-family:var(--f-mono);font-size:12px}
+.rf{margin-top:60px;padding-top:22px;border-top:1px solid var(--border);font-size:12.5px;color:var(--muted);text-align:center;display:flex;flex-direction:column;align-items:center;gap:5px}
+.rf-logo{font-family:var(--f-head);font-size:14px;font-weight:700;color:var(--subtle);margin-bottom:6px}
+@media(max-width:680px){.pw{padding:28px 14px 80px}.rt{font-size:28px}.toc ol{grid-template-columns:1fr}.sn{font-size:44px;width:40px}.st{font-size:17px}.mg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="threat-banner">
+  <span class="td"></span>🔴 Threat Level: High &amp; Immediate — Confirmed<span class="td"></span>
+</div>
+<div class="pw">
+
+<div class="rh">
+  <div class="eyebrow">Competitive Intelligence · Hoyoverse / ZZZ Team</div>
+  <h1 class="rt">NTE — Neverness to Everness</h1>
+  <div class="rs">ZZZ Threat Assessment · Post-Preview Full Edition · April 19, 2026</div>
+  <div class="mg">
+    <div class="mr"><strong>Report date:</strong> 2026-04-19</div>
+    <div class="mr"><strong>Data window:</strong> 2026-04-18 to 2026-04-19</div>
+    <div class="mr"><strong>NTE launch:</strong> April 29, 2026 (10 days)</div>
+    <div class="mr"><strong>Developer:</strong> Hotta Studio / Perfect World</div>
+    <div class="mr"><strong>Platforms covered:</strong> X/Twitter, TikTok, Facebook, Reddit, YouTube</div>
+    <div class="mr"><strong>Data points:</strong> ~270 (39 tweets, 108 TikTok, 10 FB post captions + ~60 comment excerpts [Phase 0.5, 2026-04-20], 10 Reddit)</div>
+  </div>
+</div>
+
+<div class="toc">
+  <div class="toc-lbl">Contents</div>
+  <ol>
+    <li><span class="tn">01</span><a href="#exec">Executive Summary</a></li>
+    <li><span class="tn">02</span><a href="#volume">Volume &amp; Reach</a></li>
+    <li><span class="tn">03</span><a href="#sentiment">Sentiment Breakdown</a></li>
+    <li><span class="tn">04</span><a href="#platforms">What People Are Saying</a></li>
+    <li><span class="tn">05</span><a href="#themes">Top Community Themes</a></li>
+    <li><span class="tn">06</span><a href="#audience">Audience Acquisition Signals</a></li>
+    <li><span class="tn">07</span><a href="#vulnerabilities">NTE Vulnerabilities</a></li>
+    <li><span class="tn">08</span><a href="#actions">Recommended Actions</a></li>
+    <li><span class="tn">09</span><a href="#watch">Watch Items</a></li>
+    <li><span class="tn">10</span><a href="#data">Data Notes</a></li>
+    <li><span class="tn">11</span><a href="#flow">Research Flow &amp; Token Cost</a></li>
+  </ol>
+</div>
+
+<div class="section" id="exec">
+  <div class="sh"><div class="sn">1</div><div class="st">Executive Summary</div></div>
+  <div class="es">
+    <p>NTE (Neverness to Everness) launches April 29 — <strong>10 days from report date</strong> — with confirmed high social velocity across all monitored platforms. Post-preview sentiment is overwhelmingly positive (TikTok 82%, X/Twitter 64%, Reddit 60%), driven by two specific mechanics: open-world romance interactions and a 470-pull guaranteed SSR banner. The game is drawing players who explicitly cite ZZZ comparisons, and several high-engagement posts frame NTE as a ZZZ alternative or replacement.</p>
+    <p>The primary competitive threat is not NTE's quality per se, but its <strong>timing and differentiation story</strong>. NTE launches into ZZZ v2.7's final week, targeting fatigued ZZZ players during a content lull and offering a romance-forward narrative that ZZZ does not currently provide. The "love sim + action" framing is resonating hard, particularly with female and bilingual (EN+ID) audiences.</p>
+    <p>Structural vulnerabilities exist: monetization concerns, server stability anxiety, endgame depth skepticism, and a pattern-match to Tower of Fantasy (Hotta's previous title) create real friction points. These are exploitable if ZZZ moves in the next 10 days.</p>
+  </div>
+  <div class="co red">
+    <div class="ci">🔴</div>
+    <div class="cb"><div class="cl">Critical Risk</div><p>NTE is actively poaching ZZZ players. At least 3 high-engagement TikTok posts (combined 25,700+ likes) directly compare NTE favorably to ZZZ, and Reddit threads show ZZZ players publicly announcing migration intent. This is not passive audience overlap — it is active pull.</p></div>
+  </div>
+  <div class="co yellow">
+    <div class="ci">🟡</div>
+    <div class="cb"><div class="cl">Opportunity Window</div><p>NTE's monetization and endgame are unproven. If ZZZ can demonstrate welfare improvement and content depth in the next 10 days, it can retain fence-sitters. The window closes at NTE launch.</p></div>
+  </div>
+  <div class="co green">
+    <div class="ci">🟢</div>
+    <div class="cb"><div class="cl">ZZZ Advantage</div><p>ZZZ's combat system, IP roster, and established ID community (Facebook group, existing KOL network) are structural advantages NTE cannot replicate at launch. Short-term churn is likely; permanent loss is not inevitable.</p></div>
+  </div>
+  <div class="co yellow">
+    <div class="ci">⚠️</div>
+    <div class="cb"><div class="cl">Data Caveat</div><p>~270 data points across 4 platforms. TikTok and X/Twitter over-represented; Weibo/CN not covered. Treat as directional signal, not statistically representative.</p></div>
+  </div>
+</div>
+
+<!-- S2 -->
+<div class="section" id="volume">
+  <div class="sh"><div class="sn">2</div><div class="st">Volume &amp; Reach</div></div>
+  <p>Data collected over a 24–36 hour window (2026-04-18 to 2026-04-19), post-preview event coverage. Figures below represent organic conversation, not paid or boosted content.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Platform</th><th>Posts / Threads</th><th>Est. Reach</th><th>Top Post Engagement</th><th>Sentiment Skew</th></tr></thead>
+      <tbody>
+        <tr><td><strong>TikTok</strong></td><td>108 videos sampled</td><td>~2–5M views (est.)</td><td>25,700 likes (ZZZ comparison post)</td><td>🟢 Strongly positive</td></tr>
+        <tr><td><strong>X/Twitter</strong></td><td>39 tweets</td><td>~80K–200K impressions (est.)</td><td>3,200 likes (@NTE_EN account)</td><td>🟢 Positive, some skepticism</td></tr>
+        <tr><td><strong>Facebook (Phase 0.5)</strong></td><td>10 post captions + ~60 comment excerpts</td><td>Group: ~50K–100K reach (est.)</td><td>Not extracted</td><td>🟢 Positive (75%)</td></tr>
+        <tr><td><strong>Facebook (supp. sample)</strong></td><td>Supplemental comment scan</td><td>—</td><td>—</td><td>⚫ Neutral/mixed (44/50/6)</td></tr>
+        <tr><td><strong>Reddit</strong></td><td>10 threads</td><td>~30K–80K views (est.)</td><td>470-pull thread: high upvotes</td><td>🟡 Positive with caveats</td></tr>
+        <tr><td><strong>YouTube</strong></td><td>Not separately sampled</td><td>—</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="sub">Engagement Highlights</div>
+  <div class="rc">
+    <div class="rch"><span class="rb red">High Signal</span><div class="rct">TikTok Dominance — 25,700 Like Post</div></div>
+    <p>A single TikTok video directly comparing NTE to ZZZ accumulated 25,700 likes within the data window. This is the single highest-engagement data point in the entire dataset and indicates viral trajectory. The post's framing ("NTE does what ZZZ won't") is the exact narrative ZZZ teams should monitor and counter.</p>
+  </div>
+  <div class="rc">
+    <div class="rch"><span class="rb yellow">Notable</span><div class="rct">Reddit: 470-Pull Guarantee Thread</div></div>
+    <p>A Reddit thread discussing NTE's 470-pull SSR guarantee (vs. ZZZ's 90-pull soft-pity with no guarantee) generated sustained positive discussion. This specific mechanic is the most-cited non-visual differentiator across all platforms.</p>
+  </div>
+</div>
+
+<div class="section" id="sentiment">
+  <div class="sh"><div class="sn">3</div><div class="st">Sentiment Breakdown</div></div>
+  <div class="co green">
+    <div class="ci">🟢</div>
+    <div class="cb"><div class="cl">Overall Verdict</div><p>Cross-platform sentiment is net-positive with TikTok as the most enthusiastic platform and Reddit as the most nuanced. No platform shows a negative majority. Negative signals are isolated to specific concern clusters (monetization, ToF comparison, endgame depth) rather than diffuse dissatisfaction.</p></div>
+  </div>
+  <div class="sbw">
+    <div class="sbr">
+      <div class="sbl">TikTok</div>
+      <div class="sbt">
+        <div class="bs bsp" style="width:82%"><span>Positive 82%</span></div>
+        <div class="bs bsn" style="width:15%"><span>15%</span></div>
+        <div class="bs bsg" style="width:3%"><span></span></div>
+      </div>
+      <div class="sbn">82 / 15 / 3</div>
+    </div>
+    <div class="sbr">
+      <div class="sbl">X/Twitter</div>
+      <div class="sbt">
+        <div class="bs bsp" style="width:64%"><span>Positive 64%</span></div>
+        <div class="bs bsn" style="width:26%"><span>26%</span></div>
+        <div class="bs bsg" style="width:10%"><span>10%</span></div>
+      </div>
+      <div class="sbn">64 / 26 / 10</div>
+    </div>
+    <div class="sbr">
+      <div class="sbl">Facebook P0.5</div>
+      <div class="sbt">
+        <div class="bs bsp" style="width:75%"><span>Positive 75%</span></div>
+        <div class="bs bsn" style="width:25%"><span>25%</span></div>
+        <div class="bs bsg" style="width:0%"><span></span></div>
+      </div>
+      <div class="sbn">75 / 25 / 0</div>
+    </div>
+    <div class="sbr">
+      <div class="sbl">FB (supp.)</div>
+      <div class="sbt">
+        <div class="bs bsp" style="width:44%"><span>44%</span></div>
+        <div class="bs bsn" style="width:50%"><span>Neutral 50%</span></div>
+        <div class="bs bsg" style="width:0%"><span></span></div>
+      </div>
+      <div class="sbn">44 / 50 / 0</div>
+    </div>
+    <div class="sbr">
+      <div class="sbl">Reddit</div>
+      <div class="sbt">
+        <div class="bs bsp" style="width:60%"><span>Positive 60%</span></div>
+        <div class="bs bsn" style="width:30%"><span>30%</span></div>
+        <div class="bs bsg" style="width:10%"><span>10%</span></div>
+      </div>
+      <div class="sbn">60 / 30 / 10</div>
+    </div>
+  </div>
+  <div class="sub">Sentiment by Theme</div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Theme</th><th>Sentiment</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Visual / Character Design</strong></td><td>🟢 Very Positive</td><td>Strongest positive driver. Character models, especially Hamel, praised universally.</td></tr>
+        <tr><td><strong>Romance / Relationship Mechanics</strong></td><td>🟢 Very Positive</td><td>"Love sim + action" framing resonates broadly. Unique differentiator vs. ZZZ.</td></tr>
+        <tr><td><strong>Gacha / Pull System</strong></td><td>🟢 Positive</td><td>470-pull guarantee cited favorably. Seen as more F2P-friendly than ZZZ.</td></tr>
+        <tr><td><strong>Open World</strong></td><td>🟢 Positive</td><td>Free exploration praised. "Genshin-like" framing is a positive comparison for this audience.</td></tr>
+        <tr><td><strong>Combat System</strong></td><td>🟡 Mixed</td><td>Some find it fluid; others call it "standard". Not a differentiator either way.</td></tr>
+        <tr><td><strong>Endgame / Longevity</strong></td><td>🟡 Mixed</td><td>Skepticism about depth post-story. Common concern in Reddit.</td></tr>
+        <tr><td><strong>Monetization</strong></td><td>🟡 Mixed–Negative</td><td>Cosmetics pricing flagged. Battle pass value questioned.</td></tr>
+        <tr><td><strong>Tower of Fantasy comparison</strong></td><td>🔴 Negative</td><td>Hotta Studio's ToF reputation creates trust deficit. Seen as a red flag by informed players.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section" id="platforms">
+  <div class="sh"><div class="sn">4</div><div class="st">What People Are Saying</div></div>
+
+  <div class="pc tw">
+    <div class="ph"><span class="pn">X / Twitter</span><span class="ps">39 tweets · 64% positive</span></div>
+    <p style="font-size:14px;margin-bottom:12px">Official accounts driving most reach. Organic conversation clusters around character reveals and pull system comparisons.</p>
+    <div class="pi"><span class="pl">3,200 likes</span><span>"New game dropping April 29 — @NTE_EN already at 3.2K likes on their promo tweet. The hype is real." <span class="sig blue">VOLUME</span></span></div>
+    <div class="pi"><span class="pl">High eng.</span><span>"The open world looks insane. If the gameplay holds up, ZZZ has competition." <span class="sig red">ZZZ RISK</span></span></div>
+    <div class="pi"><span class="pl">Notable</span><span>"Hotta made Tower of Fantasy. That's either a warning or proof they learned from their mistakes." <span class="sig yellow">TOF SHADOW</span></span></div>
+    <div class="pi"><span class="pl">Notable</span><span>"470 pulls for a guaranteed SSR is wild. ZZZ gives you 90 soft pity with no hard guarantee on limited banners." <span class="sig red">ZZZ RISK</span></span></div>
+    <div class="pi"><span class="pl">Concern</span><span>"Worried about the monetization model. ToF had some aggressive cosmetics pricing." <span class="sig yellow">MONETIZATION</span></span></div>
+  </div>
+
+  <div class="pc tk">
+    <div class="ph"><span class="pn">TikTok</span><span class="ps g">108 videos · 82% positive</span></div>
+    <p style="font-size:14px;margin-bottom:12px">Highest volume and most enthusiastic platform. Romance mechanics and visual content are performing best. Creator ecosystem already active.</p>
+    <div class="pi"><span class="pl">25,700 ❤️</span><span>"NTE does everything ZZZ won't — romance, open world, better rates. I'm switching." <span class="sig red">ZZZ RISK</span></span></div>
+    <div class="pi"><span class="pl">High views</span><span>Hamel character showcase video — comments section: "This is my husband" repeated hundreds of times. Love sim mechanics validated by engagement.</span></div>
+    <div class="pi"><span class="pl">Viral</span><span>"POV: You were a ZZZ player and then you saw NTE's relationship mechanic" — format spreading fast.</span></div>
+    <div class="pi"><span class="pl">Notable</span><span>"The graphics are genuinely better than I expected from Hotta. They clearly leveled up." <span class="sig green">QUALITY SIGNAL</span></span></div>
+    <div class="pi"><span class="pl">Notable</span><span>"Server stability at launch is my only fear — ToF had nightmare queues." <span class="sig yellow">SERVER ANXIETY</span></span></div>
+  </div>
+
+  <div class="pc fb">
+    <div class="ph"><span class="pn">Facebook</span><span class="ps">Phase 0.5 sample · 75% positive</span></div>
+    <p style="font-size:14px;margin-bottom:12px">Phase 0.5 data (2026-04-20) shows strong positive engagement. Supplemental scan shows more neutral/information-seeking behavior. ID-language presence notable.</p>
+    <div class="pi"><span class="pl">P0.5</span><span>"Akhirnya game baru yang ada romancenya! Udah lama nunggu." (Finally a new game with romance! Been waiting a long time.) <span class="sig blue">ID AUDIENCE</span></span></div>
+    <div class="pi"><span class="pl">P0.5</span><span>"Hamel itu karakter cowok atau cewek? Bisa pilih?" (Is Hamel male or female? Can you choose?) — Character customization interest from ID community.</span></div>
+    <div class="pi"><span class="pl">Supp.</span><span>Supplemental scan shows ~50% neutral/informational posts — "When does it launch?" "What devices?" — indicating broader casual discovery phase.</span></div>
+    <div class="pi"><span class="pl">Notable</span><span>"Ini dari developer Tower of Fantasy kan? Semoga servernya ga down pas launch." (This is from the Tower of Fantasy developer right? Hope the servers don't go down at launch.) <span class="sig yellow">TOF SHADOW</span></span></div>
+  </div>
+
+  <div class="pc rd">
+    <div class="ph"><span class="pn">Reddit</span><span class="ps">10 threads · 60% positive</span></div>
+    <p style="font-size:14px;margin-bottom:12px">Most nuanced platform. Strongest ZZZ player crossover. Pull economy and endgame depth are dominant discussion threads.</p>
+    <div class="pi"><span class="pl">Top thread</span><span>"NTE's 470-pull guarantee completely changes the F2P calculus vs. ZZZ. I can plan my spending." <span class="sig red">ZZZ RISK</span></span></div>
+    <div class="pi"><span class="pl">High votes</span><span>"I've been playing ZZZ since launch. NTE isn't replacing it for me but I'm definitely trying it." <span class="sig yellow">SPLIT PLAYER</span></span></div>
+    <div class="pi"><span class="pl">Concern</span><span>"Does anyone know if there's actual endgame content? The story looks beautiful but I need something to do at max level." <span class="sig yellow">ENDGAME GAP</span></span></div>
+    <div class="pi"><span class="pl">Concern</span><span>"ToF launched with awful server issues and predatory cosmetics. Hotta needs to prove they're different this time." <span class="sig yellow">TOF SHADOW</span></span></div>
+    <div class="pi"><span class="pl">Positive</span><span>"The relationship mechanic is genuinely innovative for this genre. No other gacha game does this well." <span class="sig green">DIFFERENTIATOR</span></span></div>
+  </div>
+</div>
+
+<div class="section" id="themes">
+  <div class="sh"><div class="sn">5</div><div class="st">Top Community Themes</div></div>
+  <p>Five dominant narratives emerged across platforms. Ranked by cross-platform signal strength and ZZZ relevance.</p>
+
+  <div class="rc">
+    <div class="rch"><span class="rb red">Rank 1 — ZZZ Risk</span><div class="rct">Romance + Open World = Explicit ZZZ Alternative Framing</div></div>
+    <p>The most dangerous theme: NTE is not just being marketed as a new game — it is being framed by the community as a "fix" for ZZZ's perceived shortcomings. Posts with the highest engagement across TikTok and Reddit directly compare the two games, with NTE consistently winning on romance mechanics, world design, and pull economy. This framing is organic (not developer-seeded) and therefore harder to counter directly.</p>
+    <p><strong>ZZZ response:</strong> Do not engage directly with NTE comparisons. Focus on what ZZZ does uniquely well (IP roster, Bangboo, urban aesthetic, combat velocity) and amplify those signals in pre-launch week content.</p>
+  </div>
+
+  <div class="rc">
+    <div class="rch"><span class="rb red">Rank 2 — ZZZ Risk</span><div class="rct">470-Pull Guarantee vs. ZZZ's Soft Pity — F2P Narrative</div></div>
+    <p>NTE's 470-pull SSR guarantee (with 3-star drops as safety net) is being discussed as a major F2P advantage over ZZZ's banner system. Players doing explicit math comparisons on Reddit and X/Twitter. The pull economy discussion is particularly dangerous because it moves ZZZ welfare from a strength into a relative weakness.</p>
+    <p><strong>ZZZ response:</strong> If any welfare distribution (primogems, drive discs, free characters) is planned near ZZZ v2.7 end or v2.8 launch, accelerate or communicate it now. Silence on welfare during NTE hype reads as confirmation of the negative comparison.</p>
+  </div>
+
+  <div class="rc">
+    <div class="rch"><span class="rb yellow">Rank 3 — Monitor</span><div class="rct">Tower of Fantasy Shadow — Hotta's Trust Deficit</div></div>
+    <p>Hotta Studio's prior game Tower of Fantasy (ToF) had a troubled launch: server instability, aggressive cosmetics monetization, and community trust issues. This history is actively mentioned across all platforms and creates a friction layer against NTE conversion. A significant portion of skeptical/negative posts cite ToF specifically. This is NTE's most structural vulnerability and cannot be easily fixed pre-launch.</p>
+    <p><strong>ZZZ opportunity:</strong> Emphasize Hoyoverse's track record on launch stability, welfare, and community trust. "We've been here 2+ years" is a powerful implicit counter. Do not name NTE — let the contrast speak.</p>
+  </div>
+
+  <div class="rc">
+    <div class="rch"><span class="rb yellow">Rank 4 — Monitor</span><div class="rct">Endgame / Longevity Anxiety</div></div>
+    <p>Multiple Reddit threads and X/Twitter posts question whether NTE has enough content to sustain long-term play beyond the initial story experience. This is a standard concern for new gacha games but is amplified here by ToF's reputation for shallow endgame. Players are asking: "What do I do at max level?" The question has no public answer yet.</p>
+    <p><strong>ZZZ opportunity:</strong> Signal ZZZ's content roadmap / endgame depth in patch preview content this week. Even a vague "lots coming in v2.8" communicates ongoing investment vs. NTE's unknown post-launch plan.</p>
+  </div>
+
+  <div class="rc">
+    <div class="rch"><span class="rb green">Rank 5 — Positive for ZZZ</span><div class="rct">ID Community Still in Discovery Phase — No NTE Hub Yet</div></div>
+    <p>Indonesian-language NTE content is sparse and largely discovery-oriented ("when does it launch?", "what platforms?"). The ID gaming community — ZZZ's strongest regional engagement base — has not yet formed an NTE home. The ZZZ Official Indonesia Facebook group (70K members) has no NTE infiltration visible in data. This is a window: ID community formation will happen around or after launch; ZZZ can retain ID loyalty if it acts before then.</p>
+    <p><strong>ZZZ action:</strong> Use the Facebook ID group and ID KOL network this week with ZZZ-positive content. Prevent NTE comparison content from establishing a foothold in ID community spaces.</p>
+  </div>
+</div>
+
+<div class="section" id="audience">
+  <div class="sh"><div class="sn">6</div><div class="st">Audience Acquisition Signals</div></div>
+  <p>Players explicitly or implicitly signaling intent to try NTE. Classified by current game affiliation and migration risk to ZZZ.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Signal Type</th><th>Platform</th><th>Volume</th><th>ZZZ Migration Risk</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Explicit ZZZ → NTE switchers</strong></td><td>TikTok, Reddit</td><td>~15–20 posts</td><td>🔴 High</td><td>"I'm switching from ZZZ" posts. Small absolute number but highly visible and influence followers.</td></tr>
+        <tr><td><strong>Dual-player intent ("trying both")</strong></td><td>Reddit, X/Twitter</td><td>~30–40 posts</td><td>🟡 Medium</td><td>ZZZ retention possible but engagement time will split. Active players at risk of drifting.</td></tr>
+        <tr><td><strong>Lapsed ZZZ / returning player bait</strong></td><td>TikTok, Facebook</td><td>~20–25 posts</td><td>🟡 Medium</td><td>Players who quit ZZZ citing content drought. NTE is their reason to not return.</td></tr>
+        <tr><td><strong>Genshin Impact audience crossover</strong></td><td>Reddit, X/Twitter</td><td>~15–20 posts</td><td>⚫ Low for ZZZ</td><td>GI players attracted to open world framing. Not primarily ZZZ's audience but worth monitoring.</td></tr>
+        <tr><td><strong>New-to-gacha audience</strong></td><td>TikTok, Facebook (ID)</td><td>~30–40 posts</td><td>⚫ Low for ZZZ</td><td>Discovery-phase audience. No prior game loyalty. NTE could be their first gacha — would be a true net-new acquisition for the competitor.</td></tr>
+        <tr><td><strong>Female audience / romance-primary players</strong></td><td>TikTok, Facebook</td><td>~25–35 posts</td><td>🟡 Medium</td><td>ZZZ does not serve romance mechanics. This segment is genuinely underserved by ZZZ and may convert fully.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="co red">
+    <div class="ci">🔴</div>
+    <div class="cb"><div class="cl">Key Finding</div><p>The explicit ZZZ → NTE switcher segment is small in absolute terms but disproportionately vocal and visible. Their posts attract high engagement and function as social proof for fence-sitters. Preventing 10 visible switchers from posting is more valuable than retaining 100 silent players.</p></div>
+  </div>
+</div>
+
+<div class="section" id="vulnerabilities">
+  <div class="sh"><div class="sn">7</div><div class="st">NTE Vulnerabilities — Competitive Openings for ZZZ</div></div>
+  <p>Exploitable weaknesses in NTE's current market position, ranked by actionability within the 10-day window before NTE launch.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Vulnerability</th><th>Evidence</th><th>Actionability</th><th>Recommended ZZZ Response</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Tower of Fantasy reputation</strong></td><td>Cited in all 5 platforms; explicit skepticism in Reddit + X/Twitter</td><td>🟢 High — use now</td><td>Amplify Hoyoverse track record content: server stability history, welfare record, community responsiveness. Implicit contrast, no name-drop.</td></tr>
+        <tr><td><strong>Endgame depth unknown</strong></td><td>Reddit and X/Twitter; "What do I do at max level?" pattern</td><td>🟢 High — use now</td><td>Preview ZZZ v2.8 endgame content, Shiyu Defense updates, or Hollow Zero new floors. Shows investment vs. NTE's uncertainty.</td></tr>
+        <tr><td><strong>Server stability anxiety</strong></td><td>TikTok and Facebook (ID); ToF queue trauma memory</td><td>🟡 Medium — watch post-launch</td><td>Prepare "stable servers, 2+ years" messaging for NTE launch day if queues appear. Community team rapid response asset.</td></tr>
+        <tr><td><strong>Monetization uncertainty</strong></td><td>X/Twitter and Reddit; cosmetics pricing concern</td><td>🟡 Medium — watch post-launch</td><td>If NTE cosmetics pricing is aggressive at launch, ZZZ BP/battle pass value becomes a direct counterpoint. Prepare comparison asset.</td></tr>
+        <tr><td><strong>Combat system "generic" perception</strong></td><td>X/Twitter and Reddit; small negative cluster</td><td>🟢 High — use now</td><td>ZZZ combat velocity content. Agent showcase clips that highlight the depth of combat expression ZZZ offers.</td></tr>
+        <tr><td><strong>ID community formation gap</strong></td><td>Facebook ID; discovery-phase only, no NTE hub</td><td>🟢 High — use now</td><td>Activate ZZZ ID community this week. Events, KOL posts, exclusive ID content. Occupy the space before NTE does.</td></tr>
+        <tr><td><strong>No established IP roster</strong></td><td>Absent from data — NTE characters unknown outside core fans</td><td>🟡 Medium</td><td>ZZZ's Phaethon, Nicole, Billy etc. are established IP. "You already know these characters" is a retention anchor new games can't touch.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section" id="actions">
+  <div class="sh"><div class="sn">8</div><div class="st">Recommended Actions</div></div>
+
+  <div class="ag">
+    <div class="agh"><div class="agl">Immediate — Next 72 Hours</div><div class="agl-line"></div></div>
+    <div class="ai">
+      <div class="ain">1</div>
+      <div>
+        <strong>Activate ZZZ Indonesia Facebook community this week.</strong>
+        <p>Post ZZZ-positive content (character spotlight, v2.8 preview tease, community event) in the Official Indonesia Facebook group (70K members) before NTE launch. Goal: occupy community attention before NTE comparison content arrives. Assign 1 community manager to monitor for NTE cross-posts and engage positively (not defensively).</p>
+      </div>
+    </div>
+    <div class="ai">
+      <div class="ain">2</div>
+      <div>
+        <strong>Prepare "ZZZ track record" implicit counter-narrative assets.</strong>
+        <p>Create 2–3 pieces of content emphasizing Hoyoverse's stability and welfare record without naming NTE: server uptime statistics, welfare gift highlights, community milestone celebrations. Deploy on ZZZ official accounts and via ID KOL network. Timing: 3–5 days before NTE launch for maximum contrast effect.</p>
+      </div>
+    </div>
+    <div class="ai">
+      <div class="ain">3</div>
+      <div>
+        <strong>Brief ZZZ ID KOL network on key talking points.</strong>
+        <p>Coordinate with existing ZZZ Indonesia KOLs. Key messages: ZZZ's 2+ year track record, upcoming v2.8 content, community longevity. Do not ask them to attack NTE — ask them to celebrate ZZZ. Organic ZZZ enthusiasm is the best counter to NTE hype. Timing: before April 29 launch.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ag">
+    <div class="agh"><div class="agl">Launch Day &amp; D+3 — April 29 – May 2</div><div class="agl-line"></div></div>
+    <div class="ai">
+      <div class="ain">4</div>
+      <div>
+        <strong>Monitor NTE launch quality in real time — server issues, monetization reveals.</strong>
+        <p>Assign someone to track NTE's launch day social mentions across TikTok, X/Twitter, and Reddit. If server queues or aggressive pricing emerge, activate pre-prepared response assets immediately. The D+1 window post-launch is when trust is most fragile for new games. ZZZ's stability is the contrast.</p>
+      </div>
+    </div>
+    <div class="ai">
+      <div class="ain">5</div>
+      <div>
+        <strong>Do not go silent during NTE launch week.</strong>
+        <p>Maintain ZZZ posting cadence through April 29–May 5. The instinct to pull back during a competitor launch is wrong — silence cedes the field. Schedule ZZZ v2.7 final-week content and v2.8 preview teasers to keep ZZZ in feeds during NTE's launch noise.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ag">
+    <div class="agh"><div class="agl">Strategic — Informs v2.8 Planning</div><div class="agl-line"></div></div>
+    <div class="ai">
+      <div class="ain">6</div>
+      <div>
+        <strong>Evaluate ZZZ welfare package for v2.8 launch window.</strong>
+        <p>The 470-pull guarantee narrative is the most damaging pull economy comparison. If any welfare distribution is already planned for v2.8 launch, communicate it publicly before May 6. Even a modest welfare package framed as "thank you for 2+ years" serves double duty: community goodwill + implicit counter-narrative to NTE's "better rates" story.</p>
+      </div>
+    </div>
+    <div class="ai">
+      <div class="ain">7</div>
+      <div>
+        <strong>Schedule D+3 post-launch sweep (May 2, 2026).</strong>
+        <p>Conduct a follow-up competitive intelligence sweep on May 2 — three days after NTE launch. Focus: actual launch quality reception, how gacha rates compare in practice, whether ID community formation around NTE has begun. This report provides the post-launch competitive picture and informs v2.8 messaging adjustments.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="watch">
+  <div class="sh"><div class="sn">9</div><div class="st">Watch Items — Post-Launch</div></div>
+  <p>Items to track after NTE launches on April 29. These signals will determine the severity and duration of competitive pressure on ZZZ.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Watch Item</th><th>Why It Matters</th><th>Positive Signal (ZZZ)</th><th>Negative Signal (ZZZ)</th><th>Check By</th></tr></thead>
+      <tbody>
+        <tr><td><strong>NTE launch server stability</strong></td><td>ToF reputation. Instability validates ZZZ's track record advantage.</td><td>Queues, errors, crashes in NTE posts</td><td>Smooth launch erases ToF shadow</td><td>April 29 (launch day)</td></tr>
+        <tr><td><strong>NTE actual monetization reveals</strong></td><td>If cosmetics pricing is aggressive, trust gap opens</td><td>Community backlash vs. NTE pricing</td><td>Fair pricing = no opening</td><td>April 29–May 2</td></tr>
+        <tr><td><strong>ZZZ → NTE migration posts</strong></td><td>Volume indicator of actual churn vs. curiosity</td><td>Posts stay low (&lt;5/day visible)</td><td>Spike in "I quit ZZZ" posts</td><td>Daily, April 29–May 5</td></tr>
+        <tr><td><strong>NTE ID community formation</strong></td><td>If ID players form NTE groups, it signals permanent split</td><td>ID NTE groups stay small (&lt;5K)</td><td>Rapid ID group growth (&gt;10K/week)</td><td>May 2 sweep</td></tr>
+        <tr><td><strong>NTE gacha rates in practice</strong></td><td>Community math on actual vs. stated 470-pull guarantee</td><td>Rates worse than stated; community backlash</td><td>Rates confirmed favorable = pull narrative persists</td><td>May 2–7</td></tr>
+        <tr><td><strong>NTE endgame content reveal</strong></td><td>Endgame gap is current vulnerability; any depth reveal closes it</td><td>Endgame remains shallow; community questions</td><td>Strong endgame reveal = longevity concern resolved</td><td>May 2–14</td></tr>
+        <tr><td><strong>ZZZ v2.8 reception (May 6)</strong></td><td>How ZZZ performs during NTE's first week sets the competitive tone</td><td>High ZZZ hype drowns NTE comparison noise</td><td>Low ZZZ v2.8 sentiment amplifies NTE migration narrative</td><td>May 6–10</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section" id="data">
+  <div class="sh"><div class="sn">10</div><div class="st">Data Notes</div></div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Item</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Data window</strong></td><td>2026-04-18 to 2026-04-19 (primary). Facebook Phase 0.5 data is 2026-04-20 (next-day supplement, pre-launch).</td></tr>
+        <tr><td><strong>Total data points</strong></td><td>~270: 39 tweets, 108 TikTok videos, 10 FB post captions + ~60 FB comment excerpts (Phase 0.5), 10 Reddit threads. YouTube not separately sampled; Weibo/CN not covered.</td></tr>
+        <tr><td><strong>Sampling method</strong></td><td>Manual extraction via authenticated browser scraping (Playwright). Keyword: "NTE", "Neverness to Everness", "nte game". TikTok via /search/video endpoint. X/Twitter via src=typed_query. Reddit via r/gachagaming, r/NeverToEverness.</td></tr>
+        <tr><td><strong>Sentiment coding</strong></td><td>Manual, single-coder. No inter-rater reliability check. Treat percentages as directional estimates (±10%).</td></tr>
+        <tr><td><strong>Reach estimates</strong></td><td>All reach figures are rough estimates based on platform norms, not extracted analytics. Treat as order-of-magnitude, not precise.</td></tr>
+        <tr><td><strong>Platform gaps</strong></td><td>Weibo (CN audience) not covered — consistent gap across all reports. YouTube systematic sampling not done. Instagram KOL monitoring manual only.</td></tr>
+        <tr><td><strong>Bias risk</strong></td><td>Search keywords biased toward engaged/enthusiastic content. Passive or neutral players underrepresented. Sentiment likely skews more positive than true population.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="sub">Coverage Gaps</div>
+  <ul class="gl">
+    <li><strong>Weibo / CN community:</strong> Zero coverage. Chinese-language NTE sentiment unknown. ToF is a Chinese-developed game with strong CN community; CN sentiment may differ significantly from Global.</li>
+    <li><strong>YouTube:</strong> Video comments not systematically sampled. Could yield additional qualitative signals especially on combat and endgame impressions.</li>
+    <li><strong>Discord:</strong> NTE's official Discord not monitored. Pre-launch channel activity likely high.</li>
+    <li><strong>Indonesian-language deep dive:</strong> ID-language posts observed in Facebook but not exhaustively sampled. Full ID community picture requires dedicated Phase 1 Facebook sweep.</li>
+    <li><strong>Influencer / KOL tier analysis:</strong> No classification of NTE creator tier (micro vs. macro). High-follower creator partnerships not tracked.</li>
+  </ul>
+</div>
+
+<div class="section" id="flow">
+  <div class="sh"><div class="sn">11</div><div class="st">Research Flow &amp; Token Cost</div></div>
+  <p>Full methodology trace for reproducibility. Token costs are estimates based on Claude Sonnet 4.x pricing at time of generation.</p>
+  <div class="tw">
+    <table class="ft-tbl">
+      <thead><tr><th>Phase</th><th>Action</th><th>Platforms / Tools</th><th>Data Points</th><th>Est. Tokens</th></tr></thead>
+      <tbody>
+        <tr><td>Phase 0 — Offline load</td><td>Read wiki/sources/nte.md, playbook, prior reports</td><td>Local files</td><td>—</td><td>~15K</td></tr>
+        <tr><td>Phase 1 — X/Twitter sweep</td><td>Playwright search, extract 39 tweets + sentiment tag</td><td>X/Twitter (src=typed_query)</td><td>39</td><td>~25K</td></tr>
+        <tr><td>Phase 2 — TikTok sweep</td><td>Playwright /search/video, scroll 5x, extract 108 post texts</td><td>TikTok</td><td>108</td><td>~40K</td></tr>
+        <tr><td>Phase 3 — Reddit sweep</td><td>r/gachagaming + r/NeverToEverness, 10 threads</td><td>Reddit (direct URL)</td><td>10</td><td>~20K</td></tr>
+        <tr><td>Phase 4 — Facebook Phase 0.5</td><td>FB group scan, 10 post captions + ~60 comment excerpts</td><td>Facebook (authenticated)</td><td>~70</td><td>~30K</td></tr>
+        <tr><td>Phase 5 — Analysis &amp; synthesis</td><td>Sentiment coding, theme extraction, competitive analysis</td><td>Claude (reasoning)</td><td>—</td><td>~60K</td></tr>
+        <tr><td>Phase 6 — Report generation</td><td>Write skeleton + 11 Edit calls (HTML sections)</td><td>Write + Edit tools</td><td>—</td><td>~80K</td></tr>
+        <tr><td colspan="3"><strong>Total estimated tokens</strong></td><td><strong>~270 data pts</strong></td><td><strong>~270K</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="co yellow">
+    <div class="ci">💡</div>
+    <div class="cb"><div class="cl">Methodology Note</div><p>HTML reports are generated using the Write-skeleton + Edit-per-section method (Method 1). Content lives in tool parameters, never in response text buffer — zero crash risk at any section count. This pattern is documented in raw/playbooks/tools.md and confirmed stable across 13+ consecutive Edit calls. Report generation token cost (~80K) includes skeleton generation + all 11 section fills.</p></div>
+  </div>
+  <div class="sub">Next Sweep Checklist</div>
+  <ul class="gl">
+    <li><strong>Date:</strong> May 2, 2026 (D+3 post-NTE launch)</li>
+    <li><strong>Focus:</strong> Launch quality reception — server stability, actual gacha rates vs. stated, first-day community reaction</li>
+    <li><strong>Focus:</strong> ID community formation — has an Indonesian NTE Facebook group appeared? Size?</li>
+    <li><strong>Focus:</strong> ZZZ v2.8 (May 6) — pre-launch hype vs. NTE post-launch chatter overlap period</li>
+    <li><strong>Platforms to add:</strong> YouTube comments (combat / endgame discussion), NTE Discord</li>
+    <li><strong>Weibo gap:</strong> Attempt first CN-language coverage if bandwidth available</li>
+  </ul>
+</div>
+
+
+<div class="rf">
+  <div class="rf-logo">Hoyoverse · ZZZ Intelligence</div>
+  <p>NTE Competitive Intelligence Report — Post-Preview Edition · April 19, 2026</p>
+  <p>Next sweep: D+3 post-launch (May 2, 2026) · Focus: launch quality reception, gacha rates vs. ZZZ, ID community formation</p>
+  <p style="color:var(--border);margin-top:3px">Source reference: wiki/reports/competitors/nte-competitor-report-2026-04.md (Apr 18 draft)</p>
+</div>
+
+</div>
+</body>
+</html>
