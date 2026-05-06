@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZZZ v2.8 — Starlight Billy Community Sentiment · April 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-0:#0d1523;--bg-1:#121d2e;--bg-2:#1a2640;--bg-card:#141f30;
+    --border:rgba(200,168,76,0.14);--border-bright:rgba(200,168,76,0.38);
+    --gold:#c8a84c;--gold-dim:#7a6330;--gold-bright:#e8c870;
+    --text-0:#ede9de;--text-1:#b0ac9e;--text-2:#7c7a72;
+    --red:#c83f4a;--red-bg:rgba(200,63,74,0.09);
+    --amber:#d4943a;--amber-bg:rgba(212,148,58,0.11);
+    --green:#3a9d6e;--green-bg:rgba(58,157,110,0.1);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg-0);color:var(--text-0);font-family:'Crimson Pro',Georgia,serif;font-size:16px;line-height:1.65}
+  body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;opacity:0.032;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px}
+  .wrap{max-width:760px;margin:0 auto;padding:52px 28px 96px;position:relative;z-index:1}
+  .back{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-2);text-decoration:none;margin-bottom:32px;transition:color .15s}
+  .back:hover{color:var(--gold)}
+  .report-header{margin-bottom:44px}
+  .rh-meta{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text-2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .rh-dot{width:3px;height:3px;border-radius:50%;background:var(--text-2);flex-shrink:0}
+  .rh-title{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:700;color:var(--text-0);letter-spacing:.03em;line-height:1.15;margin-bottom:8px}
+  .rh-sub{font-family:'Crimson Pro',serif;font-size:17px;font-style:italic;color:var(--text-1);margin-bottom:18px}
+  .verdict-bar{display:flex;align-items:center;gap:10px;padding:10px 16px;border:1px solid var(--green);background:var(--green-bg);margin-top:16px}
+  .verdict-bar.mixed{border-color:var(--amber);background:var(--amber-bg)}
+  .vb-icon{font-size:16px;flex-shrink:0}
+  .vb-text{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-0)}
+  .stat-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .stat{font-family:'IBM Plex Mono',monospace;font-size:9px;padding:3px 9px;border:1px solid var(--border-bright);color:var(--gold);background:rgba(200,168,76,0.05);letter-spacing:.04em}
+  h2{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--text-0);letter-spacing:.06em;text-transform:uppercase;margin:40px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+  h3{font-family:'Crimson Pro',serif;font-size:17px;font-weight:600;color:var(--gold);margin:26px 0 10px}
+  p{margin-bottom:12px;color:var(--text-1)}
+  p strong{color:var(--text-0);font-weight:600}
+  .signal-block{border-left:2px solid var(--green);padding:12px 18px;background:rgba(58,157,110,0.05);margin:14px 0}
+  .signal-block.amber{border-color:var(--amber);background:var(--amber-bg)}
+  .signal-block.red{border-color:var(--red);background:var(--red-bg)}
+  .signal-tag{font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:5px}
+  .signal-block.amber .signal-tag{color:var(--amber)}
+  .signal-block.red .signal-tag{color:var(--red)}
+  .signal-text{font-size:14.5px;color:var(--text-1);line-height:1.55}
+  .signal-text em{font-style:italic;color:var(--text-0)}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13.5px}
+  th{font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-2);padding:7px 12px;border-bottom:1px solid var(--border-bright);text-align:left;font-weight:500}
+  td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--text-1);vertical-align:top;line-height:1.5}
+  td strong{color:var(--text-0)}
+  tr:last-child td{border-bottom:none}
+  .platform-row td:first-child{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:.04em}
+  .tag-list{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0}
+  .tag{font-family:'IBM Plex Mono',monospace;font-size:8.5px;padding:2px 7px;background:rgba(255,255,255,.03);color:var(--text-2);border:1px solid rgba(255,255,255,.07);letter-spacing:.04em}
+  .tag.green{color:var(--green);border-color:rgba(58,157,110,.3);background:var(--green-bg)}
+  .tag.amber{color:var(--amber);border-color:rgba(212,148,58,.3);background:var(--amber-bg)}
+  .page-footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+  .pf-text{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text-2);letter-spacing:.06em}
+  @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+  .wrap>*{animation:rise .5s ease-out both}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../index.html">← All Reports</a>
+
+  <header class="report-header">
+    <div class="rh-meta">
+      <span>ZZZ</span><div class="rh-dot"></div>
+      <span>Community Sentiment</span><div class="rh-dot"></div>
+      <span>v2.8</span><div class="rh-dot"></div>
+      <span>Apr 21, 2026</span><div class="rh-dot"></div>
+      <span>Indonesia + Global</span>
+    </div>
+    <div class="rh-title">ZZZ v2.8 — Starlight Billy</div>
+    <div class="rh-sub">“The S-Rank we’ve been waiting for since day one”</div>
+    <div class="verdict-bar">
+      <span class="vb-icon">🟢</span>
+      <span class="vb-text">Strongly Positive — 82% positive across 7 platforms · 650+ data points</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat">7 platforms</span>
+      <span class="stat">650+ posts</span>
+      <span class="stat">143.6K TikTok likes</span>
+      <span class="stat">449+ HoYoLab posts</span>
+      <span class="stat">Re-engagement confirmed</span>
+    </div>
+  </header>
+
+  <h2>1. Executive Summary</h2>
+  <p>Starlight Billy is the most unambiguous community win in the v2.8 lineup — and arguably the most broadly beloved ZZZ character announcement since launch. The announcement on March 28 triggered immediate, unanimous hype across every platform: <em>“IT’S REAL! THE S RANK BILLY IS REAL!!!!”</em> (HoYoLab, 198K views, 1,213 comments). The signal is undivided — positive across every language, platform, and audience tier.</p>
+  <p>Pull intent is exceptionally strong. HoYoLab has 449+ posts dominated by “Day N of saving for Billy” countdown series. Facebook ID official post received 100% positive comments: <em>“BEST BRO IN ZZZ”, “COMEBACK KARENA LORD BILLY”, “SSB = Super Saiyan Billy”</em>. TikTok top video hit <strong>143.6K likes</strong> on announcement day.</p>
+  <p><strong>Campaign insight:</strong> Billy is a <em>re-engagement asset</em>, not just new-character hype. Lapsed players are explicitly returning across all platforms. The Kamen Rider/tokusatsu hook is cross-cultural and works for non-game audiences — the single most versatile KOL angle for this character.</p>
+
+  <div class="signal-block">
+    <div class="signal-tag">Top Signal</div>
+    <div class="signal-text"><em>“We all skipping Promeia for Billy right?”</em> — 941 likes on TikTok. Dominates pull-priority framing on every platform.</div>
+  </div>
+  <div class="signal-block">
+    <div class="signal-tag">Re-engagement confirmed</div>
+    <div class="signal-text"><em>“COMEBACK KARENA LORD BILLY”</em> (Facebook ID official post), <em>“do I really have to go back to ZZZ”</em> (HoYoLab) — lapsed players naming Billy explicitly as reason to return.</div>
+  </div>
+  <div class="signal-block">
+    <div class="signal-tag">Kamen Rider hook</div>
+    <div class="signal-text"><em>“that’s no starlight knight, that’s a goddamn kamen rider”</em> — TikTok (889 likes). Confirmed cross-platform: Indonesia, Global EN, SEA Vietnamese Discord. Legible to non-gamers.</div>
+  </div>
+
+  <h2>2. Platform Breakdown</h2>
+  <table>
+    <thead><tr><th>Platform</th><th>Sentiment</th><th>Top Signal</th></tr></thead>
+    <tbody class="platform-row">
+      <tr><td>Facebook ID Group</td><td>🟢 67% positive</td><td>“KOMEBACK KARENA LORD BILLY” · 15 posts · 2 queries merged</td></tr>
+      <tr><td>Facebook ID Official</td><td>🟢 100% positive</td><td>Official post · all 10 comments positive · “SSB = Super Saiyan Billy”</td></tr>
+      <tr><td>HoYoLab</td><td>🟢 91% positive</td><td>449+ posts · 198K-view announcement article · “Day N saving” series</td></tr>
+      <tr><td>TikTok</td><td>🟢 79% positive</td><td>143.6K likes · 54.5K motorcycle video · “Skip Promeia for Billy” dominant</td></tr>
+      <tr><td>YouTube ID</td><td>🟢 Positive</td><td>4 ID KOLs active · KamarRama, OreoNoMercy, SRAA_yt, PityGamersRoom</td></tr>
+      <tr><td>X/Twitter</td><td>🟢 77% positive</td><td>Fan art viral · Kamen Rider framing · ID absent (platform reality)</td></tr>
+      <tr><td>Reddit</td><td>🟢 Positive</td><td>Kamen Rider Grand Zi-O crossover thread · “All in with 400+ pulls”</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. Key Themes</h2>
+  <div class="tag-list">
+    <span class="tag green">Re-engagement hook</span>
+    <span class="tag green">Skip Promeia for Billy</span>
+    <span class="tag green">Kamen Rider / tokusatsu</span>
+    <span class="tag green">Motorcycle gameplay</span>
+    <span class="tag green">143.6K TikTok</span>
+    <span class="tag green">Day N saving series</span>
+    <span class="tag amber">Ramiel saving suppression</span>
+    <span class="tag amber">WuWa v3.3 pull split</span>
+  </div>
+
+  <h3>Positive: Strongest ZZZ Re-engagement Signal in Recent Memory</h3>
+  <p>Lapsed players are naming Billy as the explicit reason to return. This is the first time ZZZ has produced a character announcement that functions as a <em>recovery tool</em> for churned players, not just content for active players. The “King Billy” label emerged organically in Indonesian Facebook — future male characters will be measured against him.</p>
+
+  <h3>Competitive Context</h3>
+  <p>NTE launched April 29 — 7 days before v2.8. WuWa v3.3 Anniversary launched April 30. Billy’s pull intent signal was strong enough to survive this multi-game wallet competition. The “multi-game saver” pattern is confirmed but Billy remains the priority pull for the Indonesian audience.</p>
+
+  <h2>4. Recommendations</h2>
+  <div class="signal-block">
+    <div class="signal-tag">KOL Priority</div>
+    <div class="signal-text">Brief non-ZZZ creators on the tokusatsu/Kamen Rider angle — immediately legible to Indonesian audience without game context. Hook: <em>“The robot who became a superhero”</em> + motorcycle transformation = viral-adjacent format.</div>
+  </div>
+  <div class="signal-block">
+    <div class="signal-tag">Messaging</div>
+    <div class="signal-text">Use “COMEBACK KARENA LORD BILLY” as organic-proof KOL framing. Let the re-engagement narrative run. Do not push Promeia design-fix alongside Billy — Billy is the clean, undivided signal.</div>
+  </div>
+
+  <footer class="page-footer">
+    <span class="pf-text">Hoyoverse Brand Marketing · Internal Use Only</span>
+    <span class="pf-text">ZZZ v2.8 · Apr 21, 2026 · 7 sources</span>
+  </footer>
+</div>
