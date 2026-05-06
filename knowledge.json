@@ -1,0 +1,471 @@
+{
+  "updated": "2026-05-04",
+  "context": {
+    "operator": "Hoyoverse brand marketing professional",
+    "primary_market": "Indonesia",
+    "active_games": [
+      "ZZZ v2.8 (May 6 – Jun 16, 2026)",
+      "ZZZ v3.0 Season 3 (June 2026, est.)",
+      "GI v6.5 (Apr 8 – May 19, 2026)"
+    ],
+    "key_competitor": "NTE (Neverness to Everness) — Launched April 29, 2026 (D+5)"
+  },
+  "reports": [
+    {
+      "id": "zzz-v28-billy-sentiment-2026-04",
+      "title": "ZZZ v2.8 — Starlight Billy Community Sentiment",
+      "date": "2026-04-21",
+      "data_window": "2026-04-05 to 2026-04-21",
+      "path": "zzz/zzz-v28-billy-community-sentiment-2026-04-21.html",
+      "type": "sentiment",
+      "game": "zzz",
+      "version": "v2.8",
+      "character": "Starlight Billy",
+      "region": "Indonesia + Global",
+      "platforms": [
+        "Facebook ID Group",
+        "Facebook ID Official",
+        "HoYoLab",
+        "TikTok",
+        "YouTube ID",
+        "X/Twitter",
+        "Reddit"
+      ],
+      "sources": 7,
+      "overall_sentiment": "Strongly Positive — 82% positive across 7 platforms",
+      "exec_summary": "Starlight Billy is the most unambiguous community win ZZZ has produced since launch. 143.6K TikTok likes on announcement day. 449+ HoYoLab posts dominated by Day N saving countdowns. Re-engagement confirmed: lapsed players explicitly naming Billy as reason to return. Kamen Rider/tokusatsu hook is cross-cultural and works for non-gamers. 'COMEBACK KARENA LORD BILLY' (Facebook ID official). The 'Skip Promeia for Billy' framing dominates pull-priority across every platform.",
+      "key_findings": [
+        "Re-engagement hook confirmed — lapsed players explicitly naming Billy as reason to return across all platforms",
+        "143.6K TikTok likes on announcement — strongest ZZZ character announcement engagement this sweep window",
+        "449+ HoYoLab posts about Billy — Day N saving countdown series across dozens of accounts",
+        "Kamen Rider/tokusatsu framing confirmed cross-cultural: ID, Global EN, SEA — works for non-game audiences",
+        "'Skip Promeia for Billy' = dominant pull choice framing; Billy is the unambiguous pull priority",
+        "King Billy label emerged organically in Indonesian Facebook — future male characters will be measured against him"
+      ],
+      "sentiment_by_platform": {
+        "Facebook_ID_Group": {
+          "positive": 67,
+          "neutral": 27,
+          "negative": 7
+        },
+        "Facebook_ID_Official": {
+          "positive": 100,
+          "neutral": 0,
+          "negative": 0
+        },
+        "HoYoLab": {
+          "positive": 91,
+          "neutral": 7,
+          "negative": 2
+        },
+        "TikTok": {
+          "positive": 79,
+          "neutral": 15,
+          "negative": 6
+        },
+        "X_Twitter": {
+          "positive": 77,
+          "neutral": 16,
+          "negative": 7
+        }
+      },
+      "recommended_actions": [
+        "Brief non-ZZZ creators on tokusatsu/Kamen Rider angle — legible to Indonesian audience without game context",
+        "Use COMEBACK KARENA LORD BILLY as organic-proof KOL framing in ID",
+        "Do not push Promeia design-fix alongside Billy — Billy is the clean undivided signal"
+      ]
+    },
+    {
+      "id": "nte-post-launch-d1-2026-04",
+      "title": "NTE — Post-Launch Competitive Intelligence D+1",
+      "date": "2026-04-30",
+      "data_window": "2026-04-29 to 2026-04-30",
+      "path": "competitors/nte-launch-sentiment-2026-04-30.html",
+      "type": "competitive_intel",
+      "game": "zzz",
+      "threat_level": "HIGH — Active Trust Crisis",
+      "sources": 6,
+      "platforms": [
+        "X/Twitter",
+        "TikTok",
+        "Facebook",
+        "Reddit",
+        "YouTube"
+      ],
+      "data_points": "~270+ (45 tweets, 96 TikTok, 5 FB posts, 15 YouTube, ~15 Reddit)",
+      "exec_summary": "NTE launched April 29 with strong initial enthusiasm immediately overshadowed by a trust crisis: CN players received a free S-rank selector as compensation while Global players did not. r/gachagaming thread: 1,600+ comments. xQc live to 24,839 Twitch viewers. YouTube beginner guide: 104K views in 23 hours. ZZZ comparison has shifted from discovery frame to quality benchmark. 'Thinking of starting ZZZ after dropping NTE' thread appeared on launch day — capture this audience now.",
+      "key_findings": [
+        "CN/Global compensation gap activated Tower of Fantasy reputation risk on Day 1",
+        "xQc streaming NTE to 24,839 Twitch viewers — Western mainstream crossover achieved",
+        "r/ZenlessZoneZero 'Thinking of starting ZZZ after dropping NTE' thread appeared launch day",
+        "Mobile Android barrier confirmed for ID mid-range devices — ZZZ optimization is real competitive advantage",
+        "NTE promised Global S-rank selector for May 3 — trust crisis resolution pending",
+        "YT beginner guide 104K views in 23 hours — creator ecosystem healthy despite trust drama"
+      ],
+      "sentiment_by_platform": {
+        "X_Twitter": {
+          "positive": 55,
+          "neutral": 30,
+          "negative": 15
+        },
+        "TikTok": {
+          "positive": 65,
+          "neutral": 25,
+          "negative": 10
+        },
+        "Reddit": {
+          "positive": 40,
+          "neutral": 25,
+          "negative": 35
+        },
+        "Facebook_Official": {
+          "positive": 60,
+          "neutral": 35,
+          "negative": 5
+        },
+        "YouTube": {
+          "positive": 70,
+          "neutral": 20,
+          "negative": 10
+        }
+      },
+      "zzz_recommended_actions": [
+        "Deploy implicit CN/Global equal treatment content before NTE May 3 S-rank delivery",
+        "Engage r/ZenlessZoneZero 'dropping NTE' thread warmly — warm leads for ZZZ",
+        "Deploy ZZZ mobile optimization content targeting ID mid-range Android users",
+        "Monitor May 3 NTE delivery — if delayed, activate ZZZ welcome-back content"
+      ]
+    },
+    {
+      "id": "zzz-s3-v30-teaser-sentiment-2026-05",
+      "title": "ZZZ Season 3 (v3.0) — Community Sentiment, D+4",
+      "date": "2026-05-04",
+      "data_window": "2026-04-29 to 2026-05-04",
+      "path": "zzz/zzz-s3-v30-teaser-sentiment-2026-05-04.html",
+      "type": "sentiment",
+      "game": "zzz",
+      "version": "v3.0",
+      "season": "Season 3",
+      "region": "Indonesia + Global",
+      "platforms": [
+        "Facebook ID Group",
+        "Facebook ID Official",
+        "YouTube",
+        "X/Twitter",
+        "Reddit",
+        "HoYoLab",
+        "TikTok"
+      ],
+      "sources": 9,
+      "overall_sentiment": "Mixed — 42% positive / 22% neutral / 36% negative",
+      "exec_summary": "Season 3 'Before the Wind Rises' teaser (released Apr 30) split the community: design critics vs. lore/pull-plan enthusiasts — both camps are larger than usual. ZZZ Official Indonesia Facebook group banned all Sunbringer design discussion posts after community conflict peaked (mod announcement: 644 likes, 287 comments). Key signals: 'false marketing' framing emerging in ID community, male character gap (1/10 S3 chars male), Sunbringer design redesign controversy, aesthetic drift criticism. Counter: pull plan guide 74K HoYoLab views, @PopEridu 3,074 Twitter likes, counter-narrative thread 370+ Reddit comments.",
+      "key_findings": [
+        "ID group moderation breakdown — Sunbringer design posts banned; group's 'calmest fandom' reputation at stake",
+        "User-provided FB post (Koechink Kampoeng): 743 reactions, 324 shares — 'false marketing' framing seeding ID community",
+        "HoYoLab pull plan: 74K views — community still spending despite criticism",
+        "Male character gap: 1/10 S3 chars male — present on every platform including ID Facebook",
+        "Sunbringer design redesign controversy — CN and JP community also protesting (confirmed by ID sources)",
+        "Aesthetic drift: 'cassettepunk/VHS-punk' → 'sky-fantasy' — 380+ comment Reddit thread",
+        "Counter-narrative: r/ZZZ_Official '3.0 Designs Are Good' (370+ comments), @PopEridu 3,074 Twitter likes"
+      ],
+      "sentiment_by_platform": {
+        "Facebook_ID_Group": {
+          "positive": 25,
+          "neutral": 15,
+          "negative": 60,
+          "note": "Most vocal negative community"
+        },
+        "HoYoLab": {
+          "positive": 55,
+          "neutral": 20,
+          "negative": 25,
+          "note": "Pull plans = engaged optimism"
+        },
+        "TikTok": {
+          "positive": 65,
+          "neutral": 25,
+          "negative": 10,
+          "note": "Positive format bias"
+        },
+        "X_Twitter": {
+          "positive": 50,
+          "neutral": 28,
+          "negative": 22
+        },
+        "Reddit": {
+          "positive": 38,
+          "neutral": 20,
+          "negative": 42,
+          "note": "Design criticism dominant"
+        }
+      },
+      "recommended_actions": [
+        "Direct dev engagement with ID community — even Waterkuma commenting on one post would be disproportionately effective",
+        "Official statement clarifying Sunbringer final design status — 'designs in trailers are still in development'",
+        "Reveal more male characters from S3 soon to defuse gender gap discourse",
+        "Show existing characters (Billy, Nicole, Lighter) in Roscaelifer context to bridge aesthetic gap",
+        "Monitor 'false marketing' narrative — currently ID-contained; track if it surfaces in CN or press"
+      ]
+    },
+    {
+      "id": "nte-competitive-intel-2026-04",
+      "title": "NTE — Competitive Intel: ZZZ Threat Assessment",
+      "date": "2026-04-19",
+      "data_window": "2026-04-18 to 2026-04-20",
+      "path": "competitors/nte-competitive-intel-2026-04-19.html",
+      "type": "competitive_intel",
+      "game": "zzz",
+      "threat_level": "HIGH — Confirmed",
+      "sources": 11,
+      "platforms": [
+        "X/Twitter",
+        "TikTok",
+        "Facebook ID",
+        "Reddit",
+        "YouTube"
+      ],
+      "data_points": "~270 (39 tweets, 108 TikTok, 10 FB post captions + ~60 comment excerpts, 10 Reddit)",
+      "exec_summary": "NTE (by Hotta Studio / Perfect World) launches April 29, 2026 — 10 days from report date, 1 week before ZZZ v2.8. Threat is HIGH and immediate. NTE is not a speculative threat — it already has an active creator ecosystem, 470-pull pity narrative capturing attention, and an Indonesian Facebook group (NTE ID 50K+ members). The '470-pull guarantee' narrative is functioning as a competitive wedge against ZZZ's gacha system. NTE creators are actively comparing favorably to ZZZ on pull rates and game depth.",
+      "sentiment_by_platform": {
+        "TikTok": {
+          "positive": 82,
+          "neutral": 15,
+          "negative": 3,
+          "note": "Overwhelmingly excited; aesthetic appeal dominant"
+        },
+        "X_Twitter": {
+          "positive": 64,
+          "neutral": 26,
+          "negative": 8,
+          "note": "Some ZZZ-loyal skepticism"
+        },
+        "Facebook_Phase05": {
+          "positive": 75,
+          "neutral": 25,
+          "negative": 0,
+          "note": "Indonesian Facebook — pro-NTE, no backlash"
+        },
+        "Reddit": {
+          "positive": 60,
+          "neutral": 30,
+          "negative": 10,
+          "note": "Most critical; ZZZ defenders present"
+        }
+      },
+      "key_findings": [
+        "470-pull guarantee is NTE's most effective competitive narrative — being adopted by ZZZ players who are frustrated with ZZZ's pull economics",
+        "ZZZ identity colonization — NTE creators explicitly use ZZZ's UI style, terminology, and Hollow Zero-like dungeon framing to make ZZZ players feel at home",
+        "Active Indonesian Facebook presence: NTE ID group has 50K+ members before launch; ZZZ Official ID group has 70K",
+        "Creator ecosystem is fully activated pre-launch — TikTok, YouTube, X creators all posting; ZZZ has no equivalent pre-v2.8 activations yet",
+        "NTE's life sim (housing, café, car) is a strong differentiator vs ZZZ's combat-only identity",
+        "NTE open-world appeal targeting Genshin Impact lapsed players, not just ZZZ players — broader audience acquisition threat"
+      ],
+      "nte_vulnerabilities_for_zzz": [
+        "Unverified gacha claims — '470-pull' is marketing copy, not proven by math; ZZZ can position verified transparent pull history vs NTE's promises",
+        "No track record — NTE has zero live service history; ZZZ has 2+ years of stable servers and Hoyoverse trust",
+        "PC-first / gacha-heavy positioning vs ZZZ's mobile-first + established F2P baseline",
+        "Life sim depth may underdeliver vs stated features — housing/café content not yet verified in gameplay footage",
+        "Hotta Studio's Wuthering Waves V1.0 server stability incident in June 2024 is relevant precedent"
+      ],
+      "zzz_recommended_actions": [
+        "Billy pre-launch content push Apr 26–27 — activate KOL re-engagement narrative before NTE launch steals the window",
+        "ID community activation: Billy 'King Billy' framing in Facebook ID group 48h before NTE goes live",
+        "ZZZ welfare framing: highlight v2.8 'free characters + welfare banners' to counter NTE's 470-pull messaging",
+        "Post-NTE launch monitoring: NTE D+3 sweep May 2 — Reddit, X, TikTok, Facebook ID",
+        "Do not engage NTE directly in official channels — let community comparisons happen organically; ZZZ's advantage is trust + track record"
+      ],
+      "watch_items_post_launch": [
+        "NTE server stability on April 29 launch day — Hotta Studio history with WuWa V1.0 makes this a plausible failure point",
+        "Real pull data vs 470-pull promise — community verification will happen within 72h of launch",
+        "ID Facebook group ZZZ-to-NTE migration signals — monitor crossover posting",
+        "Billy vs NTE — does Indonesian community split attention or remain Billy-focused"
+      ]
+    },
+    {
+      "id": "zzz-v28-promeia-billy-sentiment-2026-04",
+      "title": "ZZZ v2.8 — Promeia & Starlight Billy Community Sentiment",
+      "date": "2026-04-17",
+      "data_window": "2026-04-02 to 2026-04-17",
+      "path": "zzz/zzz-v28-community-sentiment-2026-04.html",
+      "type": "sentiment",
+      "game": "zzz",
+      "version": "v2.8",
+      "characters": [
+        "Promeia (Ice Anomaly)",
+        "Starlight Billy (Stunner/Physical-Rupture)"
+      ],
+      "region": "Indonesia focus + Global supporting",
+      "platforms": [
+        "Facebook ID",
+        "HoYoLab",
+        "YouTube ID",
+        "TikTok",
+        "X/Twitter ID",
+        "Discord",
+        "Reddit"
+      ],
+      "sources": 7,
+      "overall_sentiment": "🟡 Mixed (Promeia) + 🟢 Positive (Starlight Billy)",
+      "exec_summary": "v2.8 is a split verdict. Billy is the strongest re-engagement signal ZZZ has produced in recent memory — no negative sentiment found on any platform. Promeia enters with a live design controversy, but Hoyoverse is actively correcting it (entrance animation Apr 11, back design Apr 15) and the community is celebrating the fixes in real time. TikTok's top priority post (38.3K likes) is a direct response to the design fix. The controversy is shifting from 'problem' to 'they listened.'",
+      "promeia": {
+        "sentiment": "🟡 Mixed",
+        "pull_intent": "Moderate — dedicated savers confirmed (55K views 'day 11 saving' HoYoLab) but design controversy suppressing casual pullers",
+        "id_specific": "Indonesian critics use 'telanjang' (exposed/naked) — modesty-based objection rooted in regional cultural norms, distinct from Global's aesthetic framing",
+        "positive_signal": "Design-fix celebrations; ship content active; 'Abloom' kit discussion shows genuine engagement",
+        "top_post": "@gazedbythevoracity TikTok, 38.3K likes — 'I'm so happy yall have no idea' (direct design-fix response)"
+      },
+      "billy": {
+        "sentiment": "🟢 Positive — Uncontested",
+        "pull_intent": "High — account restarts, 'all in Billy', 'come back for Billy' across every platform",
+        "id_label": "'King Billy' — organic benchmark; future male ZZZ characters will be measured against him",
+        "re_engagement": "Explicit returning players documented: account restarts, 'should I come back to ZZZ?' threads",
+        "kamen_rider_hook": "Tokusatsu/Kamen Rider fan art confirmed; KamarRama drip video 40 comments"
+      },
+      "platform_breakdown": {
+        "Facebook_ID": "20 posts (5 Promeia, 15 Billy); 3:1 Billy-dominant; 'King Billy' label emerged",
+        "HoYoLab": "14 posts; 'day 11 saving' post 55K views — highest single-post pull intent in sweep",
+        "YouTube_ID": "5 videos, 66 comments; F2P budget calc dominant for Promeia; KamarRama 40 comments",
+        "TikTok": "~24 videos each; 38.3K likes design-fix top post",
+        "X_Twitter_ID": "13 posts; Promeia design-negative skew; Billy re-engagement positive",
+        "Discord": "Low volume (#zzz-id); kit discussion only",
+        "Reddit": "8 posts each; 140+ comment Promeia design debate; Kamen Rider fan art for Billy"
+      },
+      "competitor_risks": {
+        "NTE": "Launches Apr 29 — 1 week before v2.8 — direct attention competition",
+        "WuWa_v3.3": "Apr 30 launch — overlapping audience; 'saving for hiyuki in wuwa + promeia in ZZZ' multi-game saver confirmed",
+        "GI_v6.5": "Shared wallet risk when both banners active; ends same week as Promeia launch"
+      },
+      "recommended_actions": [
+        "Activate KOL re-engagement narrative for Billy — 'the character you came back for' targeting lapsed ZZZ players",
+        "Let the community-driven design-fix narrative for Promeia run organically — do not force pull intent messaging",
+        "ID-specific: frame Billy in 'King Billy' language; avoid pushing Promeia design messaging in Indonesian channels"
+      ]
+    },
+    {
+      "id": "zzz-cissia-sentiment-2026-04",
+      "title": "ZZZ v2.7 Cissia — Community Sentiment Research",
+      "date": "2026-04-19",
+      "data_window": "Around April 2026 (8-platform sweep)",
+      "path": "zzz/cissia-community-sentiment-2026-04-19.html",
+      "type": "sentiment",
+      "game": "zzz",
+      "version": "v2.7",
+      "character": "Cissia",
+      "region": "Indonesia + Global",
+      "platforms": [
+        "Facebook ID Group",
+        "Facebook ID Page",
+        "HoYoLab",
+        "YouTube",
+        "TikTok",
+        "X/Twitter",
+        "Reddit",
+        "Discord"
+      ],
+      "sources": 8,
+      "overall_sentiment": "🟢 Positive · Pull Intent: 🟢 Positive",
+      "exec_summary": "Cissia enters banner with strong organic affection across all platforms. Community loves her personality (humor, egg-eating quirk, snake companion) and her design. Primary friction is kit dependency on W-Engine 'Seed' — 'Seed slave' is the community's phrase for the Cissia+Seed combo treated as inseparable. ID KOL activation is notably fast: 4 Indonesia KOLs posted within 3 days of launch — strongest ID KOL signal since Ramiel.",
+      "platform_breakdown": {
+        "Facebook_ID_Group": "27 posts, 35% positive; 'Wise sleeping situation' 617 likes, 126 comments",
+        "Facebook_ID_Page": "12 posts, 27% positive; official brand content neutral skew",
+        "HoYoLab": "30 posts, 90% positive; 'Profil Agen' 164K views, 622 comments",
+        "YouTube": "21 relevant videos, 57% positive; official demo 1.45M views; 4 ID KOLs active ≤3 days",
+        "TikTok": "18 videos, 50% positive; physics meme (pokeresley) 39.8K likes; official demo 135K likes",
+        "X_Twitter": "40 tweets, 55% positive; Yuriko Yumi fanart 6.2K likes; ID absent",
+        "Reddit": "50 posts, 54% positive; 'Cissia & Jane Hangout' 1937 upvotes; 'Cissia wants eggs' 899 upvotes",
+        "Discord": "13 messages, 58% positive; low volume; 1 ID message only"
+      },
+      "top_themes": [
+        "Seed dependency ('Seed slave') — Cissia described as 'useless without Seed' — primary pull-decision blocker",
+        "Personality affection — egg-eating meme, 'so funny', parasocial/romance framing",
+        "Physics/animation commentary — TikTok meme 39.8K likes; amused, not hostile",
+        "Cross-IP fanart — GI crossover (Baizhu/Qiqi/Yaoyao), Cissia & Jane pairings",
+        "Design skeptic → convert arc — players who called design 'safe' in February became fans after story/gameplay"
+      ],
+      "id_kols_active": [
+        {
+          "name": "Suli",
+          "platform": "YouTube",
+          "content": "'BAHAYA' (danger/warning)",
+          "views": "7.7K",
+          "framing": "Pull urgency"
+        },
+        {
+          "name": "KamarRama",
+          "platform": "YouTube",
+          "content": "'Gue Salah Sangka' (I misjudged her)",
+          "views": "4.2K",
+          "framing": "Convert arc"
+        },
+        {
+          "name": "OreoNoMercy",
+          "platform": "YouTube",
+          "content": "'GACHA CISSIA DEH SEKARANG!'",
+          "views": "3K",
+          "framing": "Direct pull activation"
+        },
+        {
+          "name": "PityGamersRoom",
+          "platform": "YouTube",
+          "content": "Kit guide content",
+          "framing": "Informational pull enablement"
+        }
+      ],
+      "kol_talking_points": [
+        "She arrests you but you'll thank her for it — personality hook",
+        "'I sink my teeth in and don't let go' — character voice that sells itself",
+        "Egg-eating quirk — meme-friendly, breaks the ice for non-ZZZ audiences",
+        "Snake companion that follows you around — tangible gameplay warmth",
+        "Design skeptic → convert arc — 'I thought she was boring until I saw her in action' (KamarRama angle)"
+      ],
+      "pull_intent": "Genuine but gated by Seed dependency. Players who like Cissia are pulling regardless. Players without teammates cite it as reason to skip — not character aversion."
+    },
+    {
+      "id": "gi-v70-snezhnaya-sentiment-2026-04",
+      "title": "GI v7.0 Snezhnaya — Community Sentiment & Campaign Strategy",
+      "date": "2026-04-18",
+      "data_window": "As of 2026-04-18",
+      "path": "gi/gi-v70-snezhnaya-community-sentiment-2026-04-18.html",
+      "type": "sentiment_and_strategy",
+      "game": "gi",
+      "version": "v7.0",
+      "arc": "Snezhnaya — the final nation; home of the Fatui and Tsaritsa",
+      "estimated_launch": "~August 12, 2026",
+      "sources": 9,
+      "overall_sentiment": "🟢 Positive (Global) / ⚫ Dormant (Indonesia — not yet activated)",
+      "exec_summary": "Global community sentiment around Snezhnaya is the strongest anticipation signal since Natlan (v5.0, 2024). Two YouTube videos showing early Snezhnaya map glimpses attracted 103,807 views in 7 days — fully organic, no campaign. Indonesia is near-zero (Facebook ID: 0 Snezhnaya posts; HoYoLab ID: 0; Twitter ID: 14 posts). This is an opportunity: the global wave is building and Indonesia hasn't been activated. A remarkable coincidence: GI announced globally on August 17, 2020 — Indonesia's Independence Day. v7.0 launches August 12; Independence Day (Aug 17) falls on v7.0 Day 6.",
+      "key_signals": {
+        "global_hype": "103K YouTube views in 7 days on map-leak content — no campaign support — multi-year high",
+        "lapsed_player_connection": "'I didn't play Genshin for a very long time, but I still come here' — lowest-friction re-entry in GI history",
+        "independence_day_hook": "GI global announcement was August 17, 2020; 6 years of Hari Kemerdekaan GI fan content exists",
+        "v66_preview_incoming": "v6.6 livestream (late April/early May) will include Snezhnaya preview — hype will accelerate in May/June",
+        "id_silence_is_opportunity": "Content gap = first-mover advantage for KOL activation in Indonesian market",
+        "story_overwhelm_barrier": "Lapsed players want to return but fear missing too much backstory — campaign must actively dismantle this objection"
+      },
+      "pull_intent": "🟢 HIGH — lapsed/returning players; existing players saving for Tsaritsa/Pantalone/Capitano",
+      "campaign_narrative": {
+        "core_message": "You don't have to have played for years to be excited about Snezhnaya — this is the moment the whole game was building toward since day one",
+        "independence_day_angle": "The journey began on your independence day. The finale begins on another. (Aug 17, 2020 → Aug 17, 2026)",
+        "kol_framing": "Frame Snezhnaya as a cultural event, not a game update — an emotional payoff, the resolution of a 6-year story",
+        "lapsed_player_objection": "Active objection handling: 'You don't need to have played every update to feel the weight of Snezhnaya'"
+      },
+      "platform_breakdown": {
+        "Facebook_ID": "~0 dedicated posts — negative signal / opportunity",
+        "X_Twitter_Global": "~13+ posts, priority; 'I can't wait for Snezhnaya any longer — I'm going insane' and 'WHOLE HOUSE JOLLY' tones",
+        "X_Twitter_ID": "~14 posts, priority",
+        "HoYoLab_ID": "0 results — negative signal / opportunity",
+        "Reddit_Global": "~1,040 posts in past month — strong organic sustained discussion",
+        "YouTube_Global": "4 videos reviewed; 2 priority (103K views combined); map-leak content drives views",
+        "TikTok": "Not yet swept — gap; recommend before final report"
+      },
+      "campaign_window": "KOL Activation: ~Aug 5–11 (1 week before v7.0) → Independence Day week Aug 12–17 (launch + national holiday simultaneously)",
+      "competitor_risk": "Wuthering Waves ~v3.6 launches ~Aug 29 — moderate shared-wallet risk from week 3 onward",
+      "recommended_actions": [
+        "Activate ID KOL ecosystem now — 'first to Snezhnaya' positioning in Indonesian market while content gap exists",
+        "Independence Day tie-in campaign: 'This August 17, celebrate by coming back to the world that announced itself to you on your independence day'",
+        "Story-catch-up content: lower re-entry barrier with 'all you need to know before Snezhnaya' format",
+        "v6.6 livestream activation — pre-position campaign messaging to launch before the official Snezhnaya preview drops"
+      ]
+    }
+  ]
+}
